@@ -1,12 +1,12 @@
-#include "schedulinggrid.h"
+#include "mainwindow.h"
+
 #include <QApplication>
-#include <QDialog>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    schedulingGrid w;
-    w.show();
+    QApplication app(argc, argv);
 
-    return a.exec();
+    MainWindow mainWindow;
+    mainWindow.showMaximized();
+    return app.exec();
 }
