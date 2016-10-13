@@ -1,0 +1,7 @@
+Makefile
+.DS_Store
+.qmake.stash
+timefuse-client
+*.pro.user
+*.autosave
+*~
