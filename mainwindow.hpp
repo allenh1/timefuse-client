@@ -23,16 +23,16 @@ public:
     QLineEdit *text_pswd;
 
 private:
-    QPushButton *m_p_create_button; //create account
-    QPushButton *m_p_login_button; //login
-    QPushButton *m_p_reset_button;
+    QPushButton * m_p_create_button; /* create account */
+    QPushButton * m_p_login_button;  /*     login      */
+    QPushButton * m_p_reset_button;  /* reset password */
 
-	QLabel * m_p_user_label;
-	QLabel * m_p_password_label;
+    QLabel * m_p_user_label;
+    QLabel * m_p_password_label;
 
-	QLineEdit * m_p_user_edit;
-	QLineEdit * m_p_password_edit;
-
+    QLineEdit * m_p_user_edit;
+    QLineEdit * m_p_password_edit;
+  
     Q_SLOT void handleButton();
 };
 #endif // MAINWINDOW_H

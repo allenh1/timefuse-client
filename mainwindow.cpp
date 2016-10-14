@@ -4,12 +4,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 
 {
-	m_p_login_button = new QPushButton(tr("Sign In"), this);
-	m_p_create_button = new QPushButton(tr("Create Account"), this);
-
-    // Create the button, make "this" the parent
-    m_p_login_button = new QPushButton("Log In", this);
-    m_p_create_button = new QPushButton("Create Account", this);
+    m_p_login_button = new QPushButton(tr("Sign In"), this);
+    m_p_create_button = new QPushButton(tr("Create Account"), this);
     m_p_reset_button = new QPushButton("Reset Password", this);
 
     name = new QLabel(this);
@@ -31,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
     password->setGeometry(QRect(QPoint(400, 375), QSize(400, 50)));
 
 
+    m_p_password_label->setText("Password:");
+    m_p_password_label->setGeometry(QRect(QPoint(400, 375), QSize(400, 50)));
 
     //QTextEdit *txt = new QTextEdit();
 
@@ -48,10 +46,11 @@ MainWindow::~MainWindow()
 {
     delete m_p_create_button;
     delete m_p_login_button;
-	delete m_p_user_label;
-	delete m_p_password_label;
-	delete m_p_user_edit;
-	delete m_p_password_edit;
+    delete m_p_reset_button;
+    delete m_p_user_label;
+    delete m_p_password_label;
+    delete m_p_user_edit;
+    delete m_p_password_edit;
 };
 
 void MainWindow::handleButton()
