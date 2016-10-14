@@ -1,22 +1,17 @@
-#ifndef MAINWINDOW_HPP
-#define MAINWINDOW_HPP
-
+#ifndef __MAINWINDOW_HPP__
+#define __MAINWINDOW_HPP__
+#include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
 #include <QLineEdit>
-#include <QApplication>
-#include <QObject>
+#include <QLabel>
+#include <QtCore>
+#include <QtGui>
 
-namespace Ui {
-    class MainWindow;
-
-
-}
+namespace Ui { class MainWindow; }
 
 class MainWindow : public QMainWindow
 {
-
-
     Q_OBJECT
 
 public:
@@ -24,12 +19,16 @@ public:
     virtual ~MainWindow();
 
 private:
-    QPushButton *m_p_create_button; //create account
-    QPushButton *m_p_login_button; //login
+    QPushButton * m_p_create_button; /* create account */
+    QPushButton * m_p_login_button;  /*     login      */
+    QPushButton * m_p_reset_button;  /* reset password */
 
+    QLabel * m_p_user_label;
+    QLabel * m_p_password_label;
+
+    QLineEdit * m_p_user_edit;
+    QLineEdit * m_p_password_edit;
+  
     Q_SLOT void handleButton();
-
 };
-
-
 #endif // MAINWINDOW_H
