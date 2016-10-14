@@ -5,6 +5,10 @@
 MainWindow::~MainWindow(){
     delete m_p_create_button;
     delete m_p_login_button;
+    delete name;
+    delete password;
+    delete text_name;
+    delete text_pswd;
 };
 
 MainWindow::MainWindow(QWidget *parent)
