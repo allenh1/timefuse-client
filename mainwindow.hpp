@@ -8,7 +8,6 @@
 #include <QtCore>
 #include <QtGui>
 
-
 namespace Ui { class MainWindow; }
 
 class MainWindow : public QMainWindow
@@ -18,10 +17,15 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
+    QLabel *name;
+    QLabel *password;
+    QLineEdit *text_name;
+    QLineEdit *text_pswd;
 
 private:
-    QPushButton *m_p_create_button;
-    QPushButton *m_p_login_button;
+    QPushButton *m_p_create_button; //create account
+    QPushButton *m_p_login_button; //login
+    QPushButton *m_p_reset_button;
 
 	QLabel * m_p_user_label;
 	QLabel * m_p_password_label;
