@@ -17,10 +17,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
-    QLabel *name;
-    QLabel *password;
-    QLineEdit *text_name;
-    QLineEdit *text_pswd;
 
 private:
     QPushButton * m_p_create_button; /* create account */
