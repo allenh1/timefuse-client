@@ -64,10 +64,3 @@ void MainWindow::handleButton()
     m_p_login_button->resize(200,50);
     m_p_reset_button->resize(200,50);
 }
-
-
-
-
-
-
-
