@@ -13,6 +13,8 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 
+#include "create_account_window.hpp"
+
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -36,8 +38,8 @@ private:
 
     QLineEdit * m_p_user_edit;
     QLineEdit * m_p_password_edit;
-  
+
+    create_account_window * m_p_create_account_window;
     Q_SLOT void handleButton();
-	void openNewWindow();
 };
 #endif // MAINWINDOW_H
