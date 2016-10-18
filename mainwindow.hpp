@@ -7,6 +7,11 @@
 #include <QLabel>
 #include <QtCore>
 #include <QtGui>
+#include <QTextEdit>
+#include <QDialog>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 namespace Ui { class MainWindow; }
 
@@ -19,9 +24,13 @@ public:
     virtual ~MainWindow();
 
 private:
-    QPushButton * m_p_create_button; /* create account */
-    QPushButton * m_p_login_button;  /*     login      */
-    QPushButton * m_p_reset_button;  /* reset password */
+    QPushButton *m_p_create_button; //create account
+    QPushButton *m_p_login_button; //login
+    QPushButton *m_p_reset_button;
+
+    QVBoxLayout *mainLayout;
+    QHBoxLayout *layout;
+    QHBoxLayout *layout2;
 
     QLabel * m_p_user_label;
     QLabel * m_p_password_label;
@@ -30,5 +39,6 @@ private:
     QLineEdit * m_p_password_edit;
   
     Q_SLOT void handleButton();
+	void openNewWindow();
 };
 #endif // MAINWINDOW_H
