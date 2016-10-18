@@ -13,9 +13,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 
-namespace Ui { class MainWindow; }
-
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
@@ -28,9 +26,9 @@ private:
     QPushButton *m_p_login_button; //login
     QPushButton *m_p_reset_button;
 
-    QVBoxLayout *mainLayout;
-    QHBoxLayout *layout;
-    QHBoxLayout *layout2;
+    QVBoxLayout * m_p_main_layout;
+    QHBoxLayout * m_p_name_layout;
+    QHBoxLayout * m_p_password_layout;
 
     QLabel * m_p_user_label;
     QLabel * m_p_password_label;
