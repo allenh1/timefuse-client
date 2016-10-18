@@ -11,32 +11,50 @@ MainWindow::MainWindow(QWidget *parent)
     name = new QLabel(this);
     password = new QLabel(this);
 
-    text_name = new QLineEdit(this);
-    text_pswd = new QLineEdit(this);
+    m_p_main_layout = new QVBoxLayout();
+    m_p_name_layout = new QHBoxLayout();
+    m_p_password_layout = new QHBoxLayout();
 
 
-    text_name->setGeometry(QRect(QPoint(500, 315), QSize(200, 25)));
-    text_pswd->setGeometry(QRect(QPoint(500, 390), QSize(200, 25)));
+    m_p_name_layout->addWidget(name);
+    m_p_name_layout->addWidget(text_name);
 
+    m_p_password_layout->addWidget(password);
+    m_p_password_layout->addWidget(text_pswd);
 
+    m_p_main_layout->addLayout(layout);
+    m_p_main_layout->addLayout(layout2);
+    m_p_main_layout->addWidget(m_p_create_button);
 
+    setLayout(m_p_main_layout);
 
-    name->setText("Username:");
-    name->setGeometry(QRect(QPoint(400,275), QSize(200, 100)));
-    password->setText("Password:");
-    password->setGeometry(QRect(QPoint(400, 375), QSize(400, 50)));
+    //creating buttons(create, login, reset)
+    m_p_create_button = new QPushButton(tr("Create Account"), this);
+    m_p_login_button = new QPushButton(tr("Login"), this);
+    m_p_reset_button = new QPushButton(tr("Reset Password"), this);
 
+    connect(m_p_create_button, SIGNAL(clicked()), this, SLOT(show()));
 
-    m_p_password_label->setText("Password:");
-    m_p_password_label->setGeometry(QRect(QPoint(400, 375), QSize(400, 50)));
+    //text boxes for name and password on login screen
+    // text_name = new QLineEdit(this);
+    // text_pswd = new QLineEdit(this);
+    // text_email = new QLineEdit(this);
+
+    // m_p_user_edit->setGeometry(QRect(QPoint(500, 315), QSize(200, 25)));
+    // m_p_password_edit->setGeometry(QRect(QPoint(500, 390), QSize(200, 25)));
+
+    m_p_user_label->setText(tr("Username:"));
+    m_p_user_label->setGeometry(QRect(QPoint(400,275), QSize(200, 100)));
+
+    // m_p_password_label->setText(tr("Password:"));
+    // m_p_password_label->setGeometry(QRect(QPoint(400, 375), QSize(400, 50)));
 
     //QTextEdit *txt = new QTextEdit();
 
-    m_p_create_button->setGeometry(QRect(QPoint(650, 500), QSize(200, 50)));
-    m_p_login_button->setGeometry(QRect(QPoint(650, 550), QSize(200, 50)));
-    m_p_reset_button->setGeometry(QRect(QPoint(1000, 700), QSize(200, 50)));
+    // m_p_create_button->setGeometry(QRect(QPoint(650, 500), QSize(200, 50)));
+    // m_p_login_button->setGeometry(QRect(QPoint(650, 550), QSize(200, 50)));
+    // m_p_reset_button->setGeometry(QRect(QPoint(1000, 700), QSize(200, 50)));
 
-    // Connect button signal to appropriate slot
     connect(m_p_create_button, &QPushButton::released, this, &MainWindow::handleButton);
     connect(m_p_login_button, &QPushButton::released, this, &MainWindow::handleButton);
     connect(m_p_reset_button, &QPushButton::released, this, &MainWindow::handleButton);
