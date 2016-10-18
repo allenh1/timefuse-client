@@ -29,6 +29,7 @@ private:
     QVBoxLayout * m_p_main_layout;
     QHBoxLayout * m_p_name_layout;
     QHBoxLayout * m_p_password_layout;
+    QHBoxLayout * m_p_button_layout;
 
     QLabel * m_p_user_label;
     QLabel * m_p_password_label;

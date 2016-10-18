@@ -4,4 +4,6 @@ Makefile
 timefuse-client
 *.pro.user
 *.autosave
+*.o
+moc_*
 *~
