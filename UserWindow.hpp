@@ -43,6 +43,9 @@ private:
     QLineEdit * m_p_user_edit;
     QLineEdit * m_p_password_edit;
     
+    QString m_name;
+    QString m_password;
+    
     create_account_window * m_p_create_account_window;
     Q_SLOT void handleButton();
 };
