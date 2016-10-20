@@ -3,6 +3,10 @@
 #include <QtWidgets>
 #include <QtGui>
 
+#include "user.hpp"
+
+class user;
+
 class create_account_window : public QWidget
 {
    Q_OBJECT
@@ -10,7 +14,7 @@ public:
    explicit create_account_window (QWidget * _p_parent = NULL);
    virtual ~create_account_window();
 
-   Q_SIGNAL void send_create_account(user u);
+   Q_SIGNAL void send_create_account(user * u);
 private:   
 };
 #endif
