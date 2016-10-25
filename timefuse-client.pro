@@ -1,5 +1,5 @@
 QT = core gui widgets network
-CONFIG += c++14
+CONFIG += c++11
 
 TARGET = timefuse-client
 TEMPLATE = app
