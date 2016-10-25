@@ -48,6 +48,7 @@ private:
     
     create_account_window * m_p_create_account_window;
     Q_SLOT void handleButton();
+    Q_SIGNAL void logIn(QString, QString);
 };
 
 #endif /* UserWindow_hpp */

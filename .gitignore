@@ -5,5 +5,7 @@ timefuse-client
 *.pro.user
 *.autosave
 *.o
+timefuse-client.app # for mac people (i.e. Gunjan)
 moc_*
 *~
+timefuse-client.app/*

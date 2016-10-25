@@ -30,8 +30,7 @@ UserWindow::UserWindow(QWidget *parent)
     m_p_name_layout->addWidget(m_p_user_edit);
     
     m_p_password_layout->addWidget(m_p_password_label);
-    m_p_password_layout->addWidget(m_p_password_edit);
-    
+    m_p_password_layout->addWidget(m_p_password_edit);    
     m_p_button_layout->addWidget(m_p_create_button);
     m_p_button_layout->addWidget(m_p_reset_button);
     m_p_button_layout->addWidget(m_p_login_button);
@@ -43,9 +42,9 @@ UserWindow::UserWindow(QWidget *parent)
     setLayout(m_p_main_layout);
     show();
     
-    connect(m_p_create_button, &QPushButton::released, this, &MainWindow::handleButton);
-    connect(m_p_login_button, &QPushButton::released, this, &MainWindow::handleButton);
-    connect(m_p_reset_button, &QPushButton::released, this, &MainWindow::handleButton);
+    // connect(m_p_create_button, &QPushButton::released, this, &MainWindow::handleButton);
+    // connect(m_p_login_button, &QPushButton::released, this, &MainWindow::handleButton);
+    // connect(m_p_reset_button, &QPushButton::released, this, &MainWindow::handleButton);
 }
 
 UserWindow::~UserWindow()
