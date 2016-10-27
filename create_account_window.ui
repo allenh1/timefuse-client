@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Widget</class>
- <widget class="QWidget" name="Widget">
+ <class>create_account_window</class>
+ <widget class="QWidget" name="create_account_window">
   <property name="geometry">
    <rect>
     <x>0</x>
