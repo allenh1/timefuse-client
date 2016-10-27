@@ -14,3 +14,5 @@ HEADERS += mainwindow.hpp \
            user.hpp \
 	   create_account_window.hpp \
            UserWindow.hpp
+
+FORMS += create_account_window.ui

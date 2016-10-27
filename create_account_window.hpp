@@ -3,9 +3,14 @@
 #include <QtWidgets>
 #include <QtGui>
 
+#include "ui_create_account_window.h"
 #include "user.hpp"
 
 class user;
+
+namespace Ui {
+    class create_account_window;
+}
 
 class create_account_window : public QWidget
 {
@@ -15,6 +20,7 @@ public:
    virtual ~create_account_window();
 
    Q_SIGNAL void send_create_account(user * u);
-private:   
+private:
+    Ui::create_account_window * m_p_ui;
 };
 #endif
