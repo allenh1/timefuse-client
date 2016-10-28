@@ -1,8 +1,5 @@
-
-
-#ifndef UserWindow_hpp
-#define UserWindow_hpp
-
+#ifndef __USER_WINDOW_HPP__
+#define __USER_WINDOW_HPP__
 #include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
@@ -26,7 +23,9 @@ class UserWindow : public QWidget
 public:
     explicit UserWindow (QWidget *parent = 0);
     virtual ~UserWindow ();
-    
+
+	Q_SLOT void open_create_window();
+	Q_SLOT void hide_create();
 private:
     QPushButton *m_p_create_button; //create account
     QPushButton *m_p_login_button; //login
