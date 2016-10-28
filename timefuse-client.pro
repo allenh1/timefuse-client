@@ -1,12 +1,18 @@
 QT = core gui widgets network
-CONFIG += c++14
+CONFIG += c++11
 
 TARGET = timefuse-client
 TEMPLATE = app
 
 SOURCES += main.cpp \
            mainwindow.cpp \
-		   create_account_window.cpp
+           user.cpp \
+	   create_account_window.cpp \
+	   UserWindow.cpp
 
 HEADERS += mainwindow.hpp \
-		   create_account_window.hpp
+           user.hpp \
+	   create_account_window.hpp \
+           UserWindow.hpp
+
+FORMS += create_account_window.ui

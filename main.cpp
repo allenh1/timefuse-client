@@ -1,9 +1,9 @@
-#include "mainwindow.hpp"
+#include "UserWindow.hpp"
 
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
-    MainWindow mainWindow;
+    UserWindow user_window;
     return app.exec();
 }
 
