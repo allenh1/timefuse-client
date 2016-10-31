@@ -43,6 +43,11 @@ UserWindow::UserWindow(QWidget *parent)
     show();
 
 	m_p_create_account_window = new create_account_window();
+    
+    m_p_reset_password_window = new reset_password_window();
+    
+    connect(m_p_reset_button, &QPushButton::released,
+            this, &UserWindow::open_reset_password_window);
 	
 	connect(m_p_create_button, &QPushButton::released,
 			this, &UserWindow::open_create_window);
@@ -91,6 +96,12 @@ void UserWindow::open_create_window()
 {
    this->hide();
    m_p_create_account_window->show();
+}
+
+void UserWindow::open_reset_password_window()
+{
+    this->hide();
+    m_p_reset_password_window->show();
 }
 
 void UserWindow::hide_create()
