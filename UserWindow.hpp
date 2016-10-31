@@ -26,6 +26,7 @@ public:
     virtual ~UserWindow ();
 
 	Q_SLOT void open_create_window();
+    Q_SLOT void open_reset_password_window();
 	Q_SLOT void hide_create();
 private:
     QPushButton *m_p_create_button; //create account
