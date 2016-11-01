@@ -111,19 +111,12 @@ void UserWindow::hide_create()
  * @return QString
  */
 QString* UserWindow::setup_connection(QString * content) {
-  QThread * thread = new QThread(); 
   QTcpSocket * pSocket = NULL;
   QString* read, tcp_server, port_string;
 
   bool contin = true;
-  thread->start();
-  if(!thread->isRunning()) {
-    perror("start");
-    delete thread;
-    return new QString("Thread did not start.");
-  }
   
-  for(;contin; thread->msleep((quint16)400)) {
+  for(;contin;) {
     if (pSocket != NULL) delete pSocket;
     pSocket = new QTcpSocket();
 

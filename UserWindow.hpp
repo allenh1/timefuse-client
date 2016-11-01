@@ -13,7 +13,6 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTcpSocket>
-#include <QThread>
 
 #include "create_account_window.hpp"
 #include "mainwindow.hpp"
