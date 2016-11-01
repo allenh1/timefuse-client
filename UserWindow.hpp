@@ -12,6 +12,8 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QTcpSocket>
+#include <QThread>
 
 #include "create_account_window.hpp"
 #include "mainwindow.hpp"
@@ -48,6 +50,8 @@ private:
     create_account_window * m_p_create_account_window;
     Q_SLOT void handleButton();
     Q_SIGNAL void logIn(QString, QString);
+
+  QString* setup_connection(QString * content);
 };
 
 #endif /* UserWindow_hpp */
