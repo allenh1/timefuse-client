@@ -104,9 +104,6 @@ void UserWindow::hide_create()
  * Sends the information provided in content param to worker, and 
  * returns the workers response.  
  *
- * If the thread never starts within the method, it returns "Thread
- * did not start."
- *
  * @param QString content
  * @return QString
  */
