@@ -1,8 +1,6 @@
+#include "LoginWindow.hpp"
 
-#include "UserWindow.hpp"
-
-
-UserWindow::UserWindow(QWidget *parent)
+LoginWindow::LoginWindow(QWidget *parent)
 : QWidget(parent)
 {
     m_p_login_button = new QPushButton(tr("Sign In"));
@@ -45,17 +43,17 @@ UserWindow::UserWindow(QWidget *parent)
 	m_p_create_account_window = new create_account_window();
 	
 	connect(m_p_create_button, &QPushButton::released,
-			this, &UserWindow::open_create_window);
+			this, &LoginWindow::open_create_window);
 	connect(m_p_create_account_window,
 			&create_account_window::return_to_user_page,
-			this, &UserWindow::hide_create);	
+			this, &LoginWindow::hide_create);	
 	
     // connect(m_p_create_button, &QPushButton::released, this, &MainWindow::handleButton);
     // connect(m_p_login_button, &QPushButton::released, this, &MainWindow::handleButton);
     // connect(m_p_reset_button, &QPushButton::released, this, &MainWindow::handleButton);
 }
 
-UserWindow::~UserWindow()
+LoginWindow::~LoginWindow()
 {
     delete m_p_create_button;
     delete m_p_login_button;
@@ -70,7 +68,7 @@ UserWindow::~UserWindow()
     delete m_p_password_layout;
 };
 
-void UserWindow::handleButton()
+void LoginWindow::handleButton()
 {
     /**
      * @todo create an instance
@@ -87,26 +85,51 @@ void UserWindow::handleButton()
     this->hide();
 }
 
-void UserWindow::open_create_window()
+void LoginWindow::open_create_window()
 {
    this->hide();
    m_p_create_account_window->show();
 }
 
-void UserWindow::hide_create()
+void LoginWindow::hide_create()
 {
    m_p_create_account_window->hide();
    this->show();
 }
 
 
-Q_SIGNAL void login(QString name, QString password) {
-  QString * request = new QString("username:");
-  (*request)+= name + ":password:" + password;
+void login(QString username, QString password) {
+  QString * request = new QString("REQUEST_LOGIN");
+/*
+  // create qt hashing object
+  QCrytographicHash * qhash = new QCrytographicHash(QCrytographicHash::Sha512);
 
+  // create qt byte array object to hash username
+  QByteArray qarray; qarray+=username;
+  qhash->addData(qarray);
+
+  // hash username and add to request
+  QByteArray res = qhash->result();
+  (*request)+= " " + res.toStdString() + ":";
+
+  // reset hashing object
+  qhash->reset();
+
+  // clear qbytearray and add password
+  qarray.clear(); qarray+=password;
+  qhash->addData(qarray);
+
+  // hash password and add to request
+  QByteArray res = qhash->result();
+  (*request)+= res.toStdString() + "\r\n";
+*/
   QString * response = setup_connection(request);
 
   if(response->size() != 0) {
     std::cerr<<response->toStdString()<<std::endl;
   }
+
+  delete request;
+  //delete qhash;
+  delete response;
 }
