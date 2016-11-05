@@ -80,7 +80,7 @@ void UserWindow::handleButton()
     m_name = m_p_user_edit->text();
     m_password = m_p_password_edit->text();
     
-    Q_EMIT logIn(m_name,m_password);
+    Q_EMIT login(m_name,m_password);
     
     m_p_user_edit->setText("");
     m_p_password_edit->setText("");
@@ -97,4 +97,16 @@ void UserWindow::hide_create()
 {
    m_p_create_account_window->hide();
    this->show();
+}
+
+
+Q_SIGNAL void login(QString name, QString password) {
+  QString * request = new QString("username:");
+  (*request)+= name + ":password:" + password;
+
+  QString * response = setup_connection(request);
+
+  if(response->size() != 0) {
+    std::cerr<<response->toStdString()<<std::endl;
+  }
 }

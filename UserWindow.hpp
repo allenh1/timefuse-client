@@ -12,6 +12,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <iostream>
 
 #include "create_account_window.hpp"
 #include "mainwindow.hpp"
@@ -48,7 +49,7 @@ private:
     
     create_account_window * m_p_create_account_window;
     Q_SLOT void handleButton();
-    Q_SIGNAL void logIn(QString, QString);
+    Q_SIGNAL void login(QString, QString);
 };
 
 #endif /* UserWindow_hpp */
