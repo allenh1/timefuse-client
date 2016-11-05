@@ -6,7 +6,3 @@ int main(int argc, char **argv)
     UserWindow user_window;
     return app.exec();
 }
-
-
-
-
