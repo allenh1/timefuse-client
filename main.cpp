@@ -6,7 +6,3 @@ int main(int argc, char **argv)
     LoginWindow login_window;
     return app.exec();
 }
-
-
-
-

@@ -40,13 +40,18 @@ LoginWindow::LoginWindow(QWidget *parent)
     setLayout(m_p_main_layout);
     show();
 
-	m_p_create_account_window = new create_account_window();
+    m_p_create_account_window = new create_account_window();
+    
+    m_p_reset_password_window = new reset_password_window();
+    
+    connect(m_p_reset_button, &QPushButton::released,
+            this, &LoginWindow::open_reset_password_window);
 	
-	connect(m_p_create_button, &QPushButton::released,
-			this, &LoginWindow::open_create_window);
-	connect(m_p_create_account_window,
-			&create_account_window::return_to_user_page,
-			this, &LoginWindow::hide_create);	
+    connect(m_p_create_button, &QPushButton::released,
+	    this, &LoginWindow::open_create_window);
+    connect(m_p_create_account_window,
+	    &create_account_window::return_to_user_page,
+	    this, &LoginWindow::hide_create);	
 	
     // connect(m_p_create_button, &QPushButton::released, this, &MainWindow::handleButton);
     // connect(m_p_login_button, &QPushButton::released, this, &MainWindow::handleButton);
@@ -97,6 +102,10 @@ void LoginWindow::hide_create()
    this->show();
 }
 
+void LoginWindow::open_reset_password_window() {
+   this->hide();
+   m_p_reset_password_window->show();
+}
 
 void login(QString username, QString password) {
   QString * request = new QString("REQUEST_LOGIN");

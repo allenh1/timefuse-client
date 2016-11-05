@@ -16,6 +16,7 @@
 //#include <QCrytographicHash>
 
 #include "create_account_window.hpp"
+#include "reset_password_window.hpp"
 #include "tcp_connection.hpp"
 
 class LoginWindow : public QWidget
@@ -26,8 +27,9 @@ public:
     explicit LoginWindow (QWidget *parent = 0);
     virtual ~LoginWindow ();
 
-	Q_SLOT void open_create_window();
-	Q_SLOT void hide_create();
+    Q_SLOT void open_create_window();
+    Q_SLOT void open_reset_password_window();
+    Q_SLOT void hide_create();
 private:
     QPushButton *m_p_create_button; //create account
     QPushButton *m_p_login_button; //login
@@ -48,6 +50,8 @@ private:
     QString m_password;
     
     create_account_window * m_p_create_account_window;
+    reset_password_window * m_p_reset_password_window;
+    
     Q_SLOT void handleButton();
     Q_SIGNAL void login(QString username, QString password);
 };

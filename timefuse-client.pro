@@ -15,4 +15,5 @@ HEADERS += user.hpp \
            LoginWindow.hpp \
            tcp_connection.hpp
 
-FORMS += create_account_window.ui
+FORMS += create_account_window.ui \
+        reset_password_window.ui
