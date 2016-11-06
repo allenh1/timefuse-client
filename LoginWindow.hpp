@@ -13,11 +13,13 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <iostream>
-//#include <QCrytographicHash>
+// #include <QCrytographicHash>
 
 #include "create_account_window.hpp"
 #include "reset_password_window.hpp"
 #include "tcp_connection.hpp"
+
+class reset_password_window;
 
 class LoginWindow : public QWidget
 {

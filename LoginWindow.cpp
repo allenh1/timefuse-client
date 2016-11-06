@@ -40,8 +40,7 @@ LoginWindow::LoginWindow(QWidget *parent)
     setLayout(m_p_main_layout);
     show();
 
-    m_p_create_account_window = new create_account_window();
-    
+    m_p_create_account_window = new create_account_window();    
     m_p_reset_password_window = new reset_password_window();
     
     connect(m_p_reset_button, &QPushButton::released,
