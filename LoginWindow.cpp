@@ -57,7 +57,6 @@ LoginWindow::LoginWindow(QWidget *parent)
 	connect(m_p_reset_password_window,
 			&reset_password_window::return_to_user_page,
 			this, &LoginWindow::hide_reset); 
-    
 }
 
 LoginWindow::~LoginWindow()
@@ -101,6 +100,12 @@ void LoginWindow::open_create_window()
 void LoginWindow::hide_create()
 {
 	m_p_create_account_window->hide();
+	this->show();
+}
+
+void LoginWindow::hide_reset()
+{
+	m_p_reset_password_window->hide();
 	this->show();
 }
 
