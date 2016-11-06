@@ -9,15 +9,13 @@ SOURCES += main.cpp \
            create_account_window.cpp \
            reset_password_window.cpp \
            LoginWindow.cpp \
-           tcp_connection.cpp \
-    home_window.cpp
+           tcp_connection.cpp 
 
 HEADERS += user.hpp \
            create_account_window.hpp \
            reset_password_window.hpp \
            LoginWindow.hpp \
-           tcp_connection.hpp \
-    home_window.hpp
+           tcp_connection.hpp 
 
 FORMS += create_account_window.ui \
          reset_password_window.ui
