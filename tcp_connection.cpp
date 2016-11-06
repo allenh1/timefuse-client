@@ -14,7 +14,7 @@ QString* setup_connection(QString * content) {
   read = new QString();
 
   bool contin = true;
-  std::cerr<<"setup_connection: for loop begins"<<std::endl;
+  
   for(;contin;) {
     if (pSocket != NULL) delete pSocket;
     pSocket = new QTcpSocket();
