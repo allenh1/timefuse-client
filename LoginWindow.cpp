@@ -93,6 +93,8 @@ void LoginWindow::handleButton()
 
 void LoginWindow::open_create_window()
 {
+	m_p_user_edit->setText("");
+	m_p_password_edit->setText("");
 	this->hide();
 	m_p_create_account_window->show();
 }
@@ -109,7 +111,10 @@ void LoginWindow::hide_reset()
 	this->show();
 }
 
-void LoginWindow::open_reset_password_window() {
+void LoginWindow::open_reset_password_window()
+{
+	m_p_user_edit->setText("");
+	m_p_password_edit->setText("");
 	this->hide();
 	m_p_reset_password_window->show();
 }

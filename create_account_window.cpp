@@ -40,6 +40,11 @@ void create_account_window::create_pressed()
 	delete response;
 	delete request;
 
+	m_p_ui->password_input->setText("");
+	m_p_ui->phone_input->setText("");
+	m_p_ui->name_input->setText("");
+	m_p_ui->email_input->setText("");
+	
 	Q_EMIT(return_to_user_page());
 }
 
