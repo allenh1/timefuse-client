@@ -13,7 +13,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <iostream>
-// #include <QCrytographicHash>
+#include <QCryptographicHash>
 
 #include "create_account_window.hpp"
 #include "reset_password_window.hpp"
@@ -32,6 +32,7 @@ public:
     Q_SLOT void open_create_window();
     Q_SLOT void open_reset_password_window();
     Q_SLOT void hide_create();
+    Q_SIGNAL void do_login(QString, QString);
 private:
     QPushButton *m_p_create_button; //create account
     QPushButton *m_p_login_button; //login
@@ -55,7 +56,7 @@ private:
     reset_password_window * m_p_reset_password_window;
     
     Q_SLOT void handleButton();
-    Q_SIGNAL void login(QString username, QString password);
+    Q_SLOT void login(QString username, QString password);
 };
 
 #endif /* LoginWindow_hpp */
