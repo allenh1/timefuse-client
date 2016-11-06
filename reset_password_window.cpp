@@ -9,7 +9,7 @@ reset_password_window::reset_password_window(QWidget *parent) :
     
     
     /* connect signals */
-    connect(m_p_ui->reset_button, &QPushButton::released,
+    connect(m_p_ui->cancel_button, &QPushButton::released,
             this, &reset_password_window::cancel_pressed);
     connect(m_p_ui->reset_button, &QPushButton::released,
             this, &reset_password_window::reset_pressed);

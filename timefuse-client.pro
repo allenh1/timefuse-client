@@ -1,5 +1,5 @@
 QT = core gui widgets network
-CONFIG += c++11
+CONFIG += c++11 debug
 
 TARGET = timefuse-client
 TEMPLATE = app
@@ -15,7 +15,7 @@ HEADERS += user.hpp \
            create_account_window.hpp \
            reset_password_window.hpp \
            LoginWindow.hpp \
-           tcp_connection.hpp
+           tcp_connection.hpp 
 
 FORMS += create_account_window.ui \
          reset_password_window.ui

@@ -11,6 +11,7 @@
 QString* setup_connection(QString * content) {
   QTcpSocket * pSocket = NULL;
   QString* read, tcp_server, port_string;
+  read = new QString();
 
   bool contin = true;
   
@@ -24,6 +25,7 @@ QString* setup_connection(QString * content) {
     pSocket->connectToHost(host, (quint16)3224, QIODevice::ReadWrite);
     pSocket->waitForConnected(500);
 
+    std::cerr<<"setup_connection: "<<host.toStdString()<<std::endl;
     // if socket did not connect start over
     if(pSocket->state() == QAbstractSocket::UnconnectedState) {
       pSocket->abort();
@@ -34,12 +36,13 @@ QString* setup_connection(QString * content) {
 
     // write to master to request a worker
     pSocket->write("REQUEST_WORKER\r\n");
-
+    
     // not sure if i need to do this part...
-    tcp_server+= "localhost" + ':';
+    tcp_server = QString("localhost") + ':';
     port_string.setNum(3224);
     tcp_server+=port_string + "\r\n" + '\0';
-    
+
+    std::cerr<<"setup_connection: "<<tcp_server.toStdString()<<std::endl;
     pSocket->write(tcp_server.toStdString().c_str());
 
     // for for the stuff to be written
@@ -58,10 +61,13 @@ QString* setup_connection(QString * content) {
     read->replace("\r\n","");
     QStringList l = read->split(':');
 
+    pSocket->disconnectFromHost();
+    delete pSocket; pSocket = new QTcpSocket();
+    
 /* connect to worker */
     pSocket->connectToHost(l.at(0), (quint16)l.at(1).toInt(), QIODevice::ReadWrite);
     pSocket->waitForConnected(500);
-  write_to_worker:
+
     // if never connects to worker then start over
     if(pSocket->state() == QAbstractSocket::UnconnectedState) {
       pSocket->abort();
@@ -78,9 +84,6 @@ QString* setup_connection(QString * content) {
     pSocket->waitForReadyRead();
     read->clear();
     for(;pSocket->canReadLine(); (*read)+= pSocket->readLine());
-
-    // if nothing read, then start over
-    if(read->size() == 0) goto write_to_worker;
 
     //clean up stuff
     pSocket->abort();
