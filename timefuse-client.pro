@@ -9,7 +9,7 @@ SOURCES += main.cpp \
            create_account_window.cpp \
            reset_password_window.cpp \
            LoginWindow.cpp \
-           tcp_connection.cpp 
+           tcp_connection.cpp
 
 HEADERS += user.hpp \
            create_account_window.hpp \
