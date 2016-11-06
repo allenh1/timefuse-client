@@ -117,35 +117,20 @@ void LoginWindow::open_reset_password_window() {
 void LoginWindow::login(QString username, QString password) {
 	QString * request = new QString("REQUEST_LOGIN");
 
-	// create qt hashing object
-	QCryptographicHash * qhash = new QCryptographicHash(QCryptographicHash::Sha512);
-
-	// create qt byte array object to hash username
-	QByteArray qarray; qarray+=username;
-	qhash->addData(qarray);
-
 	// hash username and add to request
-	QByteArray res = qhash->result();
+	QString res = encrypt_string(username);
 	(*request)+= " "; (*request)+=res + ":";
 
-	// reset hashing object
-	qhash->reset();
-
-	// clear qbytearray and add password
-	qarray.clear(); qarray+=password; res.clear();
-	qhash->addData(qarray);
-
 	// hash password and add to request
-	res = qhash->result();
+	res.clear(); res = encrypt_string(password);
 	(*request)+=res + "\r\n" + '\0';
 
 	QString * response = setup_connection(request);
-
+	
 	if(response->size() != 0) {
 		std::cerr<<response->toStdString()<<std::endl;
 	}
 
 	delete request;
-	delete qhash;
 	delete response;
 }

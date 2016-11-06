@@ -18,6 +18,7 @@
 #include "create_account_window.hpp"
 #include "reset_password_window.hpp"
 #include "tcp_connection.hpp"
+#include "encrypt_string.hpp"
 
 class reset_password_window;
 

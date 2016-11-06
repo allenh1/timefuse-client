@@ -4,6 +4,8 @@
 #include <QtGui>
 
 #include "ui_create_account_window.h"
+#include "tcp_connection.hpp"
+#include "encrypt_string.hpp"
 #include "user.hpp"
 
 class user;
