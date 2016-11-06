@@ -20,8 +20,6 @@ create_account_window::~create_account_window()
 
 void create_account_window::create_pressed()
 {
-	Q_EMIT(return_to_user_page());
-
 	QString name = encrypt_string(m_p_ui->name_input->text());
 	QString password = encrypt_string(m_p_ui->password_input->text());
 	QString email = m_p_ui->email_input->text();
@@ -30,10 +28,19 @@ void create_account_window::create_pressed()
 	QString * request = new QString("CREATE_ACCOUNT ");
 
 	(*request)+=name; (*request)+=':'; (*request)+=password;
-	(*request)+=email; (*request)+=':'; (*request)+=phone;
-	(*request)+="\r\n\0";
+	(*request)+=':'; (*request)+=email; (*request)+=':';
+	(*request)+=phone; (*request)+="\r\n\0";
 
+	QString * response = setup_connection(request);
+
+	if(response->indexOf(tr("ERROR:")) != -1) {
+		QMessageBox::critical(this, tr("Error"), *response);
+	}
 	
+	delete response;
+	delete request;
+
+	Q_EMIT(return_to_user_page());
 }
 
 void create_account_window::cancel_pressed()

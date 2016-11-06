@@ -1,6 +1,8 @@
 #ifndef __CREATE_ACCOUNT_WINDOW_HPP__
 #define __CREATE_ACCOUNT_WINDOW_HPP__
+#include <QMessageBox>
 #include <QtWidgets>
+#include <QString>
 #include <QtGui>
 
 #include "ui_create_account_window.h"

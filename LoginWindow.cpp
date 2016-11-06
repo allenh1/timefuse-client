@@ -84,11 +84,11 @@ void LoginWindow::handleButton()
 	m_name = m_p_user_edit->text();
 	m_password = m_p_password_edit->text();
     
-	Q_EMIT do_login(m_name,m_password);
-    
 	m_p_user_edit->setText("");
 	m_p_password_edit->setText("");
 	this->hide();
+
+	Q_EMIT do_login(m_name,m_password);
 }
 
 void LoginWindow::open_create_window()
