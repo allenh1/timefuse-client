@@ -1,5 +1,5 @@
-#ifndef __USER_WINDOW_HPP__
-#define __USER_WINDOW_HPP__
+#ifndef __LOGIN_WINDOW_HPP__
+#define __LOGIN_WINDOW_HPP__
 #include <QApplication>
 #include <QMainWindow>
 #include <QPushButton>
@@ -12,22 +12,26 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <iostream>
+// #include <QCrytographicHash>
 
 #include "create_account_window.hpp"
 #include "reset_password_window.hpp"
-#include "mainwindow.hpp"
+#include "tcp_connection.hpp"
 
-class UserWindow : public QWidget
+class reset_password_window;
+
+class LoginWindow : public QWidget
 {
     Q_OBJECT
     
 public:
-    explicit UserWindow (QWidget *parent = 0);
-    virtual ~UserWindow ();
+    explicit LoginWindow (QWidget *parent = 0);
+    virtual ~LoginWindow ();
 
-	Q_SLOT void open_create_window();
+    Q_SLOT void open_create_window();
     Q_SLOT void open_reset_password_window();
-	Q_SLOT void hide_create();
+    Q_SLOT void hide_create();
 private:
     QPushButton *m_p_create_button; //create account
     QPushButton *m_p_login_button; //login
@@ -51,7 +55,7 @@ private:
     reset_password_window * m_p_reset_password_window;
     
     Q_SLOT void handleButton();
-    Q_SIGNAL void logIn(QString, QString);
+    Q_SIGNAL void login(QString username, QString password);
 };
 
-#endif /* UserWindow_hpp */
+#endif /* LoginWindow_hpp */

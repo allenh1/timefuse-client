@@ -5,17 +5,17 @@ TARGET = timefuse-client
 TEMPLATE = app
 
 SOURCES += main.cpp \
-           mainwindow.cpp \
            user.cpp \
-	   create_account_window.cpp \
-        reset_password_window.cpp \
-	   UserWindow.cpp
+           create_account_window.cpp \
+           reset_password_window.cpp \
+           LoginWindow.cpp \
+           tcp_connection.cpp
 
-HEADERS += mainwindow.hpp \
-           user.hpp \
-	    create_account_window.hpp \
-        reset_password_window.hpp \
-           UserWindow.hpp
+HEADERS += user.hpp \
+           create_account_window.hpp \
+           reset_password_window.hpp \
+           LoginWindow.hpp \
+           tcp_connection.hpp
 
 FORMS += create_account_window.ui \
-        reset_password_window.ui
+         reset_password_window.ui
