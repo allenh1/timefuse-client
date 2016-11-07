@@ -1,0 +1,12 @@
+Makefile
+.DS_Store
+.qmake.stash
+timefuse-client
+*.pro.user
+*.autosave
+*.o
+timefuse-client.app # for mac people (i.e. Gunjan)
+ui_create_account_window.h
+moc_*
+*~
+timefuse-client.app/*
