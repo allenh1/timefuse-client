@@ -19,6 +19,7 @@
 #include "reset_password_window.hpp"
 #include "tcp_connection.hpp"
 #include "encrypt_string.hpp"
+#include "home_screen.hpp"
 
 class reset_password_window;
 
@@ -56,6 +57,7 @@ private:
     
     create_account_window * m_p_create_account_window;
     reset_password_window * m_p_reset_password_window;
+	home_screen * m_p_home_screen;
     
     Q_SLOT void handleButton();
     Q_SLOT void login(QString username, QString password);
