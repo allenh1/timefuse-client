@@ -1287,14 +1287,6 @@ moc_create_account_window.cpp: ../../Qt/5.7/gcc_64/include/QtWidgets/QMessageBox
 		../../Qt/5.7/gcc_64/include/QtWidgets/qtwidgetsversion.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QString \
 		ui_create_account_window.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLineEdit \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QPushButton \
 		tcp_connection.hpp \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QTcpSocket \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qtcpsocket.h \
@@ -1655,41 +1647,6 @@ moc_reset_password_window.cpp: ../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
 		../../Qt/5.7/gcc_64/include/QtGui/qvalidator.h \
 		../../Qt/5.7/gcc_64/include/QtGui/qtguiversion.h \
 		ui_reset_password_window.h \
-		../../Qt/5.7/gcc_64/include/QtCore/QVariant \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qaction.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qapplication.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qheaderview.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qframe.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qslider.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qstyle.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qtabbar.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qrubberband.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlabel.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLineEdit \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlineedit.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QPushButton \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
 		user.hpp \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QtNetwork \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QtNetworkDepends \
@@ -1697,6 +1654,7 @@ moc_reset_password_window.cpp: ../../Qt/5.7/gcc_64/include/QtWidgets/QWidget \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qnetworkrequest.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QString \
 		../../Qt/5.7/gcc_64/include/QtCore/QUrl \
+		../../Qt/5.7/gcc_64/include/QtCore/QVariant \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qhttpmultipart.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QByteArray \
 		../../Qt/5.7/gcc_64/include/QtCore/QIODevice \
@@ -2196,10 +2154,6 @@ moc_LoginWindow.cpp: ../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
 		../../Qt/5.7/gcc_64/include/QtWidgets/qtwidgetsversion.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QString \
 		ui_create_account_window.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
 		tcp_connection.hpp \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QTcpSocket \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qtcpsocket.h \
@@ -3046,10 +3000,6 @@ main.o: main.cpp LoginWindow.hpp \
 		../../Qt/5.7/gcc_64/include/QtWidgets/qtwidgetsversion.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QString \
 		ui_create_account_window.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
 		tcp_connection.hpp \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QTcpSocket \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qtcpsocket.h \
@@ -3782,14 +3732,6 @@ create_account_window.o: create_account_window.cpp create_account_window.hpp \
 		../../Qt/5.7/gcc_64/include/QtWidgets/qtwidgetsversion.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QString \
 		ui_create_account_window.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLineEdit \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QPushButton \
 		tcp_connection.hpp \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QTcpSocket \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qtcpsocket.h \
@@ -4149,41 +4091,6 @@ reset_password_window.o: reset_password_window.cpp reset_password_window.hpp \
 		../../Qt/5.7/gcc_64/include/QtGui/qvalidator.h \
 		../../Qt/5.7/gcc_64/include/QtGui/qtguiversion.h \
 		ui_reset_password_window.h \
-		../../Qt/5.7/gcc_64/include/QtCore/QVariant \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qaction.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qapplication.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qheaderview.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qframe.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qslider.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qstyle.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qtabbar.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qrubberband.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlabel.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLineEdit \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlineedit.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QPushButton \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
 		user.hpp \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QtNetwork \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QtNetworkDepends \
@@ -4191,6 +4098,7 @@ reset_password_window.o: reset_password_window.cpp reset_password_window.hpp \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qnetworkrequest.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QString \
 		../../Qt/5.7/gcc_64/include/QtCore/QUrl \
+		../../Qt/5.7/gcc_64/include/QtCore/QVariant \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qhttpmultipart.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QByteArray \
 		../../Qt/5.7/gcc_64/include/QtCore/QIODevice \
@@ -4689,10 +4597,6 @@ LoginWindow.o: LoginWindow.cpp LoginWindow.hpp \
 		../../Qt/5.7/gcc_64/include/QtWidgets/qtwidgetsversion.h \
 		../../Qt/5.7/gcc_64/include/QtCore/QString \
 		ui_create_account_window.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
 		tcp_connection.hpp \
 		../../Qt/5.7/gcc_64/include/QtNetwork/QTcpSocket \
 		../../Qt/5.7/gcc_64/include/QtNetwork/qtcpsocket.h \
@@ -5156,40 +5060,7 @@ home_screen.o: home_screen.cpp home_screen.hpp \
 		../../Qt/5.7/gcc_64/include/QtGui/qdesktopservices.h \
 		../../Qt/5.7/gcc_64/include/QtGui/qvalidator.h \
 		../../Qt/5.7/gcc_64/include/QtGui/qtguiversion.h \
-		ui_home_screen.h \
-		../../Qt/5.7/gcc_64/include/QtCore/QVariant \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QAction \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qaction.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QApplication \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qapplication.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QGridLayout \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QHeaderView \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qheaderview.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qframe.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qslider.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qstyle.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qtabbar.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qtabwidget.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qrubberband.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QLabel \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qlabel.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/QPushButton \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../Qt/5.7/gcc_64/include/QtWidgets/qabstractbutton.h
+		ui_home_screen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o home_screen.o home_screen.cpp
 
 moc_user.o: moc_user.cpp 

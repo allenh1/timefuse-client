@@ -19,7 +19,7 @@ QString* setup_connection(QString * content) {
     if (pSocket != NULL) delete pSocket;
     pSocket = new QTcpSocket();
 
-    QString host = "localhost";
+    QString host = "allen-software.com";
 
 /* connect to master */
     pSocket->connectToHost(host, (quint16)3224, QIODevice::ReadWrite);
