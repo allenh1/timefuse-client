@@ -10,14 +10,17 @@ SOURCES += main.cpp \
            reset_password_window.cpp \
            LoginWindow.cpp \
            tcp_connection.cpp \
-           encrypt_string.cpp
+           encrypt_string.cpp \
+           home_screen.cpp
 
 HEADERS += user.hpp \
            create_account_window.hpp \
            reset_password_window.hpp \
            LoginWindow.hpp \
            tcp_connection.hpp \
-           encrypt_string.hpp
+           encrypt_string.hpp \
+           home_screen.hpp
 
 FORMS += create_account_window.ui \
-         reset_password_window.ui
+         reset_password_window.ui \
+         home_screen.ui

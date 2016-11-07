@@ -42,6 +42,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 
 	m_p_create_account_window = new create_account_window();    
 	m_p_reset_password_window = new reset_password_window();
+	m_p_home_screen = new home_screen();
     
 	connect(m_p_reset_button, &QPushButton::released,
 			this, &LoginWindow::open_reset_password_window);	
@@ -83,12 +84,11 @@ void LoginWindow::handleButton()
 	 */
 	m_name = m_p_user_edit->text();
 	m_password = m_p_password_edit->text();
-    
-	m_p_user_edit->setText("");
-	m_p_password_edit->setText("");
-	this->hide();
 
 	Q_EMIT do_login(m_name,m_password);
+	
+	m_p_user_edit->setText("");
+	m_p_password_edit->setText("");
 }
 
 void LoginWindow::open_create_window()
@@ -134,7 +134,13 @@ void LoginWindow::login(QString username, QString password) {
 	
 	if(response->size() != 0) {
 		std::cerr<<response->toStdString()<<std::endl;
-	}
+		if(response->contains(tr("OK"))) {
+			this->hide();
+			m_p_home_screen->show();
+		} else {
+			QMessageBox::critical(this, tr("Error"), *response);
+		}
+	} 
 
 	delete request;
 	delete response;
