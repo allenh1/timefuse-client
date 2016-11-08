@@ -60,7 +60,6 @@ void account_settings::save_changes_pressed()
     m_p_ui->old_password_input->setText("");
 	m_p_ui->new_password_input->setText("");
     m_p_ui->phone_input->setText("");
-    m_p_ui->name_input->setText("");
     m_p_ui->email_input->setText("");
 
     Q_EMIT(return_to_home_screen());
