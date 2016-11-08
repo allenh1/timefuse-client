@@ -2,7 +2,7 @@
 
 
 schedulingGrid::schedulingGrid(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::schedulingGrid)
 {
     ui->setupUi(this);
@@ -12,6 +12,9 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
+
+	connect(ui->back_button, &QPushButton::released,
+			this, &schedulingGrid::on_back_button);
 }
 
 schedulingGrid::~schedulingGrid()
@@ -225,4 +228,9 @@ void schedulingGrid::on_pushCreateEvent_clicked()
     createevent ce;
     ce.setModal(true);
     ce.exec();
+}
+
+void schedulingGrid::on_back_button()
+{
+	Q_EMIT(return_to_home_screen());
 }

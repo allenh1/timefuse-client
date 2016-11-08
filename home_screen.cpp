@@ -1,5 +1,5 @@
 #include "home_screen.hpp"
-#pragma once
+
 home_screen::home_screen(QWidget *parent) :
     QWidget(parent),
     m_p_ui(new Ui::home_screen)
@@ -12,6 +12,7 @@ home_screen::home_screen(QWidget *parent) :
 	m_p_schedule = new schedulingGrid();
 	m_p_create_event = new createevent();
 	m_p_account_settings = new account_settings();
+	m_p_manage_groups = new manage_groups();
 
 	// connections to different windows
 	connect(m_p_ui->create_event, &QPushButton::released,
@@ -20,10 +21,16 @@ home_screen::home_screen(QWidget *parent) :
 			this, &home_screen::to_see_schedule);
 	connect(m_p_ui->account_settings, &QPushButton::released,
 			this, &home_screen::to_account_settings);
+	connect(m_p_ui->manage_groups, &QPushButton::released,
+			this, &home_screen::to_manage_groups);
 
 	// connections from different windows
 	connect(m_p_account_settings, &account_settings::return_to_home_screen,
 			this, &home_screen::from_account_settings);
+	connect(m_p_schedule, &schedulingGrid::return_to_home_screen,
+			this, &home_screen::from_see_schedule);
+	connect(m_p_manage_groups, &manage_groups::return_to_home_screen,
+			this, &home_screen::from_manage_groups);
 }
 
 home_screen::~home_screen()
@@ -61,6 +68,11 @@ void home_screen::to_manage_groups()
 	/**
 	 * @TODO add request for user's schedule
 	 */
+	m_p_manage_groups->m_p_username = m_p_username;
+	m_p_manage_groups->m_p_password = m_p_password;
+
+	this->hide();
+	m_p_manage_groups->show();
 }
 
 void home_screen::to_create_event()
@@ -89,6 +101,7 @@ void home_screen::from_see_schedule()
 
 void home_screen::from_manage_groups()
 {
+	m_p_manage_groups->hide();
 	this->show();
 }
 

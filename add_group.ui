@@ -19,7 +19,7 @@
      <x>90</x>
      <y>50</y>
      <width>231</width>
-     <height>151</height>
+     <height>181</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -50,8 +50,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>113</width>
-         <height>116</height>
+         <width>121</width>
+         <height>141</height>
         </rect>
        </property>
        <widget class="QScrollBar" name="verticalScrollBar">
@@ -60,7 +60,7 @@
           <x>100</x>
           <y>0</y>
           <width>16</width>
-          <height>160</height>
+          <height>131</height>
          </rect>
         </property>
         <property name="orientation">
@@ -71,6 +71,32 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="back_button">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>260</y>
+     <width>88</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_group_button">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>260</y>
+     <width>88</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add Group</string>
+   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

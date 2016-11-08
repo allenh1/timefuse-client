@@ -1,10 +1,10 @@
 #ifndef HOME_SCREEN_HPP
 #define HOME_SCREEN_HPP
-#pragma once
 #include <QWidget>
 #include <QtGui>
 
 #include "account_settings.hpp"
+#include "manage_groups.hpp"
 #include "ui_home_screen.h"
 #include "schedulinggrid.h"
 #include "createevent.h"
@@ -39,5 +39,6 @@ private:
 	schedulingGrid * m_p_schedule;
 	createevent * m_p_create_event;
 	account_settings * m_p_account_settings;
+	manage_groups * m_p_manage_groups;
 };
 #endif
