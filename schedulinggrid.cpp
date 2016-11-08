@@ -12,6 +12,9 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
+
+	connect(ui->back_button, &QPushButton::released,
+			this, &schedulingGrid::on_back_button);
 }
 
 schedulingGrid::~schedulingGrid()

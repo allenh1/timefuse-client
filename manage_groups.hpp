@@ -16,8 +16,14 @@ public:
     explicit manage_groups(QWidget * _p_parent = NULL);
     virtual ~manage_groups();
 
+	QString * m_p_username;
+	QString * m_p_password;
+
+	Q_SIGNAL void return_to_home_screen();
 private:
     Ui::manage_groups * m_p_ui;
+
+	Q_SLOT void on_back_button();
 };
 
 #endif
