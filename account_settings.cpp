@@ -6,6 +6,9 @@ account_settings::account_settings(QWidget *parent) :
 {
     m_p_ui->setupUi(this);
 
+	m_p_username = new QString("");
+	m_p_password = new QString("");
+
     /* set the password edit to not show text */
     m_p_ui->old_password_input->setEchoMode(QLineEdit::Password);
     m_p_ui->old_password_input->setInputMethodHints(Qt::ImhHiddenText |
