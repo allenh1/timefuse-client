@@ -38,5 +38,4 @@ private:
 	schedulingGrid * m_p_schedule;
 	createevent * m_p_create_event;
 };
-
-#endif // HOME_SCREEN_H
+#endif
