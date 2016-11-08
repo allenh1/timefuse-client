@@ -23,28 +23,21 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QPushButton" name="main_menu">
-      <property name="text">
-       <string>Main Menu</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
+    <item row="2" column="0">
      <widget class="QPushButton" name="manage_groups">
       <property name="text">
        <string>Manage Groups</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="1" column="0">
      <widget class="QPushButton" name="create_event">
       <property name="text">
        <string>Create Group Event</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item row="0" column="0">
      <widget class="QPushButton" name="see_schedule">
       <property name="text">
        <string>See My Schedule</string>
