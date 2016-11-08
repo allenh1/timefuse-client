@@ -1,9 +1,12 @@
 #ifndef CREATEEVENT_H
 #define CREATEEVENT_H
 
-
 #include <QDialog>
+#include <QString>
 #include <QFileDialog>
+
+#include "ui_createevent.h"
+#include "usercreatedevent.h"
 
 namespace Ui {
 class createevent;
@@ -16,6 +19,9 @@ class createevent : public QDialog
 public:
     explicit createevent(QWidget *parent = 0);
     ~createevent();
+
+	QString * m_p_username;
+	QString * m_p_passowrd;
 
 private slots:
     void on_pushButton_clicked();

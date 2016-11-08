@@ -1,7 +1,4 @@
 #include "schedulinggrid.h"
-#include "ui_schedulinggrid.h"
-#include "createevent.h"
-#include "usercreatedevent.h"
 
 
 schedulingGrid::schedulingGrid(QWidget *parent) :
@@ -13,6 +10,8 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     schedulingGrid::on_pushCalendar_clicked();
     //ui->tableWeek->horizontalHeaderItem(0)->setText("Whatever");
 
+	m_p_username = new QString("");
+	m_p_password = new QString("");
 }
 
 schedulingGrid::~schedulingGrid()

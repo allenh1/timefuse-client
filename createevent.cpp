@@ -1,13 +1,13 @@
 #include "createevent.h"
-#include "ui_createevent.h"
-#include "usercreatedevent.h"
-
 
 createevent::createevent(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::createevent)
 {
     ui->setupUi(this);
+
+	m_p_username = new QString("");
+	m_p_password = new QString("");
 }
 
 createevent::~createevent()

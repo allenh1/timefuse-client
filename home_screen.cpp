@@ -9,9 +9,8 @@ home_screen::home_screen(QWidget *parent) :
 	m_p_username = new QString("");
 	m_p_password = new QString("");
 
-	m_p_schedule = new schedulingGrid(this);
-	m_p_create_event = new createevent(this);
-
+	m_p_schedule = new schedulingGrid();
+	m_p_create_event = new createevent();
 
 	// connections to different windows
 	connect(m_p_ui->create_event, &QPushButton::released,
@@ -21,9 +20,6 @@ home_screen::home_screen(QWidget *parent) :
 
 	// connections from different windows
 
-
-	// username and password connections
-	connect(this->parent, 
 }
 
 home_screen::~home_screen()
@@ -44,6 +40,9 @@ void home_screen::to_see_schedule()
 	/**
 	 * @TODO add request for user's schedule
 	 */
+	m_p_schedule->m_p_username = m_p_username;
+	m_p_schedule->m_p_password = m_p_password;
+	
 	m_p_schedule->show();
 	this->hide();
 }
@@ -60,6 +59,9 @@ void home_screen::to_create_event()
 	/**
 	 * @TODO add request to add event
 	 */
+	m_p_create_event->m_p_username = m_p_username;
+	m_p_create_event->m_p_password = m_p_password;
+	
 	m_p_create_event->show();
 	this->hide();
 }
