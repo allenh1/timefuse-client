@@ -21,7 +21,7 @@ public:
     ~createevent();
 
 	QString * m_p_username;
-	QString * m_p_passowrd;
+	QString * m_p_password;
 
 private slots:
     void on_pushButton_clicked();
