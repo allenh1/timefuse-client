@@ -1,5 +1,5 @@
 #include "manage_groups.hpp"
-#include "ui_manage_groups.h"
+
 
 manage_groups::manage_groups(QWidget *parent) :
     QWidget(parent),

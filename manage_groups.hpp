@@ -2,6 +2,7 @@
 #define MANAGE_GROUPS_HPP
 
 #include <QWidget>
+#include "ui_manage_groups.h"
 
 namespace Ui {
 class manage_groups;
