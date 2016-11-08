@@ -8,6 +8,7 @@ account_settings::account_settings(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
+	
 
     /* set the password edit to not show text */
     m_p_ui->old_password_input->setEchoMode(QLineEdit::Password);
@@ -22,28 +23,32 @@ account_settings::account_settings(QWidget *parent) :
 
     /* connect signals */
     connect(m_p_ui->cancel_button, &QPushButton::released,
-            this, &create_account_window::cancel_pressed);
+            this, &account_settings::cancel_pressed);
     connect(m_p_ui->save_changes, &QPushButton::released,
-            this, &create_account_window::save_changes_pressed);
+            this, &account_settings::save_changes_pressed);
 }
 
-create_account_window::~create_account_window()
+account_settings::~account_settings()
 {
     delete m_p_ui;
 }
 
-void create_account_window::save_changes_pressed()
+void account_settings::save_changes_pressed()
 {
-    QString name = encrypt_string(m_p_ui->name_input->text());
-    QString password = encrypt_string(m_p_ui->password_input->text());
+    QString name = m_p_ui->name_input->text();
+	QString username = encrypt_string(m_p_ui->username_input->text());
+    QString old_password = encrypt_string(m_p_ui->old_password_input->text());
+	QString new_password = encrypt_string(m_p_ui->new_password_input->text());
     QString email = m_p_ui->email_input->text();
     QString phone = m_p_ui->phone_input->text();
 
-    QString * request = new QString("CREATE_ACCOUNT ");
+    QString * request = new QString("UPDATE_ACCOUNT ");
 
-    (*request)+=name; (*request)+=':'; (*request)+=password;
-    (*request)+=':'; (*request)+=email; (*request)+=':';
-    (*request)+=phone; (*request)+="\r\n\0";
+    (*request)+=username; (*request)+=':'; (*request)+=old_password;
+    (*request)+=':'; (*request)+=new_password;
+	(*request)+=':'; (*request)+=name;
+	(*request)+=':'; (*request)+=email;
+	(*request)+=':'; (*request)+=phone; (*request)+="\r\n\0";
 
     QString * response = setup_connection(request);
 
@@ -54,7 +59,8 @@ void create_account_window::save_changes_pressed()
     delete response;
     delete request;
 
-    m_p_ui->password_input->setText("");
+    m_p_ui->old_password_input->setText("");
+	m_p_ui->new_password_input->setText("");
     m_p_ui->phone_input->setText("");
     m_p_ui->name_input->setText("");
     m_p_ui->email_input->setText("");
@@ -62,7 +68,7 @@ void create_account_window::save_changes_pressed()
     Q_EMIT(return_to_home_screen());
 }
 
-void create_account_window::cancel_pressed()
+void account_settings::cancel_pressed()
 {
     Q_EMIT(return_to_home_screen());
 }

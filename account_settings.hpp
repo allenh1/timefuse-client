@@ -9,9 +9,6 @@
 #include "ui_account_settings.h"
 #include "tcp_connection.hpp"
 #include "encrypt_string.hpp"
-#include "user.hpp"
-
-class user;
 
 namespace Ui {
     class account_settings;

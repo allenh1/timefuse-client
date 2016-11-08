@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>create_account_window</class>
+ <class>account_settings</class>
  <widget class="QWidget" name="account_settings">
   <property name="geometry">
    <rect>
@@ -85,7 +85,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="create_button">
+  <widget class="QPushButton" name="save_changes">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -98,7 +98,7 @@
     <string>Save Changes</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="save_changes">
+  <widget class="QPushButton" name="cancel_button">
    <property name="geometry">
     <rect>
      <x>340</x>
