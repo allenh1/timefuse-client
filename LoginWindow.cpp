@@ -42,7 +42,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 
 	m_p_create_account_window = new create_account_window();    
 	m_p_reset_password_window = new reset_password_window();
-	m_p_home_screen = new home_screen();
+	m_p_home_screen = new home_screen(this);
     
 	connect(m_p_reset_button, &QPushButton::released,
 			this, &LoginWindow::open_reset_password_window);	
@@ -137,6 +137,9 @@ void LoginWindow::login(QString username, QString password) {
 		if(response->contains(tr("OK"))) {
 			this->hide();
 			m_p_home_screen->show();
+
+			Q_EMIT send_username_password(encrypt_string(username),
+										  encrypt_string(password));
 		} else {
 			QMessageBox::critical(this, tr("Error"), *response);
 		}

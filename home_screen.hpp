@@ -29,6 +29,8 @@ public:
 	Q_SLOT void from_see_schedule();
 	Q_SLOT void from_manage_groups();
 	Q_SLOT void from_account_settings();
+
+	Q_SLOT void recieve_username_password();
 private:
     Ui::home_screen *m_p_ui;
 

@@ -9,8 +9,8 @@ home_screen::home_screen(QWidget *parent) :
 	m_p_username = new QString("");
 	m_p_password = new QString("");
 
-	m_p_schedule = new schedulingGrid();
-	m_p_create_event = new createevent();
+	m_p_schedule = new schedulingGrid(this);
+	m_p_create_event = new createevent(this);
 
 
 	// connections to different windows
@@ -20,8 +20,10 @@ home_screen::home_screen(QWidget *parent) :
 			this, &home_screen::to_see_schedule);
 
 	// connections from different windows
-	//connect();
-	//connect();
+
+
+	// username and password connections
+	connect(this->parent, 
 }
 
 home_screen::~home_screen()
