@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>schedulingGrid</class>
- <widget class="QMainWindow" name="schedulingGrid">
+ <widget class="QWidget" name="schedulingGrid">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>836</width>
-    <height>506</height>
+    <width>834</width>
+    <height>530</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -419,14 +419,27 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="back_button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>430</y>
+      <width>88</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>836</width>
-     <height>21</height>
+     <width>834</width>
+     <height>24</height>
     </rect>
    </property>
   </widget>

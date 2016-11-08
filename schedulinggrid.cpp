@@ -2,7 +2,7 @@
 
 
 schedulingGrid::schedulingGrid(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::schedulingGrid)
 {
     ui->setupUi(this);
@@ -225,4 +225,9 @@ void schedulingGrid::on_pushCreateEvent_clicked()
     createevent ce;
     ce.setModal(true);
     ce.exec();
+}
+
+void schedulingGrid::on_back_button()
+{
+	Q_EMIT(return_to_home_screen());
 }

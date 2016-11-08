@@ -1,5 +1,5 @@
 #include "home_screen.hpp"
-#pragma once
+
 home_screen::home_screen(QWidget *parent) :
     QWidget(parent),
     m_p_ui(new Ui::home_screen)

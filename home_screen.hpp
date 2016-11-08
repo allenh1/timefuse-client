@@ -1,6 +1,5 @@
 #ifndef HOME_SCREEN_HPP
 #define HOME_SCREEN_HPP
-#pragma once
 #include <QWidget>
 #include <QtGui>
 

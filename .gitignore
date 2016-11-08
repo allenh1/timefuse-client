@@ -10,3 +10,4 @@ ui_create_account_window.h
 moc_*
 *~
 timefuse-client.app/*
+ui_*

@@ -1,7 +1,7 @@
 #ifndef SCHEDULINGGRID_H
 #define SCHEDULINGGRID_H
 
-#include <QMainWindow>
+#include <QWidget>
 #include <QString>
 #include <QDebug>
 
@@ -13,7 +13,7 @@ namespace Ui {
 class schedulingGrid;
 }
 
-class schedulingGrid : public QMainWindow
+class schedulingGrid : public QWidget
 {
     Q_OBJECT
 
@@ -24,21 +24,16 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
-private slots:
-
-
-    void on_pushCalendar_clicked();
-
-    void on_pushLeft_clicked();
-
-    void on_pushRight_clicked();
-
-    void on_pushGetDay_clicked();
-
-    void on_pushWeek_clicked();
-
-    void on_pushCreateEvent_clicked();
-
+	Q_SIGNAL void return_to_home_screen();
+private:
+    Q_SLOT void on_pushCalendar_clicked();
+    Q_SLOT void on_pushLeft_clicked();
+    Q_SLOT void on_pushRight_clicked();
+    Q_SLOT void on_pushGetDay_clicked();
+    Q_SLOT void on_pushWeek_clicked();
+    Q_SLOT void on_pushCreateEvent_clicked();
+	Q_SLOT void on_back_button();
+	
 private:
     Ui::schedulingGrid *ui;
 };
