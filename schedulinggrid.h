@@ -2,7 +2,12 @@
 #define SCHEDULINGGRID_H
 
 #include <QMainWindow>
+#include <QString>
 #include <QDebug>
+
+#include "ui_schedulinggrid.h"
+#include "createevent.h"
+#include "usercreatedevent.h"
 
 namespace Ui {
 class schedulingGrid;
@@ -15,6 +20,9 @@ class schedulingGrid : public QMainWindow
 public:
     explicit schedulingGrid(QWidget *parent = 0);
     ~schedulingGrid();
+
+	QString * m_p_username;
+	QString * m_p_password;
 
 private slots:
 

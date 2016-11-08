@@ -6,6 +6,12 @@ create_account_window::create_account_window(QWidget *parent) :
 {
     m_p_ui->setupUi(this);
 
+	/* set the password edit to not show text */
+	m_p_ui->password_input->setEchoMode(QLineEdit::Password);
+	m_p_ui->password_input->setInputMethodHints(Qt::ImhHiddenText |
+										   Qt::ImhNoPredictiveText |
+										   Qt::ImhNoAutoUppercase);
+
 	/* connect signals */
 	connect(m_p_ui->cancel_button, &QPushButton::released,
 			this, &create_account_window::cancel_pressed);

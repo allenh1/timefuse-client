@@ -137,6 +137,9 @@ void LoginWindow::login(QString username, QString password) {
 		if(response->contains(tr("OK"))) {
 			this->hide();
 			m_p_home_screen->show();
+
+			(*(m_p_home_screen->m_p_username))=encrypt_string(username); 
+		    (*(m_p_home_screen->m_p_password))=encrypt_string(password);
 		} else {
 			QMessageBox::critical(this, tr("Error"), *response);
 		}

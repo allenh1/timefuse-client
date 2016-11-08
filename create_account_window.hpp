@@ -26,7 +26,6 @@ public:
    Q_SLOT void create_pressed();
    Q_SLOT void cancel_pressed();
    
-   Q_SIGNAL void send_create_account(user * u);
    Q_SIGNAL void return_to_user_page();
     
 private:
