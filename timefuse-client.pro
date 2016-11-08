@@ -16,7 +16,8 @@ SOURCES += main.cpp \
            add_group.cpp \
            createevent.cpp \
            usercreatedevent.cpp \
-           account_settings.cpp
+           account_settings.cpp \
+           manage_groups.cpp
 
 HEADERS += user.hpp \
            create_account_window.hpp \
@@ -29,7 +30,8 @@ HEADERS += user.hpp \
            add_group.h \
            createevent.h \
            usercreatedevent.h \
-           account_settings.hpp
+           account_settings.hpp \
+           manage_groups.hpp
 
 FORMS += create_account_window.ui \
          reset_password_window.ui \
@@ -37,4 +39,5 @@ FORMS += create_account_window.ui \
          schedulinggrid.ui \
          add_group.ui \
          createevent.ui \
-         account_settings.ui 
+         account_settings.ui \
+         manage_groups.ui
