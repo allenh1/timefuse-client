@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ui_manage_groups.h"
+#include "add_group.h"
 
 namespace Ui {
 class manage_groups;
@@ -24,6 +25,10 @@ private:
     Ui::manage_groups * m_p_ui;
 
 	Q_SLOT void on_back_button();
+	Q_SLOT void on_new_group();
+	Q_SLOT void show_manage_groups();
+
+	add_group * m_p_add_group;
 };
 
 #endif

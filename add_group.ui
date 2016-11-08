@@ -50,8 +50,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>113</width>
-         <height>116</height>
+         <width>121</width>
+         <height>111</height>
         </rect>
        </property>
        <widget class="QScrollBar" name="verticalScrollBar">
@@ -71,6 +71,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="back_button">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>260</y>
+     <width>88</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

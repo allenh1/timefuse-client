@@ -24,6 +24,7 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
+	Q_SLOT void on_back_button();
 	Q_SIGNAL void return_to_home_screen();
 private:
     Q_SLOT void on_pushCalendar_clicked();
@@ -32,7 +33,6 @@ private:
     Q_SLOT void on_pushGetDay_clicked();
     Q_SLOT void on_pushWeek_clicked();
     Q_SLOT void on_pushCreateEvent_clicked();
-	Q_SLOT void on_back_button();
 	
 private:
     Ui::schedulingGrid *ui;
