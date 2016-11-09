@@ -48,13 +48,13 @@ void account_settings::save_changes_pressed()
 	(*request)+=':'; (*request)+=email;
 	(*request)+=':'; (*request)+=phone; (*request)+="\r\n\0";
 
-    QString * response = setup_connection(request);
+    /*QString * response = setup_connection(request);
 
     if(response->indexOf(tr("ERROR:")) != -1) {
         QMessageBox::critical(this, tr("Error"), *response);
     }
 
-    delete response;
+    delete response;*/
     delete request;
 
     m_p_ui->old_password_input->setText("");
