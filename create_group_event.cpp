@@ -30,6 +30,9 @@ void create_group_event::on_cancel()
 	m_p_ui->location_input->setText("");
 	m_p_ui->duration_input->setText("");
 
+	QTime def(0,0);
+	m_p_ui->begin_time_edit->setTime(def);
+
 	Q_EMIT(return_to_home_screen());
 }
 

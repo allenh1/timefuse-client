@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>243</width>
+    <height>242</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>113</y>
-     <width>311</width>
+     <x>10</x>
+     <y>60</y>
+     <width>221</width>
      <height>171</height>
     </rect>
    </property>
@@ -49,10 +49,10 @@
   <widget class="QPushButton" name="account_settings">
    <property name="geometry">
     <rect>
-     <x>262</x>
-     <y>60</y>
-     <width>131</width>
-     <height>41</height>
+     <x>120</x>
+     <y>10</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -62,14 +62,14 @@
   <widget class="QLabel" name="timefuse">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>30</x>
      <y>20</y>
-     <width>211</width>
-     <height>41</height>
+     <width>61</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>               TIMEFUSE</string>
+    <string>TIMEFUSE</string>
    </property>
   </widget>
  </widget>

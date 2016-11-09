@@ -2,6 +2,8 @@
 #define CREATE_GROUP_EVENT_HPP
 
 #include <QWidget>
+#include <QTimeEdit>
+#include <QTime>
 
 #include "ui_create_group_event.h"
 
