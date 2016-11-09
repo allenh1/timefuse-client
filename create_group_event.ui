@@ -31,7 +31,7 @@
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QTimeEdit" name="end_time_edit"/>
+     <widget class="QLineEdit" name="duration_input"/>
     </item>
     <item row="0" column="0">
      <widget class="QLabel" name="title">
@@ -46,7 +46,7 @@
     <item row="3" column="0">
      <widget class="QLabel" name="end_time">
       <property name="text">
-       <string>End Time:</string>
+       <string>Duration:</string>
       </property>
      </widget>
     </item>
