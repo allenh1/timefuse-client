@@ -35,7 +35,6 @@ account_settings::~account_settings()
 
 void account_settings::save_changes_pressed()
 {
-    QString name = m_p_ui->name_input->text();
 	QString username = encrypt_string(m_p_ui->username_input->text());
     QString old_password = encrypt_string(m_p_ui->old_password_input->text());
 	QString new_password = encrypt_string(m_p_ui->new_password_input->text());
@@ -46,7 +45,6 @@ void account_settings::save_changes_pressed()
 
     (*request)+=username; (*request)+=':'; (*request)+=old_password;
     (*request)+=':'; (*request)+=new_password;
-	(*request)+=':'; (*request)+=name;
 	(*request)+=':'; (*request)+=email;
 	(*request)+=':'; (*request)+=phone; (*request)+="\r\n\0";
 
@@ -62,7 +60,6 @@ void account_settings::save_changes_pressed()
     m_p_ui->old_password_input->setText("");
 	m_p_ui->new_password_input->setText("");
     m_p_ui->phone_input->setText("");
-    m_p_ui->name_input->setText("");
     m_p_ui->email_input->setText("");
 
     Q_EMIT(return_to_home_screen());
