@@ -3,11 +3,11 @@
 #include <QWidget>
 #include <QtGui>
 
+#include "create_group_event.hpp"
 #include "account_settings.hpp"
 #include "manage_groups.hpp"
 #include "ui_home_screen.h"
 #include "schedulinggrid.h"
-#include "createevent.h"
 
 namespace Ui {
 class home_screen;
@@ -37,8 +37,8 @@ private:
     Ui::home_screen *m_p_ui;
 
 	schedulingGrid * m_p_schedule;
-	createevent * m_p_create_event;
 	account_settings * m_p_account_settings;
 	manage_groups * m_p_manage_groups;
+	create_group_event * m_p_create_event;
 };
 #endif

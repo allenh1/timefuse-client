@@ -10,7 +10,7 @@ home_screen::home_screen(QWidget *parent) :
 	m_p_password = new QString("");
 
 	m_p_schedule = new schedulingGrid();
-	m_p_create_event = new createevent();
+	m_p_create_event = new create_group_event();
 	m_p_account_settings = new account_settings();
 	m_p_manage_groups = new manage_groups();
 
@@ -31,6 +31,8 @@ home_screen::home_screen(QWidget *parent) :
 			this, &home_screen::from_see_schedule);
 	connect(m_p_manage_groups, &manage_groups::return_to_home_screen,
 			this, &home_screen::from_manage_groups);
+	connect(m_p_create_event, &create_group_event::return_to_home_screen,
+			this, &home_screen::from_create_event);
 }
 
 home_screen::~home_screen()
