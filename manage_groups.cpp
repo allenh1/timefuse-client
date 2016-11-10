@@ -51,7 +51,8 @@ void manage_groups::on_leave_group()
     std::cerr<<"response: "<<response->toStdString()<<std::endl;
 
     if(response->contains("OK")) {
-        m_p_ui->list_groups->removeItemWidget(m_p_ui->list_groups->currentItem());
+        m_p_ui->list_groups->clear();
+	    fill_fields();
     } else {
         QMessageBox::critical(this, tr("Error"), *response);
     }
@@ -73,7 +74,8 @@ void manage_groups::on_delete_group()
     std::cerr<<"response: "<<response->toStdString()<<std::endl;
 
     if(response->contains("OK")) {
-        m_p_ui->list_groups->removeItemWidget(m_p_ui->list_groups->currentItem());
+        m_p_ui->list_groups->clear();
+	    fill_fields();
     } else {
         QMessageBox::critical(this, tr("Error"), *response);
     }

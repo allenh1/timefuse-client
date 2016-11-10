@@ -11,6 +11,7 @@ account_settings::account_settings(QWidget *parent) :
 	m_p_password = new QString("");
 
 	m_p_ui->username_input->setReadOnly(true);
+	m_p_ui->new_username_input->setReadOnly(true);
 	
     /* set the password edit to not show text */
     m_p_ui->old_password_input->setEchoMode(QLineEdit::Password);
@@ -36,7 +37,6 @@ account_settings::~account_settings()
 
 void account_settings::save_changes_pressed()
 {
-	QString username = encrypt_string(m_p_ui->username_input->text());
     QString old_password = encrypt_string(m_p_ui->old_password_input->text());
 	QString new_password = encrypt_string(m_p_ui->new_password_input->text());
     QString email = m_p_ui->email_input->text();
@@ -44,8 +44,9 @@ void account_settings::save_changes_pressed()
 
     QString * request = new QString("UPDATE_ACCOUNT ");
 
-    (*request)+=username; (*request)+=':'; (*request)+=old_password;
+    (*request)+=m_p_username; (*request)+=':'; (*request)+=old_password;
     (*request)+=':'; (*request)+=new_password;
+	(*request)+=':'; (*request)+=m_p_username;
 	(*request)+=':'; (*request)+=email;
 	(*request)+=':'; (*request)+=phone; (*request)+="\r\n\0";
 
@@ -74,6 +75,7 @@ void account_settings::cancel_pressed()
 void account_settings::fill_fields()
 {
 	m_p_ui->username_input->setText(*m_p_secret);
+	m_p_ui->new_username_input->setText(*m_p_secret);
 
 	m_p_ui->old_password_input->setText("");
 	m_p_ui->new_password_input->setText("");
@@ -86,6 +88,11 @@ void account_settings::fill_fields()
     QString * response = setup_connection(request);
 
 	if(!response->contains("ERROR")) {
-		
-	}
+		QStringList list = response->split(':');
+		m_p_ui->email_input->setText(list.at(0));
+		if(list.at(1)[0] == '0') {
+			m_p_ui->phone_input->setText("");
+			m_p_ui->phone_input->setPlaceholderText("0000000000");
+		} else m_p_ui->phone_input->setText(list.at(1));
+	} delete request; delete response;
 }
