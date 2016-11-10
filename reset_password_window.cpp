@@ -8,7 +8,7 @@ reset_password_window::reset_password_window(QWidget *parent) :
     m_p_ui->setupUi(this);
 
 	m_p_ui->email_input->setPlaceholderText(tr("email@domain.com"));
-	m_p_ui->username_input->setPlaceholderText(tr("Enter you username"));
+	m_p_ui->username_input->setPlaceholderText(tr("Enter your username"));
     
     /* connect signals */
     connect(m_p_ui->cancel_button, &QPushButton::released,
