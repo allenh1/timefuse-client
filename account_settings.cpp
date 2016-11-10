@@ -51,7 +51,7 @@ void account_settings::save_changes_pressed()
 
     QString * response = setup_connection(request);
 
-    if(response->indexOf(tr("ERROR:")) != -1) {
+    if(response->contains(tr("ERROR:"))) {
         QMessageBox::critical(this, tr("Error"), *response);
     }
 
@@ -77,6 +77,8 @@ void account_settings::fill_fields()
 
 	m_p_ui->old_password_input->setText("");
 	m_p_ui->new_password_input->setText("");
-    m_p_ui->phone_input->setText("");
+
+	
+	m_p_ui->phone_input->setText("");
     m_p_ui->email_input->setText("");
 }
