@@ -117,7 +117,7 @@
     <string>Add Group</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="user_to_add">
+  <widget class="QLineEdit" name="group_to_add">
    <property name="geometry">
     <rect>
      <x>10</x>

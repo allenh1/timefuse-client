@@ -4,8 +4,10 @@
 #include <QWidget>
 #include <QTimeEdit>
 #include <QTime>
+#include <QMessageBox>
 
 #include "ui_create_group_event.h"
+#include "tcp_connection.hpp"
 
 namespace Ui {
 class create_group_event;
@@ -25,6 +27,8 @@ public:
 	Q_SIGNAL void return_to_home_screen();
 
 	Q_SLOT void on_cancel();
+	Q_SLOT void add_group_members();
+	Q_SLOT void create_group_event();
 private:
     Ui::create_group_event * m_p_ui;
 };

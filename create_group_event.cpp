@@ -13,9 +13,14 @@ create_group_event::create_group_event(QWidget *parent) :
 	m_p_ui->duration_input->setPlaceholderText(tr("in minutes"));
 	m_p_ui->title_input->setPlaceholderText(tr("Group event name"));
 	m_p_ui->location_input->setPlaceholderText(tr("Group event location"));
-	
+
+	// connect buttons
 	connect(m_p_ui->cancel, &QPushButton::released,
-			this, &create_group_event::on_cancel);    
+			this, &create_group_event::on_cancel);
+	connect(m_p_ui->add_member, &QPushButton::released,
+			this, &create_group_event::add_group_members);
+	connect(m_p_ui->create_event, &QPushButton::released,
+			this, &create_group_event::create_group_event);
 }
 
 create_group_event::~create_group_event()
@@ -38,4 +43,26 @@ void create_group_event::on_cancel()
 	Q_EMIT(return_to_home_screen());
 }
 
+void create_group_event::add_group_members()
+{
+	if(m_p_ui->group_to_add->text().size()==0) return;
+	QString * request = new QString("REQUEST_USERS ");
 
+	(*request)+=m_p_username; (*request)+=':';
+	(*request)+=m_p_password; (*request)+=':';
+	(*request)+=m_p_ui->group_to_add->text();
+	(*request)+="\r\n\0";
+
+	QString * response = setup_connection(request);
+
+	if(response->contains("ERROR")) {
+		QMessageBox::critical(this, tr("Error"), *response);
+	} else {
+		
+	} delete request; delete response;
+}
+
+void create_group_event::create_group_event()
+{
+	Q_EMIT(return_to_home_screen());
+}
