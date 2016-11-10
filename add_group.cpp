@@ -29,6 +29,8 @@ add_group::add_group(QWidget *parent) :
 add_group::~add_group()
 {
     delete ui;
+	delete m_p_username;
+	delete m_p_password;
 }
 
 void add_group::on_back_button()
@@ -60,10 +62,10 @@ void add_group::create_group()
 		
 		// go through member list and to group
 		for(int i=0; i < ui->member_list->count();i++) {
-			add_user(encrypt_string(ui->member_list->item(i)->text()));
+			add_user(ui->member_list->item(i)->text());
 		} delete response; delete request;
 
-		add_user(m_p_username);
+		add_user(*m_p_username);
 
 		// clear fields and switch back to manage groups
 		ui->add_member_input->setText("");

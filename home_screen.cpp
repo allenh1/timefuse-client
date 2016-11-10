@@ -8,7 +8,6 @@ home_screen::home_screen(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
-	m_p_secret = new QString("");
 
 	m_p_schedule = new schedulingGrid();
 	m_p_create_event = new create_group_event();
@@ -43,6 +42,12 @@ home_screen::home_screen(QWidget *parent) :
 home_screen::~home_screen()
 {
     delete m_p_ui;
+	delete m_p_username;
+	delete m_p_password;
+	delete 	m_p_schedule;
+	delete m_p_create_event;
+	delete m_p_account_settings;
+	delete m_p_manage_groups;
 }
 
 
@@ -51,7 +56,6 @@ void home_screen::to_account_settings()
 	/**
 	 * @TODO add request for account info
 	 */
-	m_p_account_settings->m_p_secret = m_p_secret;
 	m_p_account_settings->m_p_username = m_p_username;
 	m_p_account_settings->m_p_password = m_p_password;
 
@@ -116,6 +120,8 @@ void home_screen::from_manage_groups()
 
 void home_screen::from_account_settings()
 {
+	m_p_username = m_p_account_settings->m_p_username;
+	m_p_password = m_p_account_settings->m_p_password;
 	this->show();
 	m_p_account_settings->hide();
 }

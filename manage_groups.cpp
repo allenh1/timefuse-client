@@ -1,6 +1,5 @@
 #include "manage_groups.hpp"
 
-
 manage_groups::manage_groups(QWidget *parent) :
     QWidget(parent),
     m_p_ui(new Ui::manage_groups)
@@ -35,6 +34,10 @@ manage_groups::manage_groups(QWidget *parent) :
 manage_groups::~manage_groups()
 {
     delete m_p_ui;
+	delete m_p_username;
+	delete m_p_password;
+	delete m_p_add_group;
+	delete m_p_edit_group;
 }
 
 void manage_groups::on_leave_group()
@@ -52,7 +55,8 @@ void manage_groups::on_leave_group()
     std::cerr<<"response: "<<response->toStdString()<<std::endl;
 
     if(response->contains("OK")) {
-        m_p_ui->list_groups->removeItemWidget(m_p_ui->list_groups->currentItem());
+        m_p_ui->list_groups->clear();
+	    fill_fields();
     } else {
         QMessageBox::critical(this, tr("Error"), *response);
     }
@@ -74,7 +78,8 @@ void manage_groups::on_delete_group()
     std::cerr<<"response: "<<response->toStdString()<<std::endl;
 
     if(response->contains("OK")) {
-        m_p_ui->list_groups->removeItemWidget(m_p_ui->list_groups->currentItem());
+        m_p_ui->list_groups->clear();
+	    fill_fields();
     } else {
         QMessageBox::critical(this, tr("Error"), *response);
     }
@@ -112,6 +117,7 @@ void manage_groups::goto_edit_group()
 }
 
 void manage_groups::hide_add_group() {
+	fill_fields();
 	m_p_add_group->hide();
 	this->show();
 }
@@ -124,5 +130,21 @@ void manage_groups::hide_edit_group()
 
 void manage_groups::fill_fields()
 {
-    m_p_ui->list_groups->addItem("butthole");
+	m_p_ui->list_groups->clear();
+	QString * request = new QString("REQUEST_GROUPS ");
+
+    (*request)+=m_p_username; (*request)+=':';
+	(*request)+=m_p_password; (*request)+="\r\n\0";
+
+    QString * response = setup_connection(request);
+
+	if(!response->contains("ERROR")) {
+		response->replace("\r\n","");
+	    QStringList list = response->split('\n');
+		
+		for(int i=0;i<list.size();i++) {
+			if(i==list.size()-1) continue;
+			m_p_ui->list_groups->addItem(list.at(i));
+		}
+	} delete response; delete request;
 }

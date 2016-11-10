@@ -25,6 +25,9 @@ edit_group::edit_group(QWidget *parent) :
 edit_group::~edit_group()
 {
     delete ui;
+	delete m_p_username;
+	delete m_p_password;
+	delete m_p_group;
 }
 
 void edit_group::on_back_button()
@@ -37,13 +40,13 @@ void edit_group::on_back_button()
 
 void edit_group::add_a_member()
 {
-    if(ui->add_member_input->text()->size() == 0) return;
+    if(ui->add_member_input->text().size() == 0) return;
     QString * request = new QString("JOIN_GROUP ");
 
     (*request)+=m_p_username; (*request)+=':';
     (*request)+=m_p_password; (*request)+=':';
     (*request)+=ui->group_name->text(); (*request)+=':';
-    (*request)+=encrypt_string(ui->add_member_input->text());
+    (*request)+=ui->add_member_input->text();
 
     QString * response = setup_connection(request);
 
@@ -62,4 +65,25 @@ void edit_group::add_a_member()
 void edit_group::fill_fields()
 {
     ui->group_name->setText(*m_p_group);
+
+	QString * request = new QString("REQUEST_USERS ");
+
+	(*request)+=m_p_username; (*request)+=':';
+	(*request)+=m_p_password; (*request)+=':';
+	(*request)+=*m_p_group;
+	(*request)+="\r\n\0";
+
+	QString * response = setup_connection(request);
+
+	if(response->contains("ERROR")) {
+		QMessageBox::critical(this, tr("Error"), *response);
+	} else {
+		response->replace("\r\n","");
+	    QStringList list = response->split('\n');
+		
+		for(int i=0;i<list.size();i++) {
+			if(i==list.size()-1) continue;
+			ui->member_list->addItem(list.at(i));
+		}
+	} delete request; delete response;
 }

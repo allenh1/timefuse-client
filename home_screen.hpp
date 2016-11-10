@@ -21,7 +21,6 @@ public:
     explicit home_screen(QWidget *_p_parent = NULL);
     virtual ~home_screen();
 
-	QString * m_p_secret;
 	QString * m_p_username;
 	QString * m_p_password;
 

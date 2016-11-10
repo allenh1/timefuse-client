@@ -2,6 +2,7 @@
 #define __ACCOUNT_SETTINGS_HPP__
 
 #include <QMessageBox>
+#include <QStringList>
 #include <QtWidgets>
 #include <QString>
 #include <QtGui>

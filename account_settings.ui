@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>381</width>
-    <height>311</height>
+    <height>339</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>361</width>
-     <height>241</height>
+     <height>221</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -30,28 +30,35 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
+	<item row="1" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>New Username:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
        <string>Email:</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="4" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
        <string>Old Password:</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
+    <item row="5" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
        <string>New Password:</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="3" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
        <string>Phone Number:</string>
@@ -61,16 +68,19 @@
     <item row="0" column="1">
      <widget class="QLineEdit" name="username_input"/>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="email_input"/>
+	<item row="1" column="1">
+     <widget class="QLineEdit" name="new_username_input"/>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="phone_input"/>
+     <widget class="QLineEdit" name="email_input"/>
     </item>
     <item row="3" column="1">
-     <widget class="QLineEdit" name="old_password_input"/>
+     <widget class="QLineEdit" name="phone_input"/>
     </item>
     <item row="4" column="1">
+     <widget class="QLineEdit" name="old_password_input"/>
+    </item>
+    <item row="5" column="1">
      <widget class="QLineEdit" name="new_password_input"/>
     </item>
    </layout>
@@ -79,7 +89,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>260</y>
+     <y>280</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -91,8 +101,8 @@
   <widget class="QPushButton" name="cancel_button">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>260</y>
+     <x>190</x>
+     <y>280</y>
      <width>131</width>
      <height>41</height>
     </rect>

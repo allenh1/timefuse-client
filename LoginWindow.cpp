@@ -76,6 +76,10 @@ LoginWindow::~LoginWindow()
 	delete m_p_button_layout;
 	delete m_p_name_layout;
 	delete m_p_password_layout;
+
+	delete m_p_create_account_window;
+	delete m_p_reset_password_window;
+	delete m_p_home_screen;
 };
 
 void LoginWindow::handleButton()
@@ -126,7 +130,7 @@ void LoginWindow::login(QString username, QString password) {
 	QString * request = new QString("REQUEST_LOGIN");
 
 	// hash username and add to request
-	QString res = encrypt_string(username);
+	QString res = username;
 	(*request)+= " "; (*request)+=res + ":";
 
 	// hash password and add to request
@@ -141,8 +145,7 @@ void LoginWindow::login(QString username, QString password) {
 			this->hide();
 			m_p_home_screen->show();
 
-			(*(m_p_home_screen->m_p_secret))=username;
-			(*(m_p_home_screen->m_p_username))=encrypt_string(username); 
+			(*(m_p_home_screen->m_p_username))=username; 
 		    (*(m_p_home_screen->m_p_password))=encrypt_string(password);
 		} else {
 			QMessageBox::critical(this, tr("Error"), *response);

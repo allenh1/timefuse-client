@@ -5,6 +5,7 @@
 #include <QListWidget>
 #include <QMessageBox>
 #include <iostream>
+#include <QTest>
 
 #include "tcp_connection.hpp"
 #include "encrypt_string.hpp"
