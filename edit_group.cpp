@@ -65,4 +65,25 @@ void edit_group::add_a_member()
 void edit_group::fill_fields()
 {
     ui->group_name->setText(*m_p_group);
+
+	QString * request = new QString("REQUEST_USERS ");
+
+	(*request)+=m_p_username; (*request)+=':';
+	(*request)+=m_p_password; (*request)+=':';
+	(*request)+=*m_p_group;
+	(*request)+="\r\n\0";
+
+	QString * response = setup_connection(request);
+
+	if(response->contains("ERROR")) {
+		QMessageBox::critical(this, tr("Error"), *response);
+	} else {
+		response->replace("\r\n","");
+	    QStringList list = response->split('\n');
+		
+		for(int i=0;i<list.size();i++) {
+			if(i==list.size()-1) continue;
+			ui->member_list->addItem(list.at(i));
+		}
+	} delete request; delete response;
 }
