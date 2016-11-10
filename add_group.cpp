@@ -60,8 +60,10 @@ void add_group::create_group()
 		
 		// go through member list and to group
 		for(int i=0; i < ui->member_list->count();i++) {
-			add_user(ui->member_list->item(i)->text());
+			add_user(encrypt_string(ui->member_list->item(i)->text()));
 		} delete response; delete request;
+
+		add_user(m_p_username);
 
 		// clear fields and switch back to manage groups
 		ui->add_member_input->setText("");
@@ -78,7 +80,7 @@ void add_group::add_user(QString user)
 	(*request)+=m_p_username; (*request)+=':';
 	(*request)+=m_p_password; (*request)+=':';
 	(*request)+=ui->group_name->text(); (*request)+=':';
-	(*request)+=encrypt_string(user);
+	(*request)+=user;
 
 	QString * response = setup_connection(request);
 

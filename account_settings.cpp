@@ -49,13 +49,13 @@ void account_settings::save_changes_pressed()
 	(*request)+=':'; (*request)+=email;
 	(*request)+=':'; (*request)+=phone; (*request)+="\r\n\0";
 
-    /*QString * response = setup_connection(request);
+    QString * response = setup_connection(request);
 
     if(response->indexOf(tr("ERROR:")) != -1) {
         QMessageBox::critical(this, tr("Error"), *response);
     }
 
-    delete response;*/
+    delete response;
     delete request;
 
     m_p_ui->old_password_input->setText("");
@@ -74,4 +74,9 @@ void account_settings::cancel_pressed()
 void account_settings::fill_fields()
 {
 	m_p_ui->username_input->setText(*m_p_secret);
+
+	m_p_ui->old_password_input->setText("");
+	m_p_ui->new_password_input->setText("");
+    m_p_ui->phone_input->setText("");
+    m_p_ui->email_input->setText("");
 }
