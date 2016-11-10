@@ -49,14 +49,14 @@ QString* setup_connection(QString * content) {
     // for for the stuff to be written
     pSocket->waitForBytesWritten(-1);
 
-/* wait for master to connect client to worker */
+  wait_on_worker:
     pSocket->waitForReadyRead();
 
     // read from master to get worker
     for(;pSocket->canReadLine(); (*read)+= pSocket->readLine());
 
     // if nothing read, then start over
-    if(read->size() == 0) continue;
+    if(read->size() == 0) goto wait_on_worker;
 
     // get host and port
     read->replace("\r\n","");

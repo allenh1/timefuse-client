@@ -9,7 +9,7 @@ create_group_event::create_group_event(QWidget *parent) :
 	m_p_username = new QString("");
 	m_p_password = new QString("");
 
-	m_p_ui->user_to_add->setPlaceholderText(tr("Username, Email, or Phone Number"));
+    m_p_ui->user_to_add->setPlaceholderText(tr("Enter a group name"));
 	m_p_ui->duration_input->setPlaceholderText(tr("in minutes"));
 	m_p_ui->title_input->setPlaceholderText(tr("Group event name"));
 	m_p_ui->location_input->setPlaceholderText(tr("Group event location"));

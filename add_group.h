@@ -2,6 +2,12 @@
 #define ADD_GROUP_HPP
 
 #include <QWidget>
+#include <QListWidget>
+#include <QMessageBox>
+#include <iostream>
+
+#include "tcp_connection.hpp"
+#include "encrypt_string.hpp"
 
 namespace Ui {
 class add_group;
@@ -23,6 +29,10 @@ private:
     Ui::add_group *ui;
 
 	Q_SLOT void on_back_button();
+
+	Q_SLOT void create_group();
+	Q_SLOT void add_a_member();
+	void add_user(QString user);
 };
 
 #endif // ADD_GROUP_H
