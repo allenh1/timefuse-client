@@ -131,6 +131,7 @@ void manage_groups::hide_edit_group()
 
 void manage_groups::fill_fields()
 {
+	m_p_ui->list_groups->clear();
 	QString * request = new QString("REQUEST_GROUPS ");
 
     (*request)+=m_p_username; (*request)+=':';
