@@ -37,7 +37,7 @@ void edit_group::on_back_button()
 
 void edit_group::add_a_member()
 {
-    if(ui->add_member_input->text()->size() == 0) return;
+    if(ui->add_member_input->text().size() == 0) return;
     QString * request = new QString("JOIN_GROUP ");
 
     (*request)+=m_p_username; (*request)+=':';

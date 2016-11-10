@@ -86,9 +86,6 @@ void account_settings::fill_fields()
     QString * response = setup_connection(request);
 
 	if(!response->contains("ERROR")) {
-	    
+		
 	}
-	
-	m_p_ui->phone_input->setText("");
-    m_p_ui->email_input->setText("");
 }

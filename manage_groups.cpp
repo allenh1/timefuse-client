@@ -1,6 +1,5 @@
 #include "manage_groups.hpp"
 
-
 manage_groups::manage_groups(QWidget *parent) :
     QWidget(parent),
     m_p_ui(new Ui::manage_groups)
@@ -124,5 +123,18 @@ void manage_groups::hide_edit_group()
 
 void manage_groups::fill_fields()
 {
-    m_p_ui->list_groups->addItem("butthole");
+	QString * request = new QString("REQUEST_GROUPS ");
+
+    (*request)+=m_p_username; (*request)+=':';
+	(*request)+=m_p_password; (*request)+="\r\n\0";
+
+    QString * response = setup_connection(request);
+
+	if(!response->contains("ERROR")) {
+	    QStringList list = response->split('\n');
+		
+		for(int i=0;i<list.size();i++) {
+			m_p_ui->list_groups->addItem(list.at(i));
+		}
+	} delete response; delete request;
 }

@@ -63,7 +63,7 @@ void add_group::create_group()
 			add_user(encrypt_string(ui->member_list->item(i)->text()));
 		} delete response; delete request;
 
-		add_user(m_p_username);
+		add_user(*m_p_username);
 
 		// clear fields and switch back to manage groups
 		ui->add_member_input->setText("");
