@@ -6,12 +6,10 @@ account_settings::account_settings(QWidget *parent) :
 {
     m_p_ui->setupUi(this);
 
-	m_p_secret = new QString("");
 	m_p_username = new QString("");
 	m_p_password = new QString("");
 
 	m_p_ui->username_input->setReadOnly(true);
-	m_p_ui->new_username_input->setReadOnly(true);
 	
     /* set the password edit to not show text */
     m_p_ui->old_password_input->setEchoMode(QLineEdit::Password);
@@ -37,6 +35,8 @@ account_settings::~account_settings()
 
 void account_settings::save_changes_pressed()
 {
+	QString new_name = m_p_ui->new_username->text();
+	*m_p_username = new_name;
     QString old_password = encrypt_string(m_p_ui->old_password_input->text());
 	QString new_password = encrypt_string(m_p_ui->new_password_input->text());
     QString email = m_p_ui->email_input->text();
@@ -46,7 +46,7 @@ void account_settings::save_changes_pressed()
 
     (*request)+=m_p_username; (*request)+=':'; (*request)+=old_password;
     (*request)+=':'; (*request)+=new_password;
-	(*request)+=':'; (*request)+=m_p_username;
+	(*request)+=':'; (*request)+=new_name;
 	(*request)+=':'; (*request)+=email;
 	(*request)+=':'; (*request)+=phone; (*request)+="\r\n\0";
 
@@ -74,8 +74,8 @@ void account_settings::cancel_pressed()
 
 void account_settings::fill_fields()
 {
-	m_p_ui->username_input->setText(*m_p_secret);
-	m_p_ui->new_username_input->setText(*m_p_secret);
+	m_p_ui->username_input->setText(m_p_username);
+	m_p_ui->new_username_input->setText(m_p_username);
 
 	m_p_ui->old_password_input->setText("");
 	m_p_ui->new_password_input->setText("");
