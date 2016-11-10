@@ -41,6 +41,7 @@ void account_settings::save_changes_pressed()
 	*m_p_username = new_name;
     QString old_password = encrypt_string(m_p_ui->old_password_input->text());
 	QString new_password = encrypt_string(m_p_ui->new_password_input->text());
+	*m_p_password = new_password;
     QString email = m_p_ui->email_input->text();
     QString phone = m_p_ui->phone_input->text();
 
@@ -61,16 +62,15 @@ void account_settings::save_changes_pressed()
     delete response;
     delete request;
 
-    m_p_ui->old_password_input->setText("");
-	m_p_ui->new_password_input->setText("");
-    m_p_ui->phone_input->setText("");
-    m_p_ui->email_input->setText("");
-
     Q_EMIT(return_to_home_screen());
 }
 
 void account_settings::cancel_pressed()
 {
+	m_p_ui->old_password_input->setText("");
+	m_p_ui->new_password_input->setText("");
+    m_p_ui->phone_input->setText("");
+    m_p_ui->email_input->setText("");
     Q_EMIT(return_to_home_screen());
 }
 

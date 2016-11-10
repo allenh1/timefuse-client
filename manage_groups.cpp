@@ -56,7 +56,6 @@ void manage_groups::on_leave_group()
 
     if(response->contains("OK")) {
         m_p_ui->list_groups->clear();
-		QTest::qWait(500);
 	    fill_fields();
     } else {
         QMessageBox::critical(this, tr("Error"), *response);
@@ -80,7 +79,6 @@ void manage_groups::on_delete_group()
 
     if(response->contains("OK")) {
         m_p_ui->list_groups->clear();
-		QTest::qWait(500);
 	    fill_fields();
     } else {
         QMessageBox::critical(this, tr("Error"), *response);
@@ -119,7 +117,6 @@ void manage_groups::goto_edit_group()
 }
 
 void manage_groups::hide_add_group() {
-	QTest::qWait(500);
 	fill_fields();
 	m_p_add_group->hide();
 	this->show();
@@ -142,9 +139,11 @@ void manage_groups::fill_fields()
     QString * response = setup_connection(request);
 
 	if(!response->contains("ERROR")) {
+		response->replace("\r\n","");
 	    QStringList list = response->split('\n');
 		
 		for(int i=0;i<list.size();i++) {
+			if(i==list.size()-1) continue;
 			m_p_ui->list_groups->addItem(list.at(i));
 		}
 	} delete response; delete request;

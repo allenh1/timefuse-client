@@ -121,6 +121,7 @@ void home_screen::from_manage_groups()
 void home_screen::from_account_settings()
 {
 	m_p_username = m_p_account_settings->m_p_username;
+	m_p_password = m_p_account_settings->m_p_password;
 	this->show();
 	m_p_account_settings->hide();
 }
