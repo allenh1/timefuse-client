@@ -226,6 +226,8 @@ void schedulingGrid::on_pushWeek_clicked()
 void schedulingGrid::on_pushCreateEvent_clicked()
 {
     createevent ce;
+	ce.m_p_username = m_p_username;
+	ce.m_p_password = m_p_password;
     ce.setModal(true);
     ce.exec();
 }

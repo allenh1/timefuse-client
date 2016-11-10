@@ -8,7 +8,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 	m_p_reset_button = new QPushButton(tr("Reset Password"));
     
 	m_p_user_label = new QLabel(tr("Username:"));
-	m_p_password_label = new QLabel(tr("Password:"));
+	m_p_password_label = new QLabel(tr("Password: "));
     
 	m_p_user_edit = new QLineEdit();
 	m_p_password_edit = new QLineEdit();
@@ -57,7 +57,10 @@ LoginWindow::LoginWindow(QWidget *parent)
 			this, &LoginWindow::login);
 	connect(m_p_reset_password_window,
 			&reset_password_window::return_to_user_page,
-			this, &LoginWindow::hide_reset); 
+			this, &LoginWindow::hide_reset);
+
+	connect(m_p_home_screen, &home_screen::return_to_login,
+			this, &LoginWindow::hide_home_screen);
 }
 
 LoginWindow::~LoginWindow()
@@ -138,6 +141,7 @@ void LoginWindow::login(QString username, QString password) {
 			this->hide();
 			m_p_home_screen->show();
 
+			(*(m_p_home_screen->m_p_secret))=username;
 			(*(m_p_home_screen->m_p_username))=encrypt_string(username); 
 		    (*(m_p_home_screen->m_p_password))=encrypt_string(password);
 		} else {
@@ -147,4 +151,10 @@ void LoginWindow::login(QString username, QString password) {
 
 	delete request;
 	delete response;
+}
+
+void LoginWindow::hide_home_screen()
+{
+	m_p_home_screen->hide();
+	this->show();
 }

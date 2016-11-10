@@ -11,6 +11,9 @@ create_account_window::create_account_window(QWidget *parent) :
 	m_p_ui->password_input->setInputMethodHints(Qt::ImhHiddenText |
 										   Qt::ImhNoPredictiveText |
 										   Qt::ImhNoAutoUppercase);
+	m_p_ui->phone_input->setPlaceholderText(tr("0000000000"));
+	m_p_ui->name_input->setPlaceholderText(tr("Create a username"));
+	m_p_ui->email_input->setPlaceholderText(tr("email@domain.com"));
 
 	/* connect signals */
 	connect(m_p_ui->cancel_button, &QPushButton::released,

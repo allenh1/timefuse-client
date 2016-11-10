@@ -8,12 +8,13 @@ home_screen::home_screen(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
+	m_p_secret = new QString("");
 
 	m_p_schedule = new schedulingGrid();
-	m_p_create_event = new createevent();
+	m_p_create_event = new create_group_event();
 	m_p_account_settings = new account_settings();
 	m_p_manage_groups = new manage_groups();
-
+	
 	// connections to different windows
 	connect(m_p_ui->create_event, &QPushButton::released,
 			this, &home_screen::to_create_event);
@@ -31,6 +32,12 @@ home_screen::home_screen(QWidget *parent) :
 			this, &home_screen::from_see_schedule);
 	connect(m_p_manage_groups, &manage_groups::return_to_home_screen,
 			this, &home_screen::from_manage_groups);
+	connect(m_p_create_event, &create_group_event::return_to_home_screen,
+			this, &home_screen::from_create_event);
+
+	// logout connection
+	connect(m_p_ui->logout_button, &QPushButton::released,
+			this, &home_screen::on_logout);
 }
 
 home_screen::~home_screen()
@@ -44,8 +51,11 @@ void home_screen::to_account_settings()
 	/**
 	 * @TODO add request for account info
 	 */
+	m_p_account_settings->m_p_secret = m_p_secret;
 	m_p_account_settings->m_p_username = m_p_username;
 	m_p_account_settings->m_p_password = m_p_password;
+
+	m_p_account_settings->fill_fields();
 	
 	m_p_account_settings->show();
 	this->hide();
@@ -109,4 +119,10 @@ void home_screen::from_account_settings()
 {
 	this->show();
 	m_p_account_settings->hide();
+}
+
+
+void home_screen::on_logout()
+{
+	Q_EMIT(return_to_login());
 }

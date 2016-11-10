@@ -21,6 +21,7 @@ public:
 	explicit account_settings (QWidget * _p_parent = NULL);
 	virtual ~account_settings();
 
+	QString * m_p_secret;
 	QString * m_p_username;
 	QString * m_p_password;
 	
@@ -28,6 +29,8 @@ public:
 	Q_SLOT void cancel_pressed();
 
 	Q_SIGNAL void return_to_home_screen();
+
+	void fill_fields();
 
 private:
     Ui::account_settings * m_p_ui;
