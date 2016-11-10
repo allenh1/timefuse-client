@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>0</y>
+     <y>10</y>
      <width>71</width>
      <height>20</height>
     </rect>
@@ -31,12 +31,12 @@
     <rect>
      <x>10</x>
      <y>230</y>
-     <width>121</width>
+     <width>111</width>
      <height>32</height>
     </rect>
    </property>
    <property name="text">
-    <string>Create New Group</string>
+    <string>Create Group</string>
    </property>
   </widget>
   <widget class="QPushButton" name="back_button">
@@ -52,7 +52,46 @@
     <string>Cancel</string>
    </property>
   </widget>
-  <widget class="QListView" name="list_groups">
+  <widget class="QPushButton" name="delete_group">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>190</y>
+     <width>51</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="edit_group">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>190</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="leave_group">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>190</y>
+     <width>51</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Leave</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="list_groups">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -60,19 +99,6 @@
      <width>241</width>
      <height>151</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="delete_group">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>190</y>
-     <width>88</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Delete Group</string>
    </property>
   </widget>
  </widget>

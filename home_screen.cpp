@@ -75,11 +75,10 @@ void home_screen::to_see_schedule()
 
 void home_screen::to_manage_groups()
 {
-	/**
-	 * @TODO add request for user's schedule
-	 */
 	m_p_manage_groups->m_p_username = m_p_username;
 	m_p_manage_groups->m_p_password = m_p_password;
+
+    m_p_manage_groups->fill_fields();
 
 	this->hide();
 	m_p_manage_groups->show();

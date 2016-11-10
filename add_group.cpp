@@ -1,5 +1,4 @@
 #include "add_group.h"
-#include "ui_add_group.h"
 
 add_group::add_group(QWidget *parent) :
     QWidget(parent),
@@ -11,7 +10,7 @@ add_group::add_group(QWidget *parent) :
 	m_p_password = new QString("");
 
 	ui->add_member_input->setPlaceholderText(
-		tr("Username, Email, or Phone Number"));
+		tr("Enter a username"));
 	ui->group_name->setPlaceholderText(tr("Group name"));
 
 	// connect cancel button

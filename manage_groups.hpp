@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ui_manage_groups.h"
 #include "add_group.h"
+#include "edit_group.hpp"
 
 namespace Ui {
 class manage_groups;
@@ -21,14 +22,22 @@ public:
 	QString * m_p_password;
 
 	Q_SIGNAL void return_to_home_screen();
+    void fill_fields();
 private:
     Ui::manage_groups * m_p_ui;
 
-	Q_SLOT void on_back_button();
-	Q_SLOT void on_new_group();
-	Q_SLOT void show_manage_groups();
+    Q_SLOT void on_leave_group();
+    Q_SLOT void on_delete_group();
+
+    Q_SLOT void goto_edit_group();
+    Q_SLOT void on_back_button();
+    Q_SLOT void on_new_group();
+
+    Q_SLOT void hide_edit_group();
+    Q_SLOT void hide_add_group();
 
 	add_group * m_p_add_group;
+    edit_group * m_p_edit_group;
 };
 
 #endif
