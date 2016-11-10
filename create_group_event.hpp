@@ -28,7 +28,7 @@ public:
 
 	Q_SLOT void on_cancel();
 	Q_SLOT void add_group_members();
-	Q_SLOT void create_group_event();
+	Q_SLOT void on_create_group_event();
 private:
     Ui::create_group_event * m_p_ui;
 };

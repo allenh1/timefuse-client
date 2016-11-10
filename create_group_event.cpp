@@ -9,7 +9,7 @@ create_group_event::create_group_event(QWidget *parent) :
 	m_p_username = new QString("");
 	m_p_password = new QString("");
 
-    m_p_ui->user_to_add->setPlaceholderText(tr("Enter a group name"));
+    m_p_ui->group_to_add->setPlaceholderText(tr("Enter a group name"));
 	m_p_ui->duration_input->setPlaceholderText(tr("in minutes"));
 	m_p_ui->title_input->setPlaceholderText(tr("Group event name"));
 	m_p_ui->location_input->setPlaceholderText(tr("Group event location"));
@@ -20,7 +20,7 @@ create_group_event::create_group_event(QWidget *parent) :
 	connect(m_p_ui->add_member, &QPushButton::released,
 			this, &create_group_event::add_group_members);
 	connect(m_p_ui->create_event, &QPushButton::released,
-			this, &create_group_event::create_group_event);
+			this, &create_group_event::on_create_group_event);
 }
 
 create_group_event::~create_group_event()
@@ -32,7 +32,7 @@ create_group_event::~create_group_event()
 
 void create_group_event::on_cancel()
 {
-	m_p_ui->user_to_add->setText("");
+	m_p_ui->group_to_add->setText("");
 	m_p_ui->title_input->setText("");
 	m_p_ui->location_input->setText("");
 	m_p_ui->duration_input->setText("");
@@ -62,7 +62,7 @@ void create_group_event::add_group_members()
 	} delete request; delete response;
 }
 
-void create_group_event::create_group_event()
+void create_group_event::on_create_group_event()
 {
 	Q_EMIT(return_to_home_screen());
 }
