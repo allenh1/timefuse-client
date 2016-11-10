@@ -153,7 +153,6 @@ void LoginWindow::login(QString username, QString password) {
 	delete response;
 }
 
-
 void LoginWindow::hide_home_screen()
 {
 	m_p_home_screen->hide();
