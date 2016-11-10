@@ -8,7 +8,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 	m_p_reset_button = new QPushButton(tr("Reset Password"));
     
 	m_p_user_label = new QLabel(tr("Username:"));
-	m_p_password_label = new QLabel(tr("Password:"));
+	m_p_password_label = new QLabel(tr("Password: "));
     
 	m_p_user_edit = new QLineEdit();
 	m_p_password_edit = new QLineEdit();
@@ -147,4 +147,11 @@ void LoginWindow::login(QString username, QString password) {
 
 	delete request;
 	delete response;
+}
+
+
+void LoginWindow::hide_home_screen()
+{
+	m_p_home_screen->hide();
+	this->show();
 }

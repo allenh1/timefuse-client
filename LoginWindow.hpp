@@ -36,6 +36,8 @@ public:
     Q_SLOT void hide_create();
     Q_SLOT void hide_reset();
     Q_SIGNAL void do_login(QString, QString);
+
+	Q_SLOT void hide_home_screen();
 private:
     QPushButton *m_p_create_button; //create account
     QPushButton *m_p_login_button; //login
