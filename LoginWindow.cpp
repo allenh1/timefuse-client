@@ -57,7 +57,10 @@ LoginWindow::LoginWindow(QWidget *parent)
 			this, &LoginWindow::login);
 	connect(m_p_reset_password_window,
 			&reset_password_window::return_to_user_page,
-			this, &LoginWindow::hide_reset); 
+			this, &LoginWindow::hide_reset);
+
+	connect(m_p_home_screen, &home_screen::return_to_login,
+			this, &LoginWindow::hide_home_screen);
 }
 
 LoginWindow::~LoginWindow()
