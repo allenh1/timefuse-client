@@ -3,6 +3,7 @@
 
 #include <QStringList>
 #include <QWidget>
+#include <QTest>
 #include "ui_manage_groups.h"
 #include "add_group.h"
 #include "edit_group.hpp"

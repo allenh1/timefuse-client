@@ -56,6 +56,7 @@ void manage_groups::on_leave_group()
 
     if(response->contains("OK")) {
         m_p_ui->list_groups->clear();
+		QTest::qWait(500);
 	    fill_fields();
     } else {
         QMessageBox::critical(this, tr("Error"), *response);
@@ -79,6 +80,7 @@ void manage_groups::on_delete_group()
 
     if(response->contains("OK")) {
         m_p_ui->list_groups->clear();
+		QTest::qWait(500);
 	    fill_fields();
     } else {
         QMessageBox::critical(this, tr("Error"), *response);
@@ -117,8 +119,8 @@ void manage_groups::goto_edit_group()
 }
 
 void manage_groups::hide_add_group() {
+	QTest::qWait(500);
 	fill_fields();
-	
 	m_p_add_group->hide();
 	this->show();
 }
