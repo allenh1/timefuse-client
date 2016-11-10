@@ -40,12 +40,15 @@ void create_group_event::on_cancel()
 	QTime def(0,0);
 	m_p_ui->begin_time_edit->setTime(def);
 
+	m_p_ui->attendees_list->clear();
+
 	Q_EMIT(return_to_home_screen());
 }
 
 void create_group_event::add_group_members()
 {
 	if(m_p_ui->group_to_add->text().size()==0) return;
+	
 	QString * request = new QString("REQUEST_USERS ");
 
 	(*request)+=m_p_username; (*request)+=':';
@@ -58,11 +61,25 @@ void create_group_event::add_group_members()
 	if(response->contains("ERROR")) {
 		QMessageBox::critical(this, tr("Error"), *response);
 	} else {
+		response->replace("\r\n","");
+	    QStringList list = response->split('\n');
 		
+		for(int i=0;i<list.size();i++) {
+			if(i==list.size()-1) continue;
+			m_p_ui->attendees_list->addItem(list.at(i));
+		}
 	} delete request; delete response;
 }
 
 void create_group_event::on_create_group_event()
 {
+	m_p_ui->group_to_add->setText("");
+	m_p_ui->title_input->setText("");
+	m_p_ui->location_input->setText("");
+	m_p_ui->duration_input->setText("");
+
+	QTime def(0,0);
+	m_p_ui->begin_time_edit->setTime(def);
+	m_p_ui->attendees_list->clear();
 	Q_EMIT(return_to_home_screen());
 }
