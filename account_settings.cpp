@@ -6,10 +6,12 @@ account_settings::account_settings(QWidget *parent) :
 {
     m_p_ui->setupUi(this);
 
+	m_p_secret = new QString("");
 	m_p_username = new QString("");
 	m_p_password = new QString("");
-	
 
+	m_p_ui->username_input->setReadOnly(true);
+	
     /* set the password edit to not show text */
     m_p_ui->old_password_input->setEchoMode(QLineEdit::Password);
     m_p_ui->old_password_input->setInputMethodHints(Qt::ImhHiddenText |
@@ -19,7 +21,6 @@ account_settings::account_settings(QWidget *parent) :
     m_p_ui->new_password_input->setInputMethodHints(Qt::ImhHiddenText |
 													Qt::ImhNoPredictiveText |
 													Qt::ImhNoAutoUppercase);
-
 
     /* connect signals */
     connect(m_p_ui->cancel_button, &QPushButton::released,
@@ -68,4 +69,9 @@ void account_settings::save_changes_pressed()
 void account_settings::cancel_pressed()
 {
     Q_EMIT(return_to_home_screen());
+}
+
+void account_settings::fill_fields()
+{
+	m_p_ui->username_input->setText(*m_p_secret);
 }

@@ -8,6 +8,7 @@ home_screen::home_screen(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
+	m_p_secret = new QString("");
 
 	m_p_schedule = new schedulingGrid();
 	m_p_create_event = new create_group_event();
@@ -50,8 +51,11 @@ void home_screen::to_account_settings()
 	/**
 	 * @TODO add request for account info
 	 */
+	m_p_account_settings->m_p_secret = m_p_secret;
 	m_p_account_settings->m_p_username = m_p_username;
 	m_p_account_settings->m_p_password = m_p_password;
+
+	m_p_account_settings->fill_fields();
 	
 	m_p_account_settings->show();
 	this->hide();
