@@ -20,6 +20,8 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 schedulingGrid::~schedulingGrid()
 {
     delete ui;
+	delete m_p_username;
+	delete m_p_password;
 }
 
 QString months[]=

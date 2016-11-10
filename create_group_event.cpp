@@ -21,6 +21,8 @@ create_group_event::create_group_event(QWidget *parent) :
 create_group_event::~create_group_event()
 {
     delete m_p_ui;
+	delete m_p_username;
+	delete m_p_password;
 }
 
 void create_group_event::on_cancel()

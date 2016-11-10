@@ -25,6 +25,9 @@ edit_group::edit_group(QWidget *parent) :
 edit_group::~edit_group()
 {
     delete ui;
+	delete m_p_username;
+	delete m_p_password;
+	delete m_p_group;
 }
 
 void edit_group::on_back_button()
@@ -43,7 +46,7 @@ void edit_group::add_a_member()
     (*request)+=m_p_username; (*request)+=':';
     (*request)+=m_p_password; (*request)+=':';
     (*request)+=ui->group_name->text(); (*request)+=':';
-    (*request)+=encrypt_string(ui->add_member_input->text());
+    (*request)+=ui->add_member_input->text();
 
     QString * response = setup_connection(request);
 

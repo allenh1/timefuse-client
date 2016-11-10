@@ -29,7 +29,7 @@ create_account_window::~create_account_window()
 
 void create_account_window::create_pressed()
 {
-	QString name = encrypt_string(m_p_ui->name_input->text());
+	QString name = m_p_ui->name_input->text();
 	QString password = encrypt_string(m_p_ui->password_input->text());
 	QString email = m_p_ui->email_input->text();
 	QString phone = m_p_ui->phone_input->text();
@@ -59,5 +59,9 @@ void create_account_window::create_pressed()
 
 void create_account_window::cancel_pressed()
 {
+	m_p_ui->password_input->setText("");
+	m_p_ui->phone_input->setText("");
+	m_p_ui->name_input->setText("");
+	m_p_ui->email_input->setText("");
 	Q_EMIT(return_to_user_page());
 }

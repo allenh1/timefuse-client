@@ -1,4 +1,4 @@
-QT = core gui widgets network
+QT = core gui widgets network testlib
 CONFIG += c++11 debug
 
 TARGET = timefuse-client

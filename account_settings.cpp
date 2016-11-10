@@ -31,11 +31,13 @@ account_settings::account_settings(QWidget *parent) :
 account_settings::~account_settings()
 {
     delete m_p_ui;
+	delete m_p_username;
+	delete m_p_password;
 }
 
 void account_settings::save_changes_pressed()
 {
-	QString new_name = m_p_ui->new_username->text();
+	QString new_name = m_p_ui->new_username_input->text();
 	*m_p_username = new_name;
     QString old_password = encrypt_string(m_p_ui->old_password_input->text());
 	QString new_password = encrypt_string(m_p_ui->new_password_input->text());
@@ -74,8 +76,8 @@ void account_settings::cancel_pressed()
 
 void account_settings::fill_fields()
 {
-	m_p_ui->username_input->setText(m_p_username);
-	m_p_ui->new_username_input->setText(m_p_username);
+	m_p_ui->username_input->setText(*m_p_username);
+	m_p_ui->new_username_input->setText(*m_p_username);
 
 	m_p_ui->old_password_input->setText("");
 	m_p_ui->new_password_input->setText("");

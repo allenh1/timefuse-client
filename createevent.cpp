@@ -13,6 +13,8 @@ createevent::createevent(QWidget *parent) :
 createevent::~createevent()
 {
     delete ui;
+	delete m_p_username;
+	delete m_p_password;
 }
 
 void createevent::on_pushButton_clicked()
