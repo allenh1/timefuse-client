@@ -4,10 +4,12 @@
 #include <QWidget>
 #include <QString>
 #include <QDebug>
+#include <iostream>
 
 #include "ui_schedulinggrid.h"
 #include "createevent.h"
 #include "usercreatedevent.h"
+#include "tcp_connection.hpp"
 
 namespace Ui {
 	class schedulingGrid;
@@ -26,6 +28,8 @@ public:
 
 	Q_SLOT void on_back_button();
 	Q_SIGNAL void return_to_home_screen();
+
+    QLineEdit* month();
 private:
 	Ui::schedulingGrid *ui;
 	
@@ -35,6 +39,11 @@ private:
     Q_SLOT void on_pushGetDay_clicked();
     Q_SLOT void on_pushWeek_clicked();
     Q_SLOT void on_pushCreateEvent_clicked();
+
+
+
+
+
 };
 
 #endif // SCHEDULINGGRID_H

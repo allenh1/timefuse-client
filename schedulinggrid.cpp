@@ -8,7 +8,6 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     ui->setupUi(this);
     ui->tableCalendar->setEditTriggers(QAbstractItemView::NoEditTriggers);
     schedulingGrid::on_pushCalendar_clicked();
-    //ui->tableWeek->horizontalHeaderItem(0)->setText("Whatever");
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
@@ -22,6 +21,11 @@ schedulingGrid::~schedulingGrid()
     delete ui;
 	delete m_p_username;
 	delete m_p_password;
+}
+
+QLineEdit* schedulingGrid::month()
+{
+    return ui->lineMonth;
 }
 
 QString months[]=
@@ -187,42 +191,43 @@ void schedulingGrid::on_pushGetDay_clicked()
 
 
 
-    QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
+    //QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
     //int row = ui->tableWeek->currentRow();
-    QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
+    //QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
     //QString time = "0:00";
 
-    if (day == "-") {
+    /*if (day == "-") {
         ui->labelCurrentDay->setText("idk man");
     } else {
         ui->labelCurrentDay->setText(daysOfWeek[currentColumn] + ", " +
                                      months[month] + " " + day + ", " +
                                      QString::number(year) + " @ " + time);
-    }
+    }*/
 }
 
 void schedulingGrid::on_pushWeek_clicked()
 {
     QStringList days;
-    QStringList hours;
 
-    for(int i = 0; i < 24; i++) {
-        QString currentHour = (QString::number(i) + ":00");
-        hours << currentHour;
-    }
 
-    QString currentDay;
+
     int currentRow = ui->tableCalendar->currentRow();
-    //days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
 
     for(int i = 0; i < 7; i++) {
-        currentDay = ui->tableCalendar->item(currentRow, i)->text();
+        QString currentDay = ui->lineMonth->displayText();
+        currentDay += "/";
+        currentDay += ui->tableCalendar->item(currentRow, i)->text();
         days << currentDay;
 
     }
 
-    ui->tableWeek->setVerticalHeaderLabels(hours);
-    ui->tableWeek->setHorizontalHeaderLabels(days);
+    ui->labelSunday->setText(days[0]);
+    ui->labelMonday->setText(days[1]);
+    ui->labelTuesday->setText(days[2]);
+    ui->labelWednesday->setText(days[3]);
+    ui->labelThursday->setText(days[4]);
+    ui->labelFriday->setText(days[5]);
+    ui->labelSaturday->setText(days[6]);
 }
 
 void schedulingGrid::on_pushCreateEvent_clicked()

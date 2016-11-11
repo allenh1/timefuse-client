@@ -8,6 +8,9 @@ createevent::createevent(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
+
+    //ui->labelDate->setText(schedulingGrid->month()->displayText());
+
 }
 
 createevent::~createevent()
@@ -20,37 +23,30 @@ createevent::~createevent()
 void createevent::on_pushButton_clicked()
 {
 
-    userCreatedEvent newEvent;
-    newEvent.name = ui->lineTitle->displayText();
-    newEvent.location = ui->lineLocation->displayText();
-    newEvent.beginTime = ui->timeBegin->time();
-    newEvent.endTime = ui->timeEnd->time();
-    newEvent.timeNegotiable = ui->radioFixed->isChecked();
+    QString * request = new QString("CREATE_USER_EVENT ");
+    int year = ui->dateEdit->date().year();
+    int day = ui->dateEdit->date().day();
+    int month = ui->dateEdit->date().month();
+    int hour = ui->begin_time_edit_2->time().hour();
+    int minute = ui->begin_time_edit_2->time().minute();
 
-    QFile *file;
+    (*request)+=m_p_username; (*request)+='|';
+    (*request)+=m_p_password; (*request)+='|';
+    (*request)+=QString::number(year); (*request)+='-';
+    (*request)+=QString::number(month); (*request)+='-';
+    (*request)+=QString::number(day); (*request)+='|';
+    (*request)+=QString::number(hour); (*request)+=':';
+    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+='|';
+    (*request)+=ui->duration_input_2->displayText(); (*request)+='|';
+    (*request)+=ui->location_input_2->displayText(); (*request)+='|';
+    (*request)+=ui->title_input_2->displayText();
 
-    QString fileName = QFileDialog::getSaveFileName(this,
-           tr("Save Event File"), "",
-           tr("Event File (*.evt);;All Files (*)"));
-
-    file = new QFile(fileName);
-    file->open(QIODevice::WriteOnly);
-    file->flush();
-
-    if (!file->open(QIODevice::ReadOnly)) {
-                ui->labelText->setText("can't do it");
-                return;
-    }
-
-    QDataStream out(file);
-    out.setVersion(QDataStream::Qt_4_5);
-    out << newEvent.name;
-    out << newEvent.location;
-    out << newEvent.beginTime;
-    out << newEvent.endTime;
-    out << newEvent.timeNegotiable;
+    QString * response = setup_connection(request);
+    ui->label->setText(*request);
+    ui->label_2->setText(*response);
 
 
 
-    this->hide();
+
+    //this->hide();
 }
