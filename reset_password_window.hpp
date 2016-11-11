@@ -1,10 +1,11 @@
 #ifndef RESET_PASSWORD_WINDOW_HPP
 #define RESET_PASSWORD_WINDOW_HPP
-
+#include <QMessageBox>
 #include <QWidget>
 #include <QtGui>
 
 #include "ui_reset_password_window.h"
+#include "tcp_connection.hpp"
 #include "user.hpp"
 
 class user;
