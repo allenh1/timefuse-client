@@ -30,15 +30,17 @@ void createevent::on_pushButton_clicked()
     int hour = ui->begin_time_edit_2->time().hour();
     int minute = ui->begin_time_edit_2->time().minute();
 
-    (*request)+=m_p_username; (*request)+='|';
-    (*request)+=m_p_password; (*request)+='|';
+	// same thing here
+	
+    (*request)+=m_p_username; (*request)+='\v';
+    (*request)+=m_p_password; (*request)+='\v';
     (*request)+=QString::number(year); (*request)+='-';
     (*request)+=QString::number(month); (*request)+='-';
-    (*request)+=QString::number(day); (*request)+='|';
+    (*request)+=QString::number(day); (*request)+='\v';
     (*request)+=QString::number(hour); (*request)+=':';
-    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+='|';
-    (*request)+=ui->duration_input_2->displayText(); (*request)+='|';
-    (*request)+=ui->location_input_2->displayText(); (*request)+='|';
+    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+='\v';
+    (*request)+=ui->duration_input_2->displayText(); (*request)+='\v';
+    (*request)+=ui->location_input_2->displayText(); (*request)+='\v';
     (*request)+=ui->title_input_2->displayText();
 
     QString * response = setup_connection(request);
