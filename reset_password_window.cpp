@@ -10,6 +10,12 @@ reset_password_window::reset_password_window(QWidget *parent) :
 	m_p_ui->email_input->setPlaceholderText(tr("email@domain.com"));
 	m_p_ui->username_input->setPlaceholderText(tr("Enter your username"));
 	m_p_ui->new_password_input->setPlaceholderText(tr("Enter new password"));
+
+	/* set the password edit to not show text */
+	m_p_ui->new_password_input->setEchoMode(QLineEdit::Password);
+	m_p_ui->new_password_input->setInputMethodHints(Qt::ImhHiddenText |
+										   Qt::ImhNoPredictiveText |
+										   Qt::ImhNoAutoUppercase);
     
     /* connect signals */
     connect(m_p_ui->cancel_button, &QPushButton::released,
