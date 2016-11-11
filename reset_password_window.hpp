@@ -6,6 +6,7 @@
 
 #include "ui_reset_password_window.h"
 #include "tcp_connection.hpp"
+#include "encrypt_string.hpp"
 #include "user.hpp"
 
 class user;
