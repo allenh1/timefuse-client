@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>383</width>
-    <height>371</height>
+    <height>402</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,19 +19,28 @@
      <x>10</x>
      <y>10</y>
      <width>361</width>
-     <height>138</height>
+     <height>172</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="QLabel" name="location">
+    <item row="3" column="1">
+     <widget class="QTimeEdit" name="begin_time_edit"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="title_input"/>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="location_input"/>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="duration_input"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="end_time">
       <property name="text">
-       <string>Location:</string>
+       <string>Duration:</string>
       </property>
      </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QLineEdit" name="duration_input"/>
     </item>
     <item row="0" column="0">
      <widget class="QLabel" name="title">
@@ -40,28 +49,29 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="location_input"/>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="end_time">
+    <item row="1" column="0">
+     <widget class="QLabel" name="location">
       <property name="text">
-       <string>Duration:</string>
+       <string>Location:</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QTimeEdit" name="begin_time_edit"/>
-    </item>
-    <item row="2" column="0">
+    <item row="3" column="0">
      <widget class="QLabel" name="begin_time">
       <property name="text">
        <string>Begin Time:</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="title_input"/>
+    <item row="2" column="1">
+     <widget class="QDateEdit" name="dateEdit"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="date_text">
+      <property name="text">
+       <string>Date:</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -69,7 +79,7 @@
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>330</y>
+     <y>360</y>
      <width>113</width>
      <height>32</height>
     </rect>
@@ -82,7 +92,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>330</y>
+     <y>360</y>
      <width>113</width>
      <height>32</height>
     </rect>
@@ -95,7 +105,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>200</y>
+     <y>230</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -108,7 +118,7 @@
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>160</y>
+     <y>190</y>
      <width>113</width>
      <height>32</height>
     </rect>
@@ -121,7 +131,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>160</y>
+     <y>190</y>
      <width>241</width>
      <height>30</height>
     </rect>
@@ -131,7 +141,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>220</y>
+     <y>250</y>
      <width>361</width>
      <height>101</height>
     </rect>
@@ -141,7 +151,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>190</y>
+     <y>220</y>
      <width>361</width>
      <height>16</height>
     </rect>

@@ -7,6 +7,7 @@
 
 #include "ui_createevent.h"
 #include "usercreatedevent.h"
+#include "tcp_connection.hpp"
 
 namespace Ui {
 class createevent;

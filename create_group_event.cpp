@@ -73,13 +73,41 @@ void create_group_event::add_group_members()
 
 void create_group_event::on_create_group_event()
 {
-	m_p_ui->group_to_add->setText("");
-	m_p_ui->title_input->setText("");
-	m_p_ui->location_input->setText("");
-	m_p_ui->duration_input->setText("");
+    QString * request = new QString("CREATE_GROUP_EVENT ");
+	
+    int year = m_p_ui->dateEdit->date().year();
+    int day = m_p_ui->dateEdit->date().day();
+    int month = m_p_ui->dateEdit->date().month();
+    int hour = m_p_ui->begin_time_edit->time().hour();
+    int minute = m_p_ui->begin_time_edit->time().minute();
+	
+    (*request)+=m_p_username; (*request)+=';';
+    (*request)+=m_p_password; (*request)+=';';
+    (*request)+=m_p_ui->group_to_add->displayText(); (*request)+=';';
+    (*request)+=QString::number(year); (*request)+='-';
+    (*request)+=QString::number(month); (*request)+='-';
+    (*request)+=QString::number(day); (*request)+=';';
+    (*request)+=QString::number(hour); (*request)+=':';
+    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=';';
+    (*request)+=m_p_ui->duration_input->displayText(); (*request)+=';';
+    (*request)+=m_p_ui->location_input->displayText(); (*request)+=';';
+    (*request)+=m_p_ui->title_input->displayText(); (*request)+="\r\n\0";
 
-	QTime def(0,0);
-	m_p_ui->begin_time_edit->setTime(def);
-	m_p_ui->attendees_list->clear();
-	Q_EMIT(return_to_home_screen());
+	std::cerr<<"request: "<<request->toStdString()<<std::endl;
+    QString * response = setup_connection(request);
+	std::cerr<<"response: "<<response->toStdString()<<std::endl;
+
+	if(response->contains("ERROR")) {
+		QMessageBox::critical(this, tr("Error"), *response);
+	} else {
+		m_p_ui->group_to_add->setText("");
+		m_p_ui->title_input->setText("");
+		m_p_ui->location_input->setText("");
+		m_p_ui->duration_input->setText("");
+
+		QTime def(0,0);
+		m_p_ui->begin_time_edit->setTime(def);
+		m_p_ui->attendees_list->clear();
+		Q_EMIT(return_to_home_screen());
+	} delete response; delete request;
 }
