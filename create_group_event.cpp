@@ -73,16 +73,13 @@ void create_group_event::add_group_members()
 
 void create_group_event::on_create_group_event()
 {
-
     QString * request = new QString("CREATE_GROUP_EVENT ");
+	
     int year = m_p_ui->dateEdit->date().year();
     int day = m_p_ui->dateEdit->date().day();
     int month = m_p_ui->dateEdit->date().month();
     int hour = m_p_ui->begin_time_edit->time().hour();
     int minute = m_p_ui->begin_time_edit->time().minute();
-
-	// the pipe got changed to a \v bc of the password
-	// being encrypted
 	
     (*request)+=m_p_username; (*request)+=';';
     (*request)+=m_p_password; (*request)+=';';
@@ -96,9 +93,9 @@ void create_group_event::on_create_group_event()
     (*request)+=m_p_ui->location_input->displayText(); (*request)+=';';
     (*request)+=m_p_ui->title_input->displayText(); (*request)+="\r\n\0";
 
+	std::cerr<<"request: "<<request->toStdString()<<std::endl;
     QString * response = setup_connection(request);
-    m_p_ui->label->setText(*request);
-    m_p_ui->label_2->setText(*response);
+	std::cerr<<"response: "<<response->toStdString()<<std::endl;
 
 	m_p_ui->group_to_add->setText("");
 	m_p_ui->title_input->setText("");
@@ -108,5 +105,5 @@ void create_group_event::on_create_group_event()
 	QTime def(0,0);
 	m_p_ui->begin_time_edit->setTime(def);
 	m_p_ui->attendees_list->clear();
-    //Q_EMIT(return_to_home_screen());
+    Q_EMIT(return_to_home_screen());
 }
