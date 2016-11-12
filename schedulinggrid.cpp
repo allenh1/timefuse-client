@@ -101,6 +101,7 @@ QString daysOfWeek[]=
 // }
 //
 //
+//
 // obviously this is only a temporary solution, but it should be fine for now
 
 void schedulingGrid::on_pushCalendar_clicked()
