@@ -84,16 +84,16 @@ void create_group_event::on_create_group_event()
 	// the pipe got changed to a \v bc of the password
 	// being encrypted
 	
-    (*request)+=m_p_username; (*request)+='\v';
-    (*request)+=m_p_password; (*request)+='\v';
-    (*request)+=m_p_ui->group_to_add->displayText(); (*request)+='\v';
+    (*request)+=m_p_username; (*request)+=';';
+    (*request)+=m_p_password; (*request)+=';';
+    (*request)+=m_p_ui->group_to_add->displayText(); (*request)+=';';
     (*request)+=QString::number(year); (*request)+='-';
     (*request)+=QString::number(month); (*request)+='-';
-    (*request)+=QString::number(day); (*request)+='\v';
+    (*request)+=QString::number(day); (*request)+=';';
     (*request)+=QString::number(hour); (*request)+=':';
-    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+='\v';
-    (*request)+=m_p_ui->duration_input->displayText(); (*request)+='\v';
-    (*request)+=m_p_ui->location_input->displayText(); (*request)+='\v';
+    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=';';
+    (*request)+=m_p_ui->duration_input->displayText(); (*request)+=';';
+    (*request)+=m_p_ui->location_input->displayText(); (*request)+=';';
     (*request)+=m_p_ui->title_input->displayText(); (*request)+="\r\n\0";
 
     QString * response = setup_connection(request);
