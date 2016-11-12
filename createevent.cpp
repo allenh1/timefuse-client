@@ -11,6 +11,7 @@ createevent::createevent(QWidget *parent) :
 
     //ui->labelDate->setText(schedulingGrid->month()->displayText());
 
+
 }
 
 createevent::~createevent()
