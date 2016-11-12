@@ -97,13 +97,17 @@ void create_group_event::on_create_group_event()
     QString * response = setup_connection(request);
 	std::cerr<<"response: "<<response->toStdString()<<std::endl;
 
-	m_p_ui->group_to_add->setText("");
-	m_p_ui->title_input->setText("");
-	m_p_ui->location_input->setText("");
-	m_p_ui->duration_input->setText("");
+	if(response->contains("ERROR")) {
+		QMessageBox::critical(this, tr("Error"), *response);
+	} else {
+		m_p_ui->group_to_add->setText("");
+		m_p_ui->title_input->setText("");
+		m_p_ui->location_input->setText("");
+		m_p_ui->duration_input->setText("");
 
-	QTime def(0,0);
-	m_p_ui->begin_time_edit->setTime(def);
-	m_p_ui->attendees_list->clear();
-    Q_EMIT(return_to_home_screen());
+		QTime def(0,0);
+		m_p_ui->begin_time_edit->setTime(def);
+		m_p_ui->attendees_list->clear();
+		Q_EMIT(return_to_home_screen());
+	} delete response; delete request;
 }
