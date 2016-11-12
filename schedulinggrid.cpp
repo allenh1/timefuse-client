@@ -8,6 +8,7 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     ui->setupUi(this);
     ui->tableCalendar->setEditTriggers(QAbstractItemView::NoEditTriggers);
     schedulingGrid::on_pushCalendar_clicked();
+    //ui->tableWeek->horizontalHeaderItem(0)->setText("Whatever");
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
@@ -22,12 +23,7 @@ schedulingGrid::~schedulingGrid()
 	delete m_p_username;
 	delete m_p_password;
 }
-/*
-QLineEdit* schedulingGrid::month()
-{
-    return ui->lineMonth;
-}
-*/
+
 QString months[]=
 {
     "",
@@ -55,56 +51,6 @@ QString daysOfWeek[]=
     "Friday",
     "Saturday"
 };
-
-// This will show how to properly color in the calender
-//
-// void schedulingGrid::colorCalender()
-// {
-// First, send in the query.
-
-// QString * request = new QString("REQUEST_PERSONAL_MONTH_EVENTS  ");
-// (*request)+=m_p_username; (*request)+=':';
-// (*request)+=m_p_password; (*request)+=':';
-// (*request)+=ui->lineMonth->displayText(); (*request)+=':';
-// (*request)+=ui->lineYear->displayText();
-// QString * response = setup_connection(request);
-//
-// QChar eventsAtDay;
-//
-// I'm tired so the rest is psuedocode
-// for i = , number of days in month, i++
-//  eventsAtDay = response[i-1]
-//  int pos = i + daycode of the current month (how many days before the first)
-//  int row = pos/7 + (daycode == 0);
-//  int col = pos%7;
-//  if eventsAtDay == 1
-//    mark today as having an event
-//    tableWidget->item(row,col)->setBackgroundColor(Qt::red);
-// }
-
-// kind of a simple way of doing it
-// maybe group events can be a different color?
-// maybe a day that has both personal and group events can be an even different color?
-
-
-
-
-
-// This will show how I think we can load in the schedule itself
-// void schedulingGrid::fillSchedule()
-// {
-// int currentRow = ui->tableCalendar->currentRow();
-// int firstDay = ui->tableCalendar->item(currentRow, 0)->text();
-// int lastDay = ui->tableCalendar->item(currentRow, 6)->text();
-// those will give the range of days needed for the REQUEST_EVENTS query
-//
-// loop for all returned events:
-//  get start date of event
-//  add it as an item to the QListWidget with the corresponding date
-// end loop:
-// }
-//
-// obviously this is only a temporary solution, but it should be fine for now
 
 void schedulingGrid::on_pushCalendar_clicked()
 {
@@ -241,43 +187,42 @@ void schedulingGrid::on_pushGetDay_clicked()
 
 
 
-    //QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
+    QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
     //int row = ui->tableWeek->currentRow();
-    //QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
+    QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
     //QString time = "0:00";
 
-    /*if (day == "-") {
+    if (day == "-") {
         ui->labelCurrentDay->setText("idk man");
     } else {
         ui->labelCurrentDay->setText(daysOfWeek[currentColumn] + ", " +
                                      months[month] + " " + day + ", " +
                                      QString::number(year) + " @ " + time);
-    }*/
+    }
 }
 
 void schedulingGrid::on_pushWeek_clicked()
 {
     QStringList days;
+    QStringList hours;
 
+    for(int i = 0; i < 24; i++) {
+        QString currentHour = (QString::number(i) + ":00");
+        hours << currentHour;
+    }
 
-
+    QString currentDay;
     int currentRow = ui->tableCalendar->currentRow();
+    //days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
 
     for(int i = 0; i < 7; i++) {
-        QString currentDay = ui->lineMonth->displayText();
-        currentDay += "/";
-        currentDay += ui->tableCalendar->item(currentRow, i)->text();
+        currentDay = ui->tableCalendar->item(currentRow, i)->text();
         days << currentDay;
 
     }
 
-    ui->labelSunday->setText(days[0]);
-    ui->labelMonday->setText(days[1]);
-    ui->labelTuesday->setText(days[2]);
-    ui->labelWednesday->setText(days[3]);
-    ui->labelThursday->setText(days[4]);
-    ui->labelFriday->setText(days[5]);
-    ui->labelSaturday->setText(days[6]);
+    ui->tableWeek->setVerticalHeaderLabels(hours);
+    ui->tableWeek->setHorizontalHeaderLabels(days);
 }
 
 void schedulingGrid::on_pushCreateEvent_clicked()
