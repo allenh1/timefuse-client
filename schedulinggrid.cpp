@@ -204,25 +204,74 @@ void schedulingGrid::on_pushGetDay_clicked()
 void schedulingGrid::on_pushWeek_clicked()
 {
     QStringList days;
-    QStringList hours;
-
-    for(int i = 0; i < 24; i++) {
-        QString currentHour = (QString::number(i) + ":00");
-        hours << currentHour;
-    }
+    int startDay = -1;
+    int endDay = -1;
 
     QString currentDay;
     int currentRow = ui->tableCalendar->currentRow();
     //days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
 
     for(int i = 0; i < 7; i++) {
-        currentDay = ui->tableCalendar->item(currentRow, i)->text();
+        QString dayText = ui->tableCalendar->item(currentRow, i)->text();
+        if (dayText.compare("-") != 0) {
+            if (startDay == -1) {
+                startDay = i;
+            }
+            if (i == 6) {
+                endDay = 6;
+            }
+        }
+        if (dayText.compare("-") == 0 && endDay == -1) {
+            endDay = i-1;
+        }
+
+        QString currentDay;
+        if (dayText.compare("-") != 0) {
+            currentDay += ui->lineMonth->displayText();
+            currentDay += "/";
+            currentDay += dayText;
+        }
         days << currentDay;
 
     }
 
-    ui->tableWeek->setVerticalHeaderLabels(hours);
-    ui->tableWeek->setHorizontalHeaderLabels(days);
+    ui->labelStart->setText(QString::number(startDay));
+    ui->labelEnd->setText(QString::number(endDay));
+
+    ui->labelSunday->setText(days[0]);
+    ui->labelMonday->setText(days[1]);
+    ui->labelTuesday->setText(days[2]);
+    ui->labelWednesday->setText(days[3]);
+    ui->labelThursday->setText(days[4]);
+    ui->labelFriday->setText(days[5]);
+    ui->labelSaturday->setText(days[6]);
+
+    if (startDay != -1) { //if the current week is an actual week,
+        QString * request = new QString("REQUEST_EVENTS ");
+        (*request)+=m_p_username; (*request)+=';';
+        (*request)+=m_p_password; (*request)+=';';
+
+
+        QString year = ui->lineYear->displayText();
+        QString month = ui->lineMonth->displayText();
+        QString day = ui->tableCalendar->item(currentRow, startDay)->text();
+
+        (*request)+=year; (*request)+='-';
+        (*request)+=month; (*request)+='-';
+        (*request)+=day; (*request)+=';';
+
+        day = ui->tableCalendar->item(currentRow, endDay)->text();
+
+        (*request)+=year; (*request)+='-';
+        (*request)+=month; (*request)+='-';
+        (*request)+=day;
+
+        ui->labelTest->setText(*request);
+
+
+        QString * response = setup_connection(request);
+        ui->labelTest_2->setText(*response);
+    }
 }
 
 void schedulingGrid::on_pushCreateEvent_clicked()
