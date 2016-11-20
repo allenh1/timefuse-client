@@ -1,7 +1,4 @@
-#include "schedulinggrid.h"
-#include "ui_schedulinggrid.h"
-#include "createevent.h"
-#include "usercreatedevent.h"
+#include "usercreatedevent.hpp"
 
 
 userCreatedEvent::userCreatedEvent()
@@ -23,8 +20,6 @@ QString userCreatedEvent::toString()
 
     newString += name;
     newString += location;
-    //newString += beginTime.toString("hhmmss");
-    //newString += endTime.toString("hhmmss");
     newString += timeNegotiable;
 
     return newString;

@@ -1,5 +1,4 @@
-#include "schedulinggrid.h"
-
+#include "schedulinggrid.hpp"
 
 schedulingGrid::schedulingGrid(QWidget *parent) :
     QWidget(parent),
@@ -106,33 +105,23 @@ QString daysOfWeek[]=
 
 void schedulingGrid::on_pushCalendar_clicked()
 {
-
-    //because the built in QCalendarWidget has little room for flexibility, we will be making our own calendar in a table
+    /**
+	 * because the built in QCalendarWidget has little room for
+	 * flexibility, we will be making our own calendar in a table
+	 */
 
     bool ok;
 
     //get the year and month of the calendar
-    int year = (ui->lineYear->displayText()).toInt(&ok,10);
-    int month = (ui->lineMonth->displayText()).toInt(&ok,10);
-
+    uint year = (ui->lineYear->displayText()).toInt(&ok,10);
+    ushort month = (ui->lineMonth->displayText()).toInt(&ok,10);
+	ushort days_in_month[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     //do math to figure out what day of the week the year starts on
-    int d1 = (year - 1.)/ 4.0;
-    int d2 = (year - 1.)/ 100.;
-    int d3 = (year - 1.)/ 400.;
-
-    int daycode = (year + d1 - d2 + d3) %7;
-
-
-
-    int days_in_month[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+    register uint daycode = (((497 * year) - 97) / 400) % 7;
 
     //if the year is a leap year, account for that
-    if( (year%4 == 0 && year%100 != 0) || year%400 == 0) {
-        days_in_month[2] = 29;
-    } else {
-        days_in_month[2] = 28;
-    }
-
+    if((!(year % 4) && (year%100)) || !(year % 400)) days_in_month[2] = 29;
+	
     //what day of the week does the selected month start on?
     //might be a better way to do this
     for(int i = 1; i <= month; i++) {
@@ -140,9 +129,7 @@ void schedulingGrid::on_pushCalendar_clicked()
     }
 
     //qCalendarWidget will skip a row if the month starts on a Monday, so I copy that behavior
-    if (daycode == 0) {
-        daycode = 7;
-    }
+    if (daycode == 0) daycode = 7;
 
     //set the calendar's title
     ui->label->setText(months[month] + ", " + QString::number(year));
@@ -154,18 +141,18 @@ void schedulingGrid::on_pushCalendar_clicked()
     //because 42 objects seems like a lot?
 
     //filler until the first day of the month
-    for (int i = 0; i < daycode; i++) {
+    for (uint i = 0; i < daycode; i++) {
 
         QTableWidgetItem *twi = new QTableWidgetItem("-");
         ui->tableCalendar->setItem(0, i, twi);
     }
 
     //fill in the calendar
-    for (int i = daycode; i < days_in_month[month] + daycode; i++) {
+    for (uint i = daycode; i < days_in_month[month] + daycode; i++) {
 
         //easy way to calculate where in the grid we are
-        int currentDay = i%7;
-        int currentWeek = i/7 + (daycode == 0);
+        int currentDay = i % 7;
+        int currentWeek = i / 7 + (daycode == 0);
 
         QTableWidgetItem *twi = new QTableWidgetItem(QString::number(currentDate));
 
@@ -183,12 +170,6 @@ void schedulingGrid::on_pushCalendar_clicked()
         QTableWidgetItem *twi = new QTableWidgetItem("-");
         ui->tableCalendar->setItem(currentWeek, currentDay, twi);
     }
-
-    //I don't know yet how I want to change to weekly or daily views.
-    //It might be easier to just create different tables, rather than keep on trying to
-    //modify the same one.
-
-
 }
 
 
@@ -202,7 +183,7 @@ void schedulingGrid::on_pushLeft_clicked()
     int month = (ui->lineMonth->displayText()).toInt(&ok,10);
 
     if (month != 1) {
-        ui->lineMonth->setText(QString::number(month - 1));
+		ui->lineMonth->setText(QString::number(month - 1));
     } else {
         ui->lineYear->setText(QString::number(year - 1));
         ui->lineMonth->setText(QString::number(12));
@@ -229,13 +210,13 @@ void schedulingGrid::on_pushRight_clicked()
 
 void schedulingGrid::on_pushGetDay_clicked()
 {
-    int currentRow = ui->tableCalendar->currentRow();
-    int currentColumn = ui->tableCalendar->currentColumn();
+    /* int currentRow = ui->tableCalendar->currentRow(); */
+    /* int currentColumn = ui->tableCalendar->currentColumn(); */
 
-    bool ok;
+    /* bool ok; */
 
-    int year = (ui->lineYear->displayText()).toInt(&ok,10);
-    int month = (ui->lineMonth->displayText()).toInt(&ok,10);
+    /* int year = (ui->lineYear->displayText()).toInt(&ok,10); */
+    /* int month = (ui->lineMonth->displayText()).toInt(&ok,10); */
 
 
 
@@ -243,14 +224,6 @@ void schedulingGrid::on_pushGetDay_clicked()
     //int row = ui->tableWeek->currentRow();
     QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
     //QString time = "0:00";
-
-    if (day == "-") {
-        ui->labelCurrentDay->setText("idk man");
-    } else {
-        ui->labelCurrentDay->setText(daysOfWeek[currentColumn] + ", " +
-                                     months[month] + " " + day + ", " +
-                                     QString::number(year) + " @ " + time);
-    }
 }
 
 void schedulingGrid::on_pushWeek_clicked()

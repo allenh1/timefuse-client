@@ -20,10 +20,10 @@ QString* setup_connection(QString * content) {
 		pSocket = new QTcpSocket();
 
 		QString host = "allen-software.com";
-		//QString host = "localhost";
+		// QString host = "localhost";
 
-/* connect to master */
-		pSocket->connectToHost(host, (quint16)3224, QIODevice::ReadWrite);
+        /* connect to master */
+		pSocket->connectToHost(host, (quint16) 3224, QIODevice::ReadWrite);
 		pSocket->waitForConnected(500);
 
 		std::cerr<<"setup_connection: "<<host.toStdString()<<std::endl;
@@ -66,7 +66,7 @@ QString* setup_connection(QString * content) {
 		pSocket->disconnectFromHost();
 		delete pSocket; pSocket = new QTcpSocket();
     
-/* connect to worker */
+        /* connect to worker */
 		pSocket->connectToHost(l.at(0), (quint16)l.at(1).toInt(), QIODevice::ReadWrite);
 		pSocket->waitForConnected(500);
 
