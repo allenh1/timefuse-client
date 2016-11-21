@@ -27,6 +27,8 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
+	void colorCalender();
+	
 	Q_SLOT void on_back_button();
 	Q_SIGNAL void return_to_home_screen();
 private:
@@ -67,4 +69,4 @@ const QString daysOfWeek[]=
     "Friday",
     "Saturday"
 };
-#endif // SCHEDULINGGRID_H
+#endif

@@ -23,21 +23,30 @@ schedulingGrid::~schedulingGrid()
 	delete m_p_password;
 }
 
-// This will show how to properly color in the calender
-//
-// void schedulingGrid::colorCalender()
-// {
-// First, send in the query.
+/* This will show how to properly color in the calender */
 
-// QString * request = new QString("REQUEST_PERSONAL_MONTH_EVENTS  ");
-// (*request)+=m_p_username; (*request)+=':';
-// (*request)+=m_p_password; (*request)+=':';
-// (*request)+=ui->lineMonth->displayText(); (*request)+=':';
-// (*request)+=ui->lineYear->displayText();
-// QString * response = setup_connection(request);
-//
-// QChar eventsAtDay;
-//
+void schedulingGrid::colorCalender()
+{
+	/* First, send in the query. */
+	
+	QString * request = new QString("REQUEST_PERSONAL_MONTH_EVENTS  ");
+	(*request)+=m_p_username; (*request)+=':';
+	(*request)+=m_p_password; (*request)+=':';
+	(*request)+=ui->lineMonth->displayText(); (*request)+=':';
+	(*request)+=ui->lineYear->displayText(); bool ok;
+	QString * response = setup_connection(request);
+	uint year = (ui->lineYear->displayText()).toInt(&ok,10);
+	int occupied_days = response->split("\n")[0].toInt();
+
+	/* convert response to an int */
+	register uint daycode = (((497 * year) - 97) / 400) % 7;
+	for (int x = 0; occupied_days; occupied_days >>= 1, ++x) {
+		/* if the bit is set, fill the cooresponding day */
+		if (occupied_days & 1) {
+			ui->tableCalendar->item((x + daycode) / 7 + (daycode == 0),
+									(x + daycode) % 7)->setBackgroundColor(Qt::red);
+		}
+	}
 // I'm tired so the rest is psuedocode
 // for i = , number of days in month, i++
 //  eventsAtDay = response[i-1]
@@ -47,7 +56,7 @@ schedulingGrid::~schedulingGrid()
 //  if eventsAtDay == 1
 //    mark today as having an event
 //    tableWidget->item(row,col)->setBackgroundColor(Qt::red);
-// }
+}
 
 // kind of a simple way of doing it
 // maybe group events can be a different color?
