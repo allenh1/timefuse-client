@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <QString>
 #include <QDebug>
+#include <cmath>
 
 #include "ui_schedulinggrid.h"
 #include "usercreatedevent.hpp"

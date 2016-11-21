@@ -35,16 +35,24 @@ void schedulingGrid::colorCalender()
 	(*request)+=ui->lineMonth->displayText(); (*request)+=':';
 	(*request)+=ui->lineYear->displayText(); bool ok;
 	QString * response = setup_connection(request);
+	ushort month = (ui->lineYear->displayText()).toInt(&ok, 10);
 	uint year = (ui->lineYear->displayText()).toInt(&ok,10);
 	int occupied_days = response->split("\n")[0].toInt();
 
 	/* convert response to an int */
-	register uint daycode = (((497 * year) - 97) / 400) % 7;
-	for (int x = 0; occupied_days; occupied_days >>= 1, ++x) {
+	ushort C = std::floor(year / 100); ushort m = month - 2;
+	if (month == 1) m = 11; else if (month == 2) m = 12;
+	ushort Y = ((month == 1 || month == 2) ? year - 1 : year) - C * 100;
+	/* this number is hot yall */
+	std::cout<<"(C, Y, m) = ("<<C<<","<<Y<<","<<m<<")"<<std::endl;
+    int dc = (int) (1 + std::floor(2.6 * m - 0.2) - 2 * C
+			  + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
+	register uint daycode = (dc < 0) ? dc + 7 : dc;
+	for (int x = daycode; occupied_days; occupied_days >>= 1, ++x) {
 		/* if the bit is set, fill the cooresponding day */
 		if (occupied_days & 1) {
 			ui->tableCalendar->item((x + daycode) / 7,
-									((x-1) + daycode) % 7)->setBackgroundColor(Qt::red);
+									((x + daycode) % 7))->setBackgroundColor(Qt::red);
 		}
 	}
 // I'm tired so the rest is psuedocode
@@ -98,16 +106,17 @@ void schedulingGrid::on_pushCalendar_clicked()
     ushort month = (ui->lineMonth->displayText()).toInt(&ok,10);
 	ushort days_in_month[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     //do math to figure out what day of the week the year starts on
-    register uint daycode = (((497 * year) - 97) / 400) % 7;
-
+	ushort C = std::floor(year / 100); ushort m = month - 2;
+	if (month == 1) m = 11; else if (month == 2) m = 12;
+	ushort Y = ((month == 1 || month == 2) ? year - 1 : year) - C * 100;
+	/* this number is hot yall */
+	std::cout<<"(C, Y, m) = ("<<C<<","<<Y<<","<<m<<")"<<std::endl;
+    int dc = (int) (1 + std::floor(2.6 * m - 0.2) - 2 * C
+			  + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
+	register uint daycode = (dc < 0) ? dc + 7 : dc;
+	std::cout<<"Daycode: "<<daycode<<std::endl;
     //if the year is a leap year, account for that
     if((!(year % 4) && (year%100)) || !(year % 400)) days_in_month[2] = 29;
-	
-    //what day of the week does the selected month start on?
-    //might be a better way to do this
-    for(int i = 1; i <= month; i++) {
-        daycode = ( daycode + days_in_month[i-1] ) % 7;
-    }
 
     //qCalendarWidget will skip a row if the month starts on a Monday, so I copy that behavior
     if (daycode == 0) daycode = 7;
