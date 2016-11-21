@@ -1,11 +1,14 @@
-#ifndef USERCREATEDEVENT_H
-#define USERCREATEDEVENT_H
-
+#ifndef __USERCREATEDEVENT_HPP__
+#define __USERCREATEDEVENT_HPP__
 #include <QMainWindow>
-#include <QTime>
 #include <QDialog>
 #include <QDebug>
+#include <QTime>
 #include <QFile>
+
+#include "schedulinggrid.hpp"
+#include "ui_schedulinggrid.h"
+#include "createevent.hpp"
 
 class userCreatedEvent
 {

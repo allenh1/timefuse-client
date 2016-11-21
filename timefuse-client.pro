@@ -28,10 +28,10 @@ HEADERS += user.hpp \
            tcp_connection.hpp \
            encrypt_string.hpp \
            home_screen.hpp \
-           schedulinggrid.h \
+           schedulinggrid.hpp \
            add_group.h \
-           createevent.h \
-           usercreatedevent.h \
+           createevent.hpp \
+           usercreatedevent.hpp \
            account_settings.hpp \
            manage_groups.hpp \
            create_group_event.hpp \

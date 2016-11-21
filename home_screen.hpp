@@ -7,7 +7,7 @@
 #include "account_settings.hpp"
 #include "manage_groups.hpp"
 #include "ui_home_screen.h"
-#include "schedulinggrid.h"
+#include "schedulinggrid.hpp"
 
 namespace Ui {
 class home_screen;

@@ -1,4 +1,4 @@
-#include "createevent.h"
+#include "createevent.hpp"
 
 createevent::createevent(QWidget *parent) :
     QDialog(parent),
@@ -8,9 +8,6 @@ createevent::createevent(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
-
-    //ui->labelDate->setText(schedulingGrid->month()->displayText());
-
 }
 
 createevent::~createevent()
@@ -22,7 +19,6 @@ createevent::~createevent()
 
 void createevent::on_pushButton_clicked()
 {
-
     QString * request = new QString("CREATE_USER_EVENT ");
     int year = ui->dateEdit->date().year();
     int day = ui->dateEdit->date().day();
@@ -46,9 +42,4 @@ void createevent::on_pushButton_clicked()
     QString * response = setup_connection(request);
     ui->label->setText(*request);
     ui->label_2->setText(*response);
-
-
-
-
-    //this->hide();
 }
