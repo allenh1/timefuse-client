@@ -29,7 +29,7 @@ void schedulingGrid::colorCalender()
 {
 	/* First, send in the query. */
 	
-	QString * request = new QString("REQUEST_PERSONAL_MONTH_EVENTS  ");
+	QString * request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
 	(*request)+=m_p_username; (*request)+=':';
 	(*request)+=m_p_password; (*request)+=':';
 	(*request)+=ui->lineMonth->displayText(); (*request)+=':';
@@ -43,8 +43,8 @@ void schedulingGrid::colorCalender()
 	for (int x = 0; occupied_days; occupied_days >>= 1, ++x) {
 		/* if the bit is set, fill the cooresponding day */
 		if (occupied_days & 1) {
-			ui->tableCalendar->item((x + daycode) / 7 + (daycode == 0),
-									(x + daycode) % 7)->setBackgroundColor(Qt::red);
+			ui->tableCalendar->item((x + daycode) / 7,
+									((x-1) + daycode) % 7)->setBackgroundColor(Qt::red);
 		}
 	}
 // I'm tired so the rest is psuedocode
@@ -91,7 +91,7 @@ void schedulingGrid::on_pushCalendar_clicked()
 	 * flexibility, we will be making our own calendar in a table
 	 */
 
-    bool ok;
+    bool ok; static int calls = 0;
 
     //get the year and month of the calendar
     uint year = (ui->lineYear->displayText()).toInt(&ok,10);
@@ -123,7 +123,6 @@ void schedulingGrid::on_pushCalendar_clicked()
 
     //filler until the first day of the month
     for (uint i = 0; i < daycode; i++) {
-
         QTableWidgetItem *twi = new QTableWidgetItem("-");
         ui->tableCalendar->setItem(0, i, twi);
     }
@@ -150,7 +149,8 @@ void schedulingGrid::on_pushCalendar_clicked()
 
         QTableWidgetItem *twi = new QTableWidgetItem("-");
         ui->tableCalendar->setItem(currentWeek, currentDay, twi);
-    }
+    } if (calls) colorCalender();
+	++calls;
 }
 
 
@@ -169,7 +169,7 @@ void schedulingGrid::on_pushLeft_clicked()
         ui->lineYear->setText(QString::number(year - 1));
         ui->lineMonth->setText(QString::number(12));
     }
-
+	colorCalender();
     schedulingGrid::on_pushCalendar_clicked();
 }
 
@@ -185,7 +185,7 @@ void schedulingGrid::on_pushRight_clicked()
         ui->lineYear->setText(QString::number(year + 1));
         ui->lineMonth->setText(QString::number(1));
     }
-
+	colorCalender();
     schedulingGrid::on_pushCalendar_clicked();
 }
 
