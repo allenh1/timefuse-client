@@ -23,34 +23,6 @@ schedulingGrid::~schedulingGrid()
 	delete m_p_password;
 }
 
-QString months[]=
-{
-    "",
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-};
-
-QString daysOfWeek[]=
-{
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-};
-
 // This will show how to properly color in the calender
 //
 // void schedulingGrid::colorCalender()
@@ -220,10 +192,10 @@ void schedulingGrid::on_pushGetDay_clicked()
 
 
 
-    QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
-    //int row = ui->tableWeek->currentRow();
-    QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
-    //QString time = "0:00";
+    // QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
+    // int row = ui->tableWeek->currentRow();
+    // QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
+    // QString time = "0:00";
 }
 
 void schedulingGrid::on_pushWeek_clicked()
