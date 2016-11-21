@@ -27,7 +27,7 @@ schedulingGrid::~schedulingGrid()
 
 void schedulingGrid::colorCalender()
 {
-	/* First, send in the query. */
+	/* send in the query. */
 	
 	QString * request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
 	(*request)+=m_p_username; (*request)+=':';
@@ -35,44 +35,31 @@ void schedulingGrid::colorCalender()
 	(*request)+=ui->lineMonth->displayText(); (*request)+=':';
 	(*request)+=ui->lineYear->displayText(); bool ok;
 	QString * response = setup_connection(request);
-	ushort month = (ui->lineYear->displayText()).toInt(&ok, 10);
+	ushort month = (ui->lineMonth->displayText()).toInt(&ok, 10);
 	uint year = (ui->lineYear->displayText()).toInt(&ok,10);
 	int occupied_days = response->split("\n")[0].toInt();
 
-	/* convert response to an int */
+	/* do math */
 	ushort C = std::floor(year / 100); ushort m = month - 2;
 	if (month == 1) m = 11; else if (month == 2) m = 12;
 	ushort Y = ((month == 1 || month == 2) ? year - 1 : year) - C * 100;
-	/* this number is hot yall */
-	std::cout<<"(C, Y, m) = ("<<C<<","<<Y<<","<<m<<")"<<std::endl;
+	/* this number is hawt yall */
     int dc = (int) (1 + std::floor(2.6 * m - 0.2) - 2 * C
 			  + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
 	register uint daycode = (dc < 0) ? dc + 7 : dc;
-	for (int x = daycode; occupied_days; occupied_days >>= 1, ++x) {
+	if (daycode == 0) daycode = 7;
+	for (int x = -1; occupied_days; occupied_days >>= 1, ++x) {
 		/* if the bit is set, fill the cooresponding day */
 		if (occupied_days & 1) {
 			ui->tableCalendar->item((x + daycode) / 7,
 									((x + daycode) % 7))->setBackgroundColor(Qt::red);
 		}
 	}
-// I'm tired so the rest is psuedocode
-// for i = , number of days in month, i++
-//  eventsAtDay = response[i-1]
-//  int pos = i + daycode of the current month (how many days before the first)
-//  int row = pos/7 + (daycode == 0);
-//  int col = pos%7;
-//  if eventsAtDay == 1
-//    mark today as having an event
-//    tableWidget->item(row,col)->setBackgroundColor(Qt::red);
 }
 
 // kind of a simple way of doing it
 // maybe group events can be a different color?
 // maybe a day that has both personal and group events can be an even different color?
-
-
-
-
 
 // This will show how I think we can load in the schedule itself
 // void schedulingGrid::fillSchedule()
@@ -110,11 +97,9 @@ void schedulingGrid::on_pushCalendar_clicked()
 	if (month == 1) m = 11; else if (month == 2) m = 12;
 	ushort Y = ((month == 1 || month == 2) ? year - 1 : year) - C * 100;
 	/* this number is hot yall */
-	std::cout<<"(C, Y, m) = ("<<C<<","<<Y<<","<<m<<")"<<std::endl;
     int dc = (int) (1 + std::floor(2.6 * m - 0.2) - 2 * C
 			  + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
 	register uint daycode = (dc < 0) ? dc + 7 : dc;
-	std::cout<<"Daycode: "<<daycode<<std::endl;
     //if the year is a leap year, account for that
     if((!(year % 4) && (year%100)) || !(year % 400)) days_in_month[2] = 29;
 
@@ -126,9 +111,13 @@ void schedulingGrid::on_pushCalendar_clicked()
 
     int currentDate = 1;
 
-    //the only way I could figure out how to set text for a spot in a table is to use a QTableWidgetItem object.
-    //I don't know how QT handles these in memory, if I should be clearing these before changing the view.
-    //because 42 objects seems like a lot?
+	/**
+	 * the only way I could figure out how to set text for a spot
+	 * in a table is to use a QTableWidgetItem object.
+	 * I don't know how QT handles these in memory, if I should
+	 * be clearing these before changing the view.
+	 * because 42 objects seems like a lot?
+	 */
 
     //filler until the first day of the month
     for (uint i = 0; i < daycode; i++) {
@@ -152,14 +141,13 @@ void schedulingGrid::on_pushCalendar_clicked()
 
     //filler until the end of the calendar
     for (int i = currentDate + daycode - 1; i < 6*7; i++) {
-
         int currentDay = i%7;
         int currentWeek = i/7 + (daycode == 0);
 
         QTableWidgetItem *twi = new QTableWidgetItem("-");
         ui->tableCalendar->setItem(currentWeek, currentDay, twi);
     } if (calls) colorCalender();
-	++calls;
+	if (!calls) calls = 1; /* needed to avoid a crash */
 }
 
 
@@ -247,7 +235,6 @@ void schedulingGrid::on_pushWeek_clicked()
             currentDay += dayText;
         }
         days << currentDay;
-
     }
 
     ui->labelStart->setText(QString::number(startDay));
@@ -271,18 +258,12 @@ void schedulingGrid::on_pushWeek_clicked()
         QString month = ui->lineMonth->displayText();
         QString day = ui->tableCalendar->item(currentRow, startDay)->text();
 
-        (*request)+=year; (*request)+='-';
-        (*request)+=month; (*request)+='-';
-        (*request)+=day; (*request)+=';';
+        (*request)+=year + "-" + month + "-" + day + ";";
 
         day = ui->tableCalendar->item(currentRow, endDay)->text();
 
-        (*request)+=year; (*request)+='-';
-        (*request)+=month; (*request)+='-';
-        (*request)+=day;
-
+        (*request)+=year + "-" + month + "-" + day;
         ui->labelTest->setText(*request);
-
 
         QString * response = setup_connection(request);
         ui->labelTest_2->setText(*response);
