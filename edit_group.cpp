@@ -43,9 +43,9 @@ void edit_group::add_a_member()
     if(ui->add_member_input->text().size() == 0) return;
     QString * request = new QString("JOIN_GROUP ");
 
-    (*request)+=m_p_username; (*request)+=':';
-    (*request)+=m_p_password; (*request)+=':';
-    (*request)+=ui->group_name->text(); (*request)+=':';
+    (*request)+=m_p_username; (*request)+=":::";
+    (*request)+=m_p_password; (*request)+=":::";
+    (*request)+=ui->group_name->text(); (*request)+=":::";
     (*request)+=ui->add_member_input->text();
 
     QString * response = setup_connection(request);
@@ -68,8 +68,8 @@ void edit_group::fill_fields()
 
 	QString * request = new QString("REQUEST_USERS ");
 
-	(*request)+=m_p_username; (*request)+=':';
-	(*request)+=m_p_password; (*request)+=':';
+	(*request)+=m_p_username; (*request)+=":::";
+	(*request)+=m_p_password; (*request)+=":::";
 	(*request)+=*m_p_group;
 	(*request)+="\r\n\0";
 
