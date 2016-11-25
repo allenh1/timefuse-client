@@ -23,6 +23,8 @@ public:
 
 	QString * m_p_username;
 	QString * m_p_password;
+
+	Q_SIGNAL void return_to_schedule();
 private:
 	Q_SLOT void on_pushButton_clicked();
 	

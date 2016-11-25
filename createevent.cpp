@@ -38,10 +38,13 @@ void createevent::on_pushButton_clicked()
     (*request)+=ui->duration_input_2->displayText(); (*request)+=":::";
     (*request)+=ui->location_input_2->displayText(); (*request)+=":::";
     (*request)+=ui->title_input_2->displayText();
-
+	
     QString * response = setup_connection(request);
-	std::cerr<<"request: "<<request->toStdString()<<std::endl;
+	std::cerr<<"response: "<<response->toStdString()<<std::endl;
+	
     if(response->contains("ERROR")) {
 		QMessageBox::critical(this, tr("Error"), *response);
+	} else {
+		this->close();
 	}
 }
