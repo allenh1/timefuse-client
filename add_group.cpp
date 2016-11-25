@@ -47,8 +47,8 @@ void add_group::create_group()
 	
 	QString * request = new QString("CREATE_GROUP ");
 
-	(*request)+=m_p_username; (*request)+=':';
-	(*request)+=m_p_password; (*request)+=':';
+	(*request)+=m_p_username; (*request)+=":::";
+	(*request)+=m_p_password; (*request)+=":::";
 	(*request)+=ui->group_name->text();
 
 	QString * response = setup_connection(request);
@@ -79,9 +79,9 @@ void add_group::add_user(QString user)
 {
 	QString * request = new QString("JOIN_GROUP ");
 
-	(*request)+=m_p_username; (*request)+=':';
-	(*request)+=m_p_password; (*request)+=':';
-	(*request)+=ui->group_name->text(); (*request)+=':';
+	(*request)+=m_p_username; (*request)+=":::";
+	(*request)+=m_p_password; (*request)+=":::";
+	(*request)+=ui->group_name->text(); (*request)+=":::";
 	(*request)+=user;
 
 	QString * response = setup_connection(request);
