@@ -37,7 +37,7 @@ void schedulingGrid::colorCalender()
 	QString * response = setup_connection(request);
 	ushort month = (ui->lineMonth->displayText()).toInt(&ok, 10);
 	uint year = (ui->lineYear->displayText()).toInt(&ok,10);
-	int occupied_days = response->split("\n")[0].toInt();
+	uint occupied_days = (uint) response->split("\n")[0].toInt();
 
 	/* do math */
 	ushort C = std::floor(year / 100); ushort m = month - 2;
@@ -48,7 +48,7 @@ void schedulingGrid::colorCalender()
 					+ Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
 	register uint daycode = (dc < 0) ? dc + 7 : dc;
 	if (daycode == 0) daycode = 7;
-	for (int x = -1; occupied_days && x < sizeof(int) * 8; occupied_days >>= 1, ++x) {
+	for (int x = -1; occupied_days; occupied_days >>= 1, ++x) {
 		/* if the bit is set, fill the cooresponding day */
 		if (occupied_days & 1) {
 			ui->tableCalendar->item((x + daycode) / 7,
