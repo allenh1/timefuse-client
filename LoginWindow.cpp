@@ -131,7 +131,7 @@ void LoginWindow::login(QString username, QString password) {
 
 	// hash username and add to request
 	QString res = username;
-	(*request)+= " "; (*request)+=res + ":";
+	(*request)+= " "; (*request)+=res + ":::";
 
 	// hash password and add to request
 	res.clear(); res = encrypt_string(password);

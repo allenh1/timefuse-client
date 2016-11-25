@@ -34,8 +34,8 @@ void reset_password_window::reset_pressed()
 {
     QString * request = new QString("REQUEST_RESET ");
 
-    (*request)+=m_p_ui->username_input->text(); (*request)+=':';
-    (*request)+=m_p_ui->email_input->text(); (*request)+=':';
+    (*request)+=m_p_ui->username_input->text(); (*request)+=":::";
+    (*request)+=m_p_ui->email_input->text(); (*request)+=":::";
 	(*request)+=encrypt_string(m_p_ui->new_password_input->text());
 	(*request)+="\r\n\0";
 

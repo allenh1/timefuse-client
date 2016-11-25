@@ -30,9 +30,9 @@ void schedulingGrid::colorCalender()
 	/* send in the query. */
 	
 	QString * request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
-	(*request)+=m_p_username; (*request)+=':';
-	(*request)+=m_p_password; (*request)+=':';
-	(*request)+=ui->lineMonth->displayText(); (*request)+=':';
+	(*request)+=m_p_username; (*request)+=":::";
+	(*request)+=m_p_password; (*request)+=":::";
+	(*request)+=ui->lineMonth->displayText(); (*request)+=":::";
 	(*request)+=ui->lineYear->displayText(); bool ok;
 	QString * response = setup_connection(request);
 	ushort month = (ui->lineMonth->displayText()).toInt(&ok, 10);
@@ -250,15 +250,15 @@ void schedulingGrid::on_pushWeek_clicked()
 
 	if (startDay != -1) { //if the current week is an actual week,
 		QString * request = new QString("REQUEST_EVENTS ");
-		(*request)+=m_p_username; (*request)+=';';
-		(*request)+=m_p_password; (*request)+=';';
+		(*request)+=m_p_username; (*request)+=":::";
+		(*request)+=m_p_password; (*request)+=":::";
 
 
 		QString year = ui->lineYear->displayText();
 		QString month = ui->lineMonth->displayText();
 		QString day = ui->tableCalendar->item(currentRow, startDay)->text();
 
-		(*request)+=year + "-" + month + "-" + day + ";";
+		(*request)+=year + "-" + month + "-" + day + ":::";
 
 		day = ui->tableCalendar->item(currentRow, endDay)->text();
 

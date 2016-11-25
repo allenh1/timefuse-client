@@ -51,8 +51,8 @@ void create_group_event::add_group_members()
 	
 	QString * request = new QString("REQUEST_USERS ");
 
-	(*request)+=m_p_username; (*request)+=':';
-	(*request)+=m_p_password; (*request)+=':';
+	(*request)+=m_p_username; (*request)+=":::";
+	(*request)+=m_p_password; (*request)+=":::";
 	(*request)+=m_p_ui->group_to_add->text();
 	(*request)+="\r\n\0";
 
@@ -81,16 +81,16 @@ void create_group_event::on_create_group_event()
     int hour = m_p_ui->begin_time_edit->time().hour();
     int minute = m_p_ui->begin_time_edit->time().minute();
 	
-    (*request)+=m_p_username; (*request)+=';';
-    (*request)+=m_p_password; (*request)+=';';
-    (*request)+=m_p_ui->group_to_add->displayText(); (*request)+=';';
+    (*request)+=m_p_username; (*request)+=":::";
+    (*request)+=m_p_password; (*request)+=":::";
+    (*request)+=m_p_ui->group_to_add->displayText(); (*request)+=":::";
     (*request)+=QString::number(year); (*request)+='-';
     (*request)+=QString::number(month); (*request)+='-';
-    (*request)+=QString::number(day); (*request)+=';';
+    (*request)+=QString::number(day); (*request)+=":::";
     (*request)+=QString::number(hour); (*request)+=':';
-    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=';';
-    (*request)+=m_p_ui->duration_input->displayText(); (*request)+=';';
-    (*request)+=m_p_ui->location_input->displayText(); (*request)+=';';
+    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=":::";
+    (*request)+=m_p_ui->duration_input->displayText(); (*request)+=":::";
+    (*request)+=m_p_ui->location_input->displayText(); (*request)+=":::";
     (*request)+=m_p_ui->title_input->displayText(); (*request)+="\r\n\0";
 
 	std::cerr<<"request: "<<request->toStdString()<<std::endl;

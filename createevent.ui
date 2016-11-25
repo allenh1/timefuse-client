@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>381</width>
-    <height>650</height>
+    <height>261</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>590</y>
-     <width>371</width>
+     <x>10</x>
+     <y>200</y>
+     <width>361</width>
      <height>51</height>
     </rect>
    </property>
@@ -43,9 +43,6 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="2">
-     <widget class="QLineEdit" name="location_input_2"/>
-    </item>
     <item row="1" column="0">
      <widget class="QLabel" name="location_2">
       <property name="text">
@@ -53,76 +50,59 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="4" column="0">
      <widget class="QLabel" name="end_time_2">
       <property name="text">
        <string>Duration:</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
-     <widget class="QLineEdit" name="title_input_2"/>
-    </item>
-    <item row="2" column="2">
-     <widget class="QTimeEdit" name="begin_time_edit_2"/>
-    </item>
-    <item row="2" column="0">
+    <item row="3" column="0">
      <widget class="QLabel" name="begin_time_2">
       <property name="text">
        <string>Begin Time:</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+	<item row="2" column="0">
+     <widget class="QLabel" name="date_label">
+      <property name="text">
+       <string>Date:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
      <widget class="QLineEdit" name="duration_input_2"/>
     </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="title_input_2"/>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="location_input_2"/>
+    </item>
+    <item row="3" column="1">
+      <widget class="QTimeEdit" name="begin_time_edit_2"/>
+    </item>
+	<item row="2" column="1">
+	  <widget class="QDateEdit" name="dateEdit">
+		<property name="geometry">
+		  <rect>
+			<x>10</x>
+			<y>170</y>
+			<width>110</width>
+			<height>22</height>
+		  </rect>
+		</property>
+		<property name="date">
+		  <date>
+			<year>2016</year>
+			<month>11</month>
+			<day>11</day>
+		  </date>
+		</property>
+	  </widget>
+	</item>
    </layout>
-  </widget>
-  <widget class="QDateEdit" name="dateEdit">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>170</y>
-     <width>110</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="date">
-    <date>
-     <year>2016</year>
-     <month>11</month>
-     <day>11</day>
-    </date>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>545</y>
-     <width>291</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>200</y>
-     <width>291</width>
-     <height>361</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
