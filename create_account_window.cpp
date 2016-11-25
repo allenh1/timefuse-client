@@ -36,8 +36,8 @@ void create_account_window::create_pressed()
 
 	QString * request = new QString("CREATE_ACCOUNT ");
 
-	(*request)+=name; (*request)+=':'; (*request)+=password;
-	(*request)+=':'; (*request)+=email; (*request)+=':';
+	(*request)+=name; (*request)+=":::"; (*request)+=password;
+	(*request)+=":::"; (*request)+=email; (*request)+=":::";
 	(*request)+=phone; (*request)+="\r\n\0";
 
 	QString * response = setup_connection(request);
