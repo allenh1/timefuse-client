@@ -40,6 +40,8 @@ void createevent::on_pushButton_clicked()
     (*request)+=ui->title_input_2->displayText();
 
     QString * response = setup_connection(request);
-    ui->label->setText(*request);
-    ui->label_2->setText(*response);
+	std::cerr<<"request: "<<request->toStdString()<<std::endl;
+    if(response->contains("ERROR")) {
+		QMessageBox::critical(this, tr("Error"), *response);
+	}
 }

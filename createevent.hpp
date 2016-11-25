@@ -1,6 +1,8 @@
 #ifndef __CREATEEVENT_H__
 #define __CREATEEVENT_H__
+#include <QMessageBox>
 #include <QFileDialog>
+#include <iostream>
 #include <QDialog>
 #include <QString>
 
