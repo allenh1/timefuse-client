@@ -84,13 +84,13 @@ void account_settings::fill_fields()
 
 	QString * request = new QString("REQUEST_ACCOUNT ");
 
-    (*request)+=m_p_username; (*request)+=':';
+    (*request)+=m_p_username; (*request)+=":::";
 	(*request)+=m_p_password; (*request)+="\r\n\0";
 
     QString * response = setup_connection(request);
 
 	if(!response->contains("ERROR")) {
-		QStringList list = response->split(':');
+		QStringList list = response->split(":::");
 		m_p_ui->email_input->setText(list.at(0));
 		if(list.at(1)[0] == '0') {
 			m_p_ui->phone_input->setText("");
