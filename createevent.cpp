@@ -28,15 +28,15 @@ void createevent::on_pushButton_clicked()
 
 	// same thing here
 	
-    (*request)+=m_p_username; (*request)+=';';
-    (*request)+=m_p_password; (*request)+=';';
+    (*request)+=m_p_username; (*request)+=":::";
+    (*request)+=m_p_password; (*request)+=":::";
     (*request)+=QString::number(year); (*request)+='-';
     (*request)+=QString::number(month); (*request)+='-';
-    (*request)+=QString::number(day); (*request)+=';';
+    (*request)+=QString::number(day); (*request)+=":::";
     (*request)+=QString::number(hour); (*request)+=':';
-    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=';';
-    (*request)+=ui->duration_input_2->displayText(); (*request)+=';';
-    (*request)+=ui->location_input_2->displayText(); (*request)+=';';
+    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=":::";
+    (*request)+=ui->duration_input_2->displayText(); (*request)+=":::";
+    (*request)+=ui->location_input_2->displayText(); (*request)+=":::";
     (*request)+=ui->title_input_2->displayText();
 
     QString * response = setup_connection(request);
