@@ -43,5 +43,7 @@ void createevent::on_pushButton_clicked()
 	std::cerr<<"request: "<<request->toStdString()<<std::endl;
     if(response->contains("ERROR")) {
 		QMessageBox::critical(this, tr("Error"), *response);
+	} else {
+		this->close();
 	}
 }
