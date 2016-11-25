@@ -45,9 +45,9 @@ void manage_groups::on_leave_group()
     if(m_p_ui->list_groups->currentItem() == NULL) return;
     QString * request = new QString("LEAVE_GROUP ");
 
-    (*request)+=m_p_username; (*request)+=':';
-    (*request)+=m_p_password; (*request)+=':';
-    (*request)+=m_p_ui->list_groups->currentItem()->text(); (*request)+=':';
+    (*request)+=m_p_username; (*request)+=":::";
+    (*request)+=m_p_password; (*request)+=":::";
+    (*request)+=m_p_ui->list_groups->currentItem()->text(); (*request)+=":::";
     (*request)+=m_p_username;
 
     QString * response = setup_connection(request);
@@ -69,8 +69,8 @@ void manage_groups::on_delete_group()
     if(m_p_ui->list_groups->currentItem() == NULL) return;
     QString * request = new QString("DELETE_GROUP ");
 
-    (*request)+=m_p_username; (*request)+=':';
-    (*request)+=m_p_password; (*request)+=':';
+    (*request)+=m_p_username; (*request)+=":::";
+    (*request)+=m_p_password; (*request)+=":::";
     (*request)+=m_p_ui->list_groups->currentItem()->text();
 
     QString * response = setup_connection(request);
@@ -133,7 +133,7 @@ void manage_groups::fill_fields()
 	m_p_ui->list_groups->clear();
 	QString * request = new QString("REQUEST_GROUPS ");
 
-    (*request)+=m_p_username; (*request)+=':';
+    (*request)+=m_p_username; (*request)+=":::";
 	(*request)+=m_p_password; (*request)+="\r\n\0";
 
     QString * response = setup_connection(request);
