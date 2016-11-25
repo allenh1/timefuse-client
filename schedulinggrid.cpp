@@ -1,13 +1,13 @@
 #include "schedulinggrid.hpp"
 
 schedulingGrid::schedulingGrid(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::schedulingGrid)
+	QWidget(parent),
+	ui(new Ui::schedulingGrid)
 {
-    ui->setupUi(this);
-    ui->tableCalendar->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    schedulingGrid::on_pushCalendar_clicked();
-    //ui->tableWeek->horizontalHeaderItem(0)->setText("Whatever");
+	ui->setupUi(this);
+	ui->tableCalendar->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	schedulingGrid::on_pushCalendar_clicked();
+	//ui->tableWeek->horizontalHeaderItem(0)->setText("Whatever");
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
@@ -18,7 +18,7 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 
 schedulingGrid::~schedulingGrid()
 {
-    delete ui;
+	delete ui;
 	delete m_p_username;
 	delete m_p_password;
 }
@@ -44,11 +44,11 @@ void schedulingGrid::colorCalender()
 	if (month == 1) m = 11; else if (month == 2) m = 12;
 	ushort Y = ((month == 1 || month == 2) ? year - 1 : year) - C * 100;
 	/* this number is hawt yall */
-    int dc = (int) (1 + std::floor(2.6 * m - 0.2) - 2 * C
-			  + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
+	int dc = (int) (1 + std::floor(2.6 * m - 0.2) - 2 * C
+					+ Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
 	register uint daycode = (dc < 0) ? dc + 7 : dc;
 	if (daycode == 0) daycode = 7;
-	for (int x = -1; occupied_days; occupied_days >>= 1, ++x) {
+	for (int x = -1; occupied_days && x < sizeof(int) * 8; occupied_days >>= 1, ++x) {
 		/* if the bit is set, fill the cooresponding day */
 		if (occupied_days & 1) {
 			ui->tableCalendar->item((x + daycode) / 7,
@@ -81,35 +81,35 @@ void schedulingGrid::colorCalender()
 
 void schedulingGrid::on_pushCalendar_clicked()
 {
-    /**
+	/**
 	 * because the built in QCalendarWidget has little room for
 	 * flexibility, we will be making our own calendar in a table
 	 */
 
-    bool ok; static int calls = 0;
+	bool ok; static int calls = 0;
 
-    //get the year and month of the calendar
-    uint year = (ui->lineYear->displayText()).toInt(&ok,10);
-    ushort month = (ui->lineMonth->displayText()).toInt(&ok,10);
+	//get the year and month of the calendar
+	uint year = (ui->lineYear->displayText()).toInt(&ok,10);
+	ushort month = (ui->lineMonth->displayText()).toInt(&ok,10);
 	ushort days_in_month[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-    //do math to figure out what day of the week the year starts on
+	//do math to figure out what day of the week the year starts on
 	ushort C = std::floor(year / 100); ushort m = month - 2;
 	if (month == 1) m = 11; else if (month == 2) m = 12;
 	ushort Y = ((month == 1 || month == 2) ? year - 1 : year) - C * 100;
 	/* this number is hot yall */
-    int dc = (int) (1 + std::floor(2.6 * m - 0.2) - 2 * C
-			  + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
+	int dc = (int) (1 + std::floor(2.6 * m - 0.2) - 2 * C
+					+ Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;	
 	register uint daycode = (dc < 0) ? dc + 7 : dc;
-    //if the year is a leap year, account for that
-    if((!(year % 4) && (year%100)) || !(year % 400)) days_in_month[2] = 29;
+	//if the year is a leap year, account for that
+	if((!(year % 4) && (year%100)) || !(year % 400)) days_in_month[2] = 29;
 
-    //qCalendarWidget will skip a row if the month starts on a Monday, so I copy that behavior
-    if (daycode == 0) daycode = 7;
+	//qCalendarWidget will skip a row if the month starts on a Monday, so I copy that behavior
+	if (daycode == 0) daycode = 7;
 
-    //set the calendar's title
-    ui->label->setText(months[month] + ", " + QString::number(year));
+	//set the calendar's title
+	ui->label->setText(months[month] + ", " + QString::number(year));
 
-    int currentDate = 1;
+	int currentDate = 1;
 
 	/**
 	 * the only way I could figure out how to set text for a spot
@@ -119,34 +119,34 @@ void schedulingGrid::on_pushCalendar_clicked()
 	 * because 42 objects seems like a lot?
 	 */
 
-    //filler until the first day of the month
-    for (uint i = 0; i < daycode; i++) {
-        QTableWidgetItem *twi = new QTableWidgetItem("-");
-        ui->tableCalendar->setItem(0, i, twi);
-    }
+	//filler until the first day of the month
+	for (uint i = 0; i < daycode; i++) {
+		QTableWidgetItem *twi = new QTableWidgetItem("-");
+		ui->tableCalendar->setItem(0, i, twi);
+	}
 
-    //fill in the calendar
-    for (uint i = daycode; i < days_in_month[month] + daycode; i++) {
+	//fill in the calendar
+	for (uint i = daycode; i < days_in_month[month] + daycode; i++) {
 
-        //easy way to calculate where in the grid we are
-        int currentDay = i % 7;
-        int currentWeek = i / 7 + (daycode == 0);
+		//easy way to calculate where in the grid we are
+		int currentDay = i % 7;
+		int currentWeek = i / 7 + (daycode == 0);
 
-        QTableWidgetItem *twi = new QTableWidgetItem(QString::number(currentDate));
+		QTableWidgetItem *twi = new QTableWidgetItem(QString::number(currentDate));
 
-        ui->tableCalendar->setItem(currentWeek, currentDay, twi);
+		ui->tableCalendar->setItem(currentWeek, currentDay, twi);
 
-        currentDate++;
-    }
+		currentDate++;
+	}
 
-    //filler until the end of the calendar
-    for (int i = currentDate + daycode - 1; i < 6*7; i++) {
-        int currentDay = i%7;
-        int currentWeek = i/7 + (daycode == 0);
+	//filler until the end of the calendar
+	for (int i = currentDate + daycode - 1; i < 6*7; i++) {
+		int currentDay = i%7;
+		int currentWeek = i/7 + (daycode == 0);
 
-        QTableWidgetItem *twi = new QTableWidgetItem("-");
-        ui->tableCalendar->setItem(currentWeek, currentDay, twi);
-    } if (calls) colorCalender();
+		QTableWidgetItem *twi = new QTableWidgetItem("-");
+		ui->tableCalendar->setItem(currentWeek, currentDay, twi);
+	} if (calls) colorCalender();
 	if (!calls) calls = 1; /* needed to avoid a crash */
 }
 
@@ -154,129 +154,129 @@ void schedulingGrid::on_pushCalendar_clicked()
 
 void schedulingGrid::on_pushLeft_clicked()
 {
-    //for now these two buttons hijack the text fields.
+	//for now these two buttons hijack the text fields.
 
-    bool ok;
-    int year = (ui->lineYear->displayText()).toInt(&ok,10);
-    int month = (ui->lineMonth->displayText()).toInt(&ok,10);
+	bool ok;
+	int year = (ui->lineYear->displayText()).toInt(&ok,10);
+	int month = (ui->lineMonth->displayText()).toInt(&ok,10);
 
-    if (month != 1) {
+	if (month != 1) {
 		ui->lineMonth->setText(QString::number(month - 1));
-    } else {
-        ui->lineYear->setText(QString::number(year - 1));
-        ui->lineMonth->setText(QString::number(12));
-    }
+	} else {
+		ui->lineYear->setText(QString::number(year - 1));
+		ui->lineMonth->setText(QString::number(12));
+	}
 	colorCalender();
-    schedulingGrid::on_pushCalendar_clicked();
+	schedulingGrid::on_pushCalendar_clicked();
 }
 
 void schedulingGrid::on_pushRight_clicked()
 {
-    bool ok;
-    int year = (ui->lineYear->displayText()).toInt(&ok,10);
-    int month = (ui->lineMonth->displayText()).toInt(&ok,10);
+	bool ok;
+	int year = (ui->lineYear->displayText()).toInt(&ok,10);
+	int month = (ui->lineMonth->displayText()).toInt(&ok,10);
 
-    if (month != 12) {
-        ui->lineMonth->setText(QString::number(month + 1));
-    } else {
-        ui->lineYear->setText(QString::number(year + 1));
-        ui->lineMonth->setText(QString::number(1));
-    }
+	if (month != 12) {
+		ui->lineMonth->setText(QString::number(month + 1));
+	} else {
+		ui->lineYear->setText(QString::number(year + 1));
+		ui->lineMonth->setText(QString::number(1));
+	}
 	colorCalender();
-    schedulingGrid::on_pushCalendar_clicked();
+	schedulingGrid::on_pushCalendar_clicked();
 }
 
 void schedulingGrid::on_pushGetDay_clicked()
 {
-    /* int currentRow = ui->tableCalendar->currentRow(); */
-    /* int currentColumn = ui->tableCalendar->currentColumn(); */
+	/* int currentRow = ui->tableCalendar->currentRow(); */
+	/* int currentColumn = ui->tableCalendar->currentColumn(); */
 
-    /* bool ok; */
+	/* bool ok; */
 
-    /* int year = (ui->lineYear->displayText()).toInt(&ok,10); */
-    /* int month = (ui->lineMonth->displayText()).toInt(&ok,10); */
+	/* int year = (ui->lineYear->displayText()).toInt(&ok,10); */
+	/* int month = (ui->lineMonth->displayText()).toInt(&ok,10); */
 
 
 
-    // QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
-    // int row = ui->tableWeek->currentRow();
-    // QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
-    // QString time = "0:00";
+	// QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
+	// int row = ui->tableWeek->currentRow();
+	// QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
+	// QString time = "0:00";
 }
 
 void schedulingGrid::on_pushWeek_clicked()
 {
-    QStringList days;
-    int startDay = -1;
-    int endDay = -1;
+	QStringList days;
+	int startDay = -1;
+	int endDay = -1;
 
-    QString currentDay;
-    int currentRow = ui->tableCalendar->currentRow();
-    //days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
+	QString currentDay;
+	int currentRow = ui->tableCalendar->currentRow();
+	//days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
 
-    for(int i = 0; i < 7; i++) {
-        QString dayText = ui->tableCalendar->item(currentRow, i)->text();
-        if (dayText.compare("-") != 0) {
-            if (startDay == -1) {
-                startDay = i;
-            }
-            if (i == 6) {
-                endDay = 6;
-            }
-        }
-        if (dayText.compare("-") == 0 && endDay == -1) {
-            endDay = i-1;
-        }
+	for(int i = 0; i < 7; i++) {
+		QString dayText = ui->tableCalendar->item(currentRow, i)->text();
+		if (dayText.compare("-") != 0) {
+			if (startDay == -1) {
+				startDay = i;
+			}
+			if (i == 6) {
+				endDay = 6;
+			}
+		}
+		if (dayText.compare("-") == 0 && endDay == -1) {
+			endDay = i-1;
+		}
 
-        QString currentDay;
-        if (dayText.compare("-") != 0) {
-            currentDay += ui->lineMonth->displayText();
-            currentDay += "/";
-            currentDay += dayText;
-        }
-        days << currentDay;
-    }
+		QString currentDay;
+		if (dayText.compare("-") != 0) {
+			currentDay += ui->lineMonth->displayText();
+			currentDay += "/";
+			currentDay += dayText;
+		}
+		days << currentDay;
+	}
 
-    ui->labelStart->setText(QString::number(startDay));
-    ui->labelEnd->setText(QString::number(endDay));
+	ui->labelStart->setText(QString::number(startDay));
+	ui->labelEnd->setText(QString::number(endDay));
 
-    ui->labelSunday->setText(days[0]);
-    ui->labelMonday->setText(days[1]);
-    ui->labelTuesday->setText(days[2]);
-    ui->labelWednesday->setText(days[3]);
-    ui->labelThursday->setText(days[4]);
-    ui->labelFriday->setText(days[5]);
-    ui->labelSaturday->setText(days[6]);
+	ui->labelSunday->setText(days[0]);
+	ui->labelMonday->setText(days[1]);
+	ui->labelTuesday->setText(days[2]);
+	ui->labelWednesday->setText(days[3]);
+	ui->labelThursday->setText(days[4]);
+	ui->labelFriday->setText(days[5]);
+	ui->labelSaturday->setText(days[6]);
 
-    if (startDay != -1) { //if the current week is an actual week,
-        QString * request = new QString("REQUEST_EVENTS ");
-        (*request)+=m_p_username; (*request)+=":::";
-        (*request)+=m_p_password; (*request)+=":::";
+	if (startDay != -1) { //if the current week is an actual week,
+		QString * request = new QString("REQUEST_EVENTS ");
+		(*request)+=m_p_username; (*request)+=":::";
+		(*request)+=m_p_password; (*request)+=":::";
 
 
-        QString year = ui->lineYear->displayText();
-        QString month = ui->lineMonth->displayText();
-        QString day = ui->tableCalendar->item(currentRow, startDay)->text();
+		QString year = ui->lineYear->displayText();
+		QString month = ui->lineMonth->displayText();
+		QString day = ui->tableCalendar->item(currentRow, startDay)->text();
 
-        (*request)+=year + "-" + month + "-" + day + ":::";
+		(*request)+=year + "-" + month + "-" + day + ":::";
 
-        day = ui->tableCalendar->item(currentRow, endDay)->text();
+		day = ui->tableCalendar->item(currentRow, endDay)->text();
 
-        (*request)+=year + "-" + month + "-" + day;
-        ui->labelTest->setText(*request);
+		(*request)+=year + "-" + month + "-" + day;
+		ui->labelTest->setText(*request);
 
-        QString * response = setup_connection(request);
-        ui->labelTest_2->setText(*response);
-    }
+		QString * response = setup_connection(request);
+		ui->labelTest_2->setText(*response);
+	}
 }
 
 void schedulingGrid::on_pushCreateEvent_clicked()
 {
-    createevent ce;
+	createevent ce;
 	ce.m_p_username = m_p_username;
 	ce.m_p_password = m_p_password;
-    ce.setModal(true);
-    ce.exec();
+	ce.setModal(true);
+	ce.exec();
 }
 
 void schedulingGrid::on_back_button()
