@@ -32,6 +32,9 @@ public:
 	
 	Q_SLOT void on_back_button();
 	Q_SIGNAL void return_to_home_screen();
+private slots:
+    void on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+
 private:
 	Ui::schedulingGrid *ui;
 	

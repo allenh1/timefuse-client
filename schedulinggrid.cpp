@@ -328,3 +328,8 @@ void schedulingGrid::on_back_button()
 {
     Q_EMIT(return_to_home_screen());
 }
+
+void schedulingGrid::on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+    schedulingGrid::on_pushWeek_clicked();
+}
