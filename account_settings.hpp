@@ -25,9 +25,6 @@ public:
 	QString * m_p_secret;
 	QString * m_p_username;
 	QString * m_p_password;
-	
-	Q_SLOT void save_changes_pressed();
-	Q_SLOT void cancel_pressed();
 
 	Q_SIGNAL void return_to_home_screen();
 
@@ -35,6 +32,11 @@ public:
 
 private:
     Ui::account_settings * m_p_ui;
+		
+	Q_SLOT void save_changes_pressed();
+	Q_SLOT void cancel_pressed();
+	Q_SLOT void leave_of_absence_pressed();
+	Q_SLOT void present_pressed();
 };
 
 #endif
