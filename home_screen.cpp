@@ -90,9 +90,11 @@ void home_screen::to_friends_list()
 	 */
 	m_p_friends_list->m_p_username = m_p_username;
 	m_p_friends_list->m_p_password = m_p_password;
+
+	m_p_friends_list->fill_fields();
 	
-	m_p_friends_list->show();
 	this->hide();
+	m_p_friends_list->show();
 }
 
 void home_screen::to_manage_groups()

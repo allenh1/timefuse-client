@@ -29,7 +29,6 @@ private:
     Ui::friends_list * m_p_ui;
 	
     Q_SLOT void on_delete_friend();
-
     Q_SLOT void on_add_friend();
     Q_SLOT void on_back_button();
 	Q_SLOT void goto_friend_requests();

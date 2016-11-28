@@ -29,7 +29,7 @@ friends_list::~friends_list()
 
 void friends_list::on_add_friend()
 {
-    if(m_p_ui->list_friends->currentItem() == NULL) return;
+    if(m_p_ui->username_input->text().size() == 0) return;
     QString * request = new QString("CREATE_FRIENDSHIP ");
 
     (*request)+=m_p_username; (*request)+=":::";
@@ -79,10 +79,7 @@ void friends_list::on_back_button()
 	Q_EMIT(return_to_home_screen());
 }
 
-void friends_list::goto_friend_requests() {
-
-
-}
+void friends_list::goto_friend_requests() {}
 
 void friends_list::fill_fields()
 {
