@@ -9,6 +9,7 @@
 #include "usercreatedevent.hpp"
 #include "tcp_connection.hpp"
 #include "createevent.hpp"
+#include "schedule_set.hpp"
 
 typedef unsigned short ushort;
 typedef unsigned int uint;

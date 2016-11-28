@@ -23,17 +23,29 @@ schedulingGrid::~schedulingGrid()
 /* This will show how to properly color in the calender */
 void schedulingGrid::colorCalender()
 {
-    /* send in the query. */
+	QList<schedule_set> coloration;
+	/* ask for user events in the selected month */
+    QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
+    (*user_request)+=m_p_username; (*user_request)+=":::";
+    (*user_request)+=m_p_password; (*user_request)+=":::";
+    (*user_request)+=ui->lineMonth->displayText(); (*user_request)+=":::";
+    (*user_request)+=ui->lineYear->displayText(); bool ok;
+    QString * user_response = setup_connection(request);
 
-    QString * request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
-    (*request)+=m_p_username; (*request)+=":::";
-    (*request)+=m_p_password; (*request)+=":::";
-    (*request)+=ui->lineMonth->displayText(); (*request)+=":::";
-    (*request)+=ui->lineYear->displayText(); bool ok;
-    QString * response = setup_connection(request);
+	/* set the user's color */
+	
+	/* ask for group events in the selected month */
+	QString * group_request = new QString("REQUEST_GROUP_MONTH_EVENTS ");
+    (*group_request)+=m_p_username;	(*group_request)+=":::";
+    (*group_request)+=m_p_password;	(*group_request)+=":::";
+    (*group_request)+=ui->lineMonth->displayText();	(*group_request)+=":::";
+    (*group_request)+=ui->lineYear->displayText(); bool ok;
+    QString * group_response = setup_connection(request);
+
     ushort month = (ui->lineMonth->displayText()).toInt(&ok, 10);
     uint year = (ui->lineYear->displayText()).toInt(&ok,10);
-    uint occupied_days = (uint) response->split("\n")[0].toInt();
+    uint user_occupied_days = (uint) user_response->split("\n")[0].toInt();
+	uint group_occupied_days = (uint) group_response->split("\n")[0].toInt();
     /* do math */
     ushort C = std::floor(year / 100); ushort m = month - 2;
     if (month == 1) m = 11; else if (month == 2) m = 12;
@@ -43,14 +55,22 @@ void schedulingGrid::colorCalender()
                     + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;
     register uint daycode = (dc < 0) ? dc + 7 : dc;
     if (daycode == 0) daycode = 7;
-    for (int x = -1; occupied_days; occupied_days >>= 1, ++x) {
+    for (int x = -1; user_occupied_days && group_occupied_days;
+		 user_occupied_days >>= 1, group_occupied_days >>= 1, ++x) {
         /* if the bit is set, fill the cooresponding day */
-        if (occupied_days & 1) {
+        if (user_occupied_days & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                                     ((x + daycode) % 7))->setBackgroundColor(Qt::blue);
+        } if (group_occupied_days & 1) {
+            ui->tableCalendar->item((x + daycode) / 7,
+                                    ((x + daycode) % 7))->setBackgroundColor(Qt::yellow);
         }
     }
+
+	delete user_request, delete group_request;
+	delete group_response, delete user_response;
 }
+
 // kind of a simple way of doing it
 // maybe group events can be a different color?
 // maybe a day that has both personal and group events can be an even different color?
@@ -293,20 +313,20 @@ void schedulingGrid::on_pushWeek_clicked()
 
 
             switch(location) {
-                case 0: ui->listSun->addItem(newEvent);
-                        break;
-                case 1: ui->listMon->addItem(newEvent);
-                        break;
-                case 2: ui->listTues->addItem(newEvent);
-                        break;
-                case 3: ui->listWed->addItem(newEvent);
-                        break;
-                case 4: ui->listThurs->addItem(newEvent);
-                        break;
-                case 5: ui->listFri->addItem(newEvent);
-                        break;
-                case 6: ui->listSat->addItem(newEvent);
-                        break;
+			case 0: ui->listSun->addItem(newEvent);
+				break;
+			case 1: ui->listMon->addItem(newEvent);
+				break;
+			case 2: ui->listTues->addItem(newEvent);
+				break;
+			case 3: ui->listWed->addItem(newEvent);
+				break;
+			case 4: ui->listThurs->addItem(newEvent);
+				break;
+			case 5: ui->listFri->addItem(newEvent);
+				break;
+			case 6: ui->listSat->addItem(newEvent);
+				break;
             }
 
         }
