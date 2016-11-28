@@ -8,6 +8,7 @@
 #include "manage_groups.hpp"
 #include "ui_home_screen.h"
 #include "schedulinggrid.hpp"
+#include "friends_list.hpp"
 
 namespace Ui {
 class home_screen;
@@ -28,11 +29,13 @@ public:
 	Q_SLOT void to_see_schedule();
 	Q_SLOT void to_manage_groups();
 	Q_SLOT void to_create_event();
+	Q_SLOT void to_friends_list();
 
 	Q_SLOT void from_create_event();
 	Q_SLOT void from_see_schedule();
 	Q_SLOT void from_manage_groups();
 	Q_SLOT void from_account_settings();
+	Q_SLOT void from_friends_list();
 
 	Q_SLOT void on_logout();
 
@@ -44,5 +47,6 @@ private:
 	account_settings * m_p_account_settings;
 	manage_groups * m_p_manage_groups;
 	create_group_event * m_p_create_event;
+	friends_list * m_p_friends_list;
 };
 #endif

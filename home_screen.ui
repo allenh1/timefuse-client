@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>243</width>
-    <height>226</height>
+    <height>239</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>80</y>
      <width>221</width>
-     <height>141</height>
+     <height>151</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -41,6 +41,13 @@
      <widget class="QPushButton" name="see_schedule">
       <property name="text">
        <string>See My Schedule</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="friend_list">
+      <property name="text">
+       <string>See My Friends</string>
       </property>
      </widget>
     </item>
