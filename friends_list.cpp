@@ -36,6 +36,7 @@ void friends_list::on_add_friend()
     (*request)+=m_p_password; (*request)+=":::";
     (*request)+=m_p_ui->username_input->text();
 
+	m_p_ui->username_input->setText("");
     QString * response = setup_connection(request);
 
     std::cerr<<"response: "<<response->toStdString()<<std::endl;
@@ -75,6 +76,7 @@ void friends_list::on_delete_friend()
 
 void friends_list::on_back_button()
 {
+	m_p_ui->username_input->setText("");
     m_p_ui->list_friends->clear();
 	Q_EMIT(return_to_home_screen());
 }
