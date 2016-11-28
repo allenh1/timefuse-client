@@ -1,5 +1,5 @@
 #ifndef __SCHEDULE_SET_HPP__
-#define __SCHEDULE_SET_HPP__/
+#define __SCHEDULE_SET_HPP__
 /* Qt Includes */
 #include <QString>
 #include <QColor>

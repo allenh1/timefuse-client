@@ -22,30 +22,58 @@ schedulingGrid::~schedulingGrid()
 }
 /* This will show how to properly color in the calender */
 void schedulingGrid::colorCalender()
-{
-	QList<schedule_set> coloration;
+{	
+	/**
+	 * @todo Set the users' color settings to
+	 * the existing settings within the database.
+	 *
+	 * QList<schedule_set> coloration;
+	 */
+
 	/* ask for user events in the selected month */
     QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
     (*user_request)+=m_p_username; (*user_request)+=":::";
     (*user_request)+=m_p_password; (*user_request)+=":::";
     (*user_request)+=ui->lineMonth->displayText(); (*user_request)+=":::";
     (*user_request)+=ui->lineYear->displayText(); bool ok;
-    QString * user_response = setup_connection(request);
+    QString * user_response = setup_connection(user_request);
 
-	/* set the user's color */
+	/**
+	 * @todo remove this request!
+	 */
+	/* select all groups in which a given user is a member */
+	QString * get_groups = new QString("REQUEST_GROUPS ");
+	*get_groups += *m_p_username + ":::" + *m_p_password + "\r\n\0";
+
+	/* split along the '\n' character */
+	QString * get_group_response = setup_connection(get_groups);
+	QStringList list = get_group_response->split("\n");
 	
-	/* ask for group events in the selected month */
-	QString * group_request = new QString("REQUEST_GROUP_MONTH_EVENTS ");
-    (*group_request)+=m_p_username;	(*group_request)+=":::";
-    (*group_request)+=m_p_password;	(*group_request)+=":::";
-    (*group_request)+=ui->lineMonth->displayText();	(*group_request)+=":::";
-    (*group_request)+=ui->lineYear->displayText(); bool ok;
-    QString * group_response = setup_connection(request);
+	/* prepare these values to be colored */
+	uint user_occupied_days = (uint) user_response->split("\n")[0].toInt();	
+	uint group_occupied_days = 0;
+
+	/* ask for (every) group in the selected month */
+	for (size_t x = 0; x < list.size(); ++x) {
+		/* send the current group's select query */
+		QString * group_request = new QString("REQUEST_GROUP_MONTH_EVENTS ");
+		(*group_request)+=m_p_username;	(*group_request)+=":::";
+		(*group_request)+=m_p_password;	(*group_request)+=":::";
+		(*group_request)+=ui->lineMonth->displayText();	(*group_request)+=":::";
+		(*group_request)+=ui->lineYear->displayText() + ":::" + list[x] + "\r\n\0";
+		QString * group_response = setup_connection(group_request);
+		group_occupied_days = group_occupied_days | ((uint) group_response->split("\n")[0].toInt());
+		delete group_request, delete group_response;
+	}
+	
+	
+	/**
+	 * @todo change this to be a set color for each group
+	 */	
 
     ushort month = (ui->lineMonth->displayText()).toInt(&ok, 10);
     uint year = (ui->lineYear->displayText()).toInt(&ok,10);
-    uint user_occupied_days = (uint) user_response->split("\n")[0].toInt();
-	uint group_occupied_days = (uint) group_response->split("\n")[0].toInt();
+
     /* do math */
     ushort C = std::floor(year / 100); ushort m = month - 2;
     if (month == 1) m = 11; else if (month == 2) m = 12;
@@ -55,7 +83,7 @@ void schedulingGrid::colorCalender()
                     + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;
     register uint daycode = (dc < 0) ? dc + 7 : dc;
     if (daycode == 0) daycode = 7;
-    for (int x = -1; user_occupied_days && group_occupied_days;
+    for (int x = -1; user_occupied_days || group_occupied_days;
 		 user_occupied_days >>= 1, group_occupied_days >>= 1, ++x) {
         /* if the bit is set, fill the cooresponding day */
         if (user_occupied_days & 1) {
@@ -67,8 +95,7 @@ void schedulingGrid::colorCalender()
         }
     }
 
-	delete user_request, delete group_request;
-	delete group_response, delete user_response;
+	delete user_request, delete user_response;
 }
 
 // kind of a simple way of doing it
@@ -147,9 +174,10 @@ void schedulingGrid::on_pushCalendar_clicked()
     } if (calls) colorCalender();
     if (!calls) calls = 1; /* needed to avoid a crash */
 }
+
 void schedulingGrid::on_pushLeft_clicked()
 {
-    //for now these two buttons hijack the text fields.
+    /* for now these two buttons hijack the text fields. */
     bool ok;
     int year = (ui->lineYear->displayText()).toInt(&ok,10);
     int month = (ui->lineMonth->displayText()).toInt(&ok,10);
@@ -162,6 +190,7 @@ void schedulingGrid::on_pushLeft_clicked()
     colorCalender();
     schedulingGrid::on_pushCalendar_clicked();
 }
+
 void schedulingGrid::on_pushRight_clicked()
 {
     bool ok;
@@ -176,6 +205,7 @@ void schedulingGrid::on_pushRight_clicked()
     colorCalender();
     schedulingGrid::on_pushCalendar_clicked();
 }
+
 void schedulingGrid::on_pushGetDay_clicked()
 {
     /* int currentRow = ui->tableCalendar->currentRow(); */
@@ -188,6 +218,7 @@ void schedulingGrid::on_pushGetDay_clicked()
     // QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
     // QString time = "0:00";
 }
+
 void schedulingGrid::on_pushWeek_clicked()
 {
     QStringList days;
@@ -212,14 +243,14 @@ void schedulingGrid::on_pushWeek_clicked()
     ui->labelFriday->setText(days[5]);
     ui->labelSaturday->setText(days[6]);
 
-    //QStringList days;
+    // QStringList days;
     int startDay = -1;
     int endDay = -1;
     int startDate = -1;
     int endDate = -1;
     QString currentDay;
-    //int currentRow = ui->tableCalendar->currentRow();
-    //days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
+    // int currentRow = ui->tableCalendar->currentRow();
+    // days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
 
     bool ok;
 
