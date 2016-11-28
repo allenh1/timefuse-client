@@ -19,7 +19,7 @@ SOURCES += main.cpp \
            account_settings.cpp \
            manage_groups.cpp \
            create_group_event.cpp \
-           friend_list.cpp \
+           friends_list.cpp \
            edit_group.cpp
 
 HEADERS += user.hpp \
@@ -36,7 +36,7 @@ HEADERS += user.hpp \
            account_settings.hpp \
            manage_groups.hpp \
            create_group_event.hpp \
-           friend_list.hpp \
+           friends_list.hpp \
            edit_group.hpp
 
 FORMS += create_account_window.ui \
@@ -49,4 +49,4 @@ FORMS += create_account_window.ui \
          manage_groups.ui \
          create_group_event.ui \
          edit_group.ui \
-         friend_list.ui
+         friends_list.ui
