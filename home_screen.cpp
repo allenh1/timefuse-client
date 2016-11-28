@@ -13,6 +13,7 @@ home_screen::home_screen(QWidget *parent) :
 	m_p_create_event = new create_group_event();
 	m_p_account_settings = new account_settings();
 	m_p_manage_groups = new manage_groups();
+	m_p_friends_list = new friends_list();
 	
 	// connections to different windows
 	connect(m_p_ui->create_event, &QPushButton::released,
@@ -23,6 +24,8 @@ home_screen::home_screen(QWidget *parent) :
 			this, &home_screen::to_account_settings);
 	connect(m_p_ui->manage_groups, &QPushButton::released,
 			this, &home_screen::to_manage_groups);
+	connect(m_p_ui->friend_list, &QPushButton::released,
+			this, &home_screen::to_friends_list);
 
 	// connections from different windows
 	connect(m_p_account_settings, &account_settings::return_to_home_screen,
@@ -33,6 +36,8 @@ home_screen::home_screen(QWidget *parent) :
 			this, &home_screen::from_manage_groups);
 	connect(m_p_create_event, &create_group_event::return_to_home_screen,
 			this, &home_screen::from_create_event);
+	connect(m_p_friends_list, &friends_list::return_to_home_screen,
+			this, &home_screen::from_friends_list);
 
 	// logout connection
 	connect(m_p_ui->logout_button, &QPushButton::released,
@@ -44,10 +49,11 @@ home_screen::~home_screen()
     delete m_p_ui;
 	delete m_p_username;
 	delete m_p_password;
-	delete 	m_p_schedule;
+	delete m_p_schedule;
 	delete m_p_create_event;
 	delete m_p_account_settings;
 	delete m_p_manage_groups;
+	delete m_p_friends_list;
 }
 
 
@@ -74,6 +80,18 @@ void home_screen::to_see_schedule()
 	m_p_schedule->m_p_password = m_p_password;
 	
 	m_p_schedule->show();
+	this->hide();
+}
+
+void home_screen::to_friends_list()
+{
+	/**
+	 * @TODO add request for user's schedule
+	 */
+	m_p_friends_list->m_p_username = m_p_username;
+	m_p_friends_list->m_p_password = m_p_password;
+	
+	m_p_friends_list->show();
 	this->hide();
 }
 
@@ -109,6 +127,12 @@ void home_screen::from_create_event()
 void home_screen::from_see_schedule()
 {
 	m_p_schedule->hide();
+	this->show();
+}
+
+void home_screen::from_friends_list()
+{
+	m_p_friends_list->hide();
 	this->show();
 }
 

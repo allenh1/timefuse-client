@@ -26,17 +26,13 @@ public:
 	Q_SIGNAL void return_to_home_screen();
     void fill_fields();
 private:
-    Ui::manage_groups * m_p_ui;
+    Ui::friends_list * m_p_ui;
+	
+    Q_SLOT void on_delete_friend();
 
-    Q_SLOT void on_leave_group();
-    Q_SLOT void on_delete_group();
-
-    Q_SLOT void goto_edit_group();
+    Q_SLOT void on_add_friend();
     Q_SLOT void on_back_button();
-    Q_SLOT void on_new_group();
-
-    Q_SLOT void hide_edit_group();
-    Q_SLOT void hide_add_group();
+	Q_SLOT void goto_friend_requests();
 };
 
 #endif
