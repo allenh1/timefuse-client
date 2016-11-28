@@ -1,46 +1,39 @@
-#include "friends_list.hpp"
+#include "friend_requests.hpp"
 
-friends_list::friends_list(QWidget *parent) :
+friend_requests::friend_requests(QWidget *parent) :
     QWidget(parent),
-    m_p_ui(new Ui::friends_list)
+    m_p_ui(new Ui::friend_requests)
 {
     m_p_ui->setupUi(this);
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
 
-	m_p_friend_requests = new friend_requests();
-	
     // connect buttons
 	connect(m_p_ui->back_button, &QPushButton::released,
-			this, &friends_list::on_back_button);
-	connect(m_p_ui->add_friend, &QPushButton::released,
-			this, &friends_list::on_add_friend);
-    connect(m_p_ui->requests, &QPushButton::released,
-            this, &friends_list::goto_friend_requests);
-    connect(m_p_ui->delete_friend, &QPushButton::released,
-            this, &friends_list::on_delete_friend);
-	connect(m_p_friend_requests, &friend_requests::return_to_friends,
-			this, &friends_list::from_requests);
+			this, &friend_requests::on_back_button);
+	connect(m_p_ui->accept, &QPushButton::released,
+			this, &friend_requests::on_add_friend);
+    connect(m_p_ui->decline, &QPushButton::released,
+            this, &friend_requests::on_delete_friend);
 }
 
-friends_list::~friends_list()
+friend_requests::~friend_requests()
 {
     delete m_p_ui;
 	delete m_p_username;
 	delete m_p_password;
 }
 
-void friends_list::on_add_friend()
+void friend_requests::on_add_friend()
 {
-    if(m_p_ui->username_input->text().size() == 0) return;
-    QString * request = new QString("CREATE_FRIENDSHIP ");
+    if(m_p_ui->list_friends->currentItem() == NULL) return;
+    QString * request = new QString("ACCEPT_FRIEND ");
 
     (*request)+=m_p_username; (*request)+=":::";
     (*request)+=m_p_password; (*request)+=":::";
-    (*request)+=m_p_ui->username_input->text();
+    (*request)+=m_p_ui->list_friends->currentItem()->text();
 
-	m_p_ui->username_input->setText("");
     QString * response = setup_connection(request);
 
     std::cerr<<"response: "<<response->toStdString()<<std::endl;
@@ -55,7 +48,7 @@ void friends_list::on_add_friend()
     delete response; delete request;
 }
 
-void friends_list::on_delete_friend()
+void friend_requests::on_delete_friend()
 {
     if(m_p_ui->list_friends->currentItem() == NULL) return;
     QString * request = new QString("DELETE_FRIEND ");
@@ -78,35 +71,16 @@ void friends_list::on_delete_friend()
     delete response; delete request;
 }
 
-void friends_list::on_back_button()
+void friend_requests::on_back_button()
 {
-	m_p_ui->username_input->setText("");
     m_p_ui->list_friends->clear();
-	Q_EMIT(return_to_home_screen());
+	Q_EMIT(return_to_friends());
 }
 
-void friends_list::goto_friend_requests() {
-	m_p_friend_requests->m_p_username = m_p_username;
-	m_p_friend_requests->m_p_password = m_p_password;
-	
-	m_p_ui->username_input->setText("");
-    m_p_ui->list_friends->clear();
-
-	m_p_friend_requests->fill_fields();	
-	this->hide();
-	m_p_friend_requests->show();
-}
-
-void friends_list::from_requests() {
-	this->fill_fields();	
-	m_p_friend_requests->hide();
-	this->show();
-}
-
-void friends_list::fill_fields()
+void friend_requests::fill_fields()
 {
 	m_p_ui->list_friends->clear();
-	QString * request = new QString("REQUEST_FRIENDS ");
+	QString * request = new QString("FRIEND_REQUESTS ");
 
     (*request)+=m_p_username; (*request)+=":::";
 	(*request)+=m_p_password; (*request)+="\r\n\0";

@@ -20,7 +20,8 @@ SOURCES += main.cpp \
            manage_groups.cpp \
            create_group_event.cpp \
            friends_list.cpp \
-           edit_group.cpp
+           edit_group.cpp \
+           friend_requests.cpp
 
 HEADERS += user.hpp \
            create_account_window.hpp \
@@ -37,7 +38,8 @@ HEADERS += user.hpp \
            manage_groups.hpp \
            create_group_event.hpp \
            friends_list.hpp \
-           edit_group.hpp
+           edit_group.hpp \
+           friend_requests.hpp
 
 FORMS += create_account_window.ui \
          reset_password_window.ui \
@@ -49,4 +51,5 @@ FORMS += create_account_window.ui \
          manage_groups.ui \
          create_group_event.ui \
          edit_group.ui \
-         friends_list.ui
+         friends_list.ui \
+         friend_requests.ui
