@@ -47,7 +47,7 @@ void schedulingGrid::colorCalender()
         /* if the bit is set, fill the cooresponding day */
         if (occupied_days & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
-                                    ((x + daycode) % 7))->setBackgroundColor(Qt::red);
+                                    ((x + daycode) % 7))->setBackgroundColor(Qt::blue);
         }
     }
 }
