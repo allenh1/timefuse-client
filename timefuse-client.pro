@@ -48,4 +48,5 @@ FORMS += create_account_window.ui \
          account_settings.ui \
          manage_groups.ui \
          create_group_event.ui \
-         edit_group.ui
+         edit_group.ui \
+         friend_list.ui
