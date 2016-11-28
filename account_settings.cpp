@@ -26,6 +26,10 @@ account_settings::account_settings(QWidget *parent) :
             this, &account_settings::cancel_pressed);
     connect(m_p_ui->save_changes, &QPushButton::released,
             this, &account_settings::save_changes_pressed);
+	connect(m_p_ui->leave_of_absence, &QPushButton::released,
+			this, &account_settings::leave_of_absence_pressed);
+	connect(m_p_ui->present, &QPushButton::released,
+			this, &account_settings::present_pressed);
 }
 
 account_settings::~account_settings()
@@ -33,6 +37,38 @@ account_settings::~account_settings()
     delete m_p_ui;
 	delete m_p_username;
 	delete m_p_password;
+}
+
+void account_settings::leave_of_absence_pressed() {
+	QString * request = new QString("ABSENT ");
+
+	(*request)+=m_p_username; (*request)+=":::";
+	(*request)+=m_p_password; (*request)+="\r\n\0";
+	
+	QString * response = setup_connection(request);
+
+	if(response->contains(tr("ERROR"))) {
+        QMessageBox::critical(this, tr("Error"), *response);
+    } else {
+		QMessageBox::information(this, tr("OK"),
+								 "You are now absent from all group events.");
+	} delete response; delete request;
+}
+
+void account_settings::present_pressed() {
+	QString * request = new QString("PRESENT ");
+
+	(*request)+=m_p_username; (*request)+=":::";
+	(*request)+=m_p_password; (*request)+="\r\n\0";
+	
+	QString * response = setup_connection(request);
+
+	if(response->contains(tr("ERROR"))) {
+        QMessageBox::critical(this, tr("Error"), *response);
+    } else {
+		QMessageBox::information(this, tr("OK"),
+								 "You are now present for all group events.");
+	} delete response; delete request;
 }
 
 void account_settings::save_changes_pressed()
@@ -47,11 +83,11 @@ void account_settings::save_changes_pressed()
 
     QString * request = new QString("UPDATE_ACCOUNT ");
 
-    (*request)+=m_p_username; (*request)+=':'; (*request)+=old_password;
-    (*request)+=':'; (*request)+=new_password;
-	(*request)+=':'; (*request)+=new_name;
-	(*request)+=':'; (*request)+=email;
-	(*request)+=':'; (*request)+=phone; (*request)+="\r\n\0";
+    (*request)+=m_p_username; (*request)+=":::"; (*request)+=old_password;
+    (*request)+=":::"; (*request)+=new_password;
+	(*request)+=":::"; (*request)+=new_name;
+	(*request)+=":::"; (*request)+=email;
+	(*request)+=":::"; (*request)+=phone; (*request)+="\r\n\0";
 
     QString * response = setup_connection(request);
 
