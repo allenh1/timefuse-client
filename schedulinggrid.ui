@@ -274,7 +274,7 @@
      <string>Back</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="listSun">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -284,7 +284,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_2">
+   <widget class="QListWidget" name="listMon">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -294,7 +294,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_3">
+   <widget class="QListWidget" name="listTues">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -304,7 +304,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_4">
+   <widget class="QListWidget" name="listWed">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -314,7 +314,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_5">
+   <widget class="QListWidget" name="listFri">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -324,7 +324,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_6">
+   <widget class="QListWidget" name="listThurs">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -334,7 +334,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_7">
+   <widget class="QListWidget" name="listSat">
     <property name="geometry">
      <rect>
       <x>370</x>

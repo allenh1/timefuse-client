@@ -9,6 +9,7 @@
 #include "usercreatedevent.hpp"
 #include "tcp_connection.hpp"
 #include "createevent.hpp"
+/* #include "schedule_set.hpp" */
 
 typedef unsigned short ushort;
 typedef unsigned int uint;
@@ -32,6 +33,9 @@ public:
 	
 	Q_SLOT void on_back_button();
 	Q_SIGNAL void return_to_home_screen();
+private slots:
+    void on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+
 private:
 	Ui::schedulingGrid *ui;
 	
