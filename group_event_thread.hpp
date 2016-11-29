@@ -53,6 +53,7 @@ public:
 	};
 	
 private:
+	QThread * m_p_thread;
 	QMutex * m_p_occupied_mutex;
 	uint m_occupied_days;
 

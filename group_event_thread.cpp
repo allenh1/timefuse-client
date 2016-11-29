@@ -1,6 +1,8 @@
 #include "group_event_thread.hpp"
 
 group_event_thread::group_event_thread(QObject * _p_parent = NULL) {
+	m_p_thread = new QThread();
+	
 	m_p_occupied_mutex = new QMutex();
 	m_p_username_mutex = new QMutex();
 	m_p_password_mutex = new QMutex();
@@ -22,7 +24,10 @@ group_event_thread::~group_event_thread() {
 }
 
 bool group_event::init() {
-	
+	this->moveToThread(m_p_thread);
+	connect(m_p_thread, &QThread::started, this, &group_event_thread::run);
+	m_p_thread->start();
+	return m_p_thread->isRunning();
 }
 
 group_event_thread::run() {
