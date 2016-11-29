@@ -71,14 +71,14 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
-     <widget class="QLineEdit" name="duration_input_2"/>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="location_input_2"/>
     </item>
     <item row="0" column="1">
      <widget class="QLineEdit" name="title_input_2"/>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="location_input_2"/>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="duration_input_2"/>
     </item>
     <item row="3" column="1">
      <widget class="QTimeEdit" name="begin_time_edit_2"/>
@@ -91,6 +91,29 @@
         <month>11</month>
         <day>11</day>
        </date>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>GMT:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QSpinBox" name="timezoneOffset">
+      <property name="toolTip">
+       <string>Offset from GMT (e.g. Eastern is -5)</string>
+      </property>
+      <property name="minimum">
+       <number>-12</number>
+      </property>
+      <property name="maximum">
+       <number>12</number>
+      </property>
+      <property name="value">
+       <number>-5</number>
       </property>
      </widget>
     </item>

@@ -41,19 +41,16 @@ void createevent::on_pushButton_clicked()
         fixed = 0;
     }
 
-    // same thing here
-
-    (*request)+=m_p_username; (*request)+=":::";
-    (*request)+=m_p_password; (*request)+=":::";
-    (*request)+=QString::number(year); (*request)+='-';
-    (*request)+=QString::number(month); (*request)+='-';
-    (*request)+=QString::number(day); (*request)+=":::";
-    (*request)+=QString::number(hour); (*request)+=':';
-    (*request)+=QString::number(minute).rightJustified(2, '0');
-    (*request)+=":::";
-    (*request)+=ui->duration_input_2->displayText(); (*request)+=":::";
-    (*request)+=ui->location_input_2->displayText(); (*request)+=":::";
-    (*request)+=ui->title_input_2->displayText() + ":::";
+    /* create the request */
+    (*request) += *m_p_username + ":::" + *m_p_password + ":::"
+		+ QString::number(year) + "-" + QString::number(month)
+		+ "-" + QString::number(day) + ":::" + QString::number(hour)
+		+ ":" + QString::number(minute).rightJustified(2, '0')
+		+ ":::" + ui->duration_input_2->displayText() + ":::"
+		+ ui->location_input_2->displayText() + ":::"
+		+ QString::number(ui->timezoneOffset->value())
+		+ ":::" + ui->title_input_2->displayText()
+		+ ":::" + QString::number(fixed);
     (*request)+=QString::number(fixed);
 
     QString * response = setup_connection(request);
