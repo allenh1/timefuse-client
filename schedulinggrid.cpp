@@ -53,7 +53,7 @@ void schedulingGrid::colorCalendar()
 	 *
 	 * QList<schedule_set> coloration;
 	 */
-    std::cerr<<"request to COLOR"<<std::endl;
+    //std::cerr<<"request to COLOR"<<std::endl;
 	/* ask for user events in the selected month */
     QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
     (*user_request)+=m_p_username; (*user_request)+=":::";
@@ -311,45 +311,93 @@ void schedulingGrid::generateWeek()
         QString * response = setup_connection(request);
         ui->labelTest_2->setText(*response);
 
+        QString currentGroup = "";
+
+        //////////////
+
+        /* select all groups in which a given user is a member */
+        QString * get_groups = new QString("REQUEST_GROUPS ");
+        *get_groups += *m_p_username + ":::" + *m_p_password + "\r\n\0";
+
+        /* split along the '\n' character */
+        QString * get_group_response = setup_connection(get_groups);
+        QStringList list = get_group_response->split("\n");
+
+        /* ask for (every) group in the selected month */
+        for (size_t x = 0; x < list.size() - 1; ++x) {
+            /* send the current group's select query */
+            QString * group_request = new QString("REQUEST_GROUP_EVENTS ");
+            (*group_request)+=m_p_username;	(*group_request)+=":::";
+            (*group_request)+=m_p_password;	(*group_request)+=":::";
+
+            QString year = ui->lineYear->displayText();
+            QString month = ui->lineMonth->displayText();
+            QString day = ui->tableCalendar->item(currentRow, startDay)->text();
+
+            (*group_request)+=year + "-" + month + "-" + day + ":::";
+
+            day = ui->tableCalendar->item(currentRow, endDay)->text();
+
+            (*group_request)+=year + "-" + month + "-" + day + ":::" + list[x] + "\r\n\0";
+            std::cerr<<group_request->toStdString()<<std::endl;
+            QString * group_response = setup_connection(group_request);
+            if(group_response->contains("ERROR")) {
+                QMessageBox::critical(this, tr("Error"), *group_response);
+            } else {
+                *response += list[x] + "\n";
+                *response += *group_response;
+            }
+        }
+
+        //////////////
+
+
         QStringList weekEvents = response->split("\n",QString::SkipEmptyParts);
 
         for (int i = 0; i<weekEvents.size(); ++i) {
-            QStringList event = (weekEvents.at(i)).split(":::");
-            QStringList date = event.at(0).split("-");
-            int day = date.at(2).toInt(&ok,10);
-            QString eventInfo;
-            //eventInfo += "d";
-            QString time = event.at(1);
-            QString name = event.at(4);
-            QString loc = event.at(3);
-            eventInfo += time += "\n";
-            eventInfo += name += "\n";
-            eventInfo += "@ ";
-            eventInfo += loc;
 
-            int location = day - startDate;
-            //ui->labelTest->setText(QString::number(location));
+            if (weekEvents.at(i).contains(":::") == false) {
+                currentGroup = weekEvents.at(i);
+            } else {
 
-            QListWidgetItem * newEvent = new QListWidgetItem;
-            newEvent->setText(eventInfo);
-            newEvent->setFont(eventFont);
+                QStringList event = (weekEvents.at(i)).split(":::");
+                QStringList date = event.at(0).split("-");
+                int day = date.at(2).toInt(&ok,10);
+                QString eventInfo;
+                //eventInfo += "d";
+                QString time = event.at(1);
+                QString name = event.at(4);
+                QString loc = event.at(3);
+                eventInfo += time += "\n";
+                eventInfo += name += "\n";
+                eventInfo += "@ ";
+                eventInfo += loc += "\n";
+                eventInfo += currentGroup;
+
+                int location = day - startDate + startDay;
+                //ui->labelTest->setText(QString::number(location));
+
+                QListWidgetItem * newEvent = new QListWidgetItem;
+                newEvent->setText(eventInfo);
+                newEvent->setFont(eventFont);
 
 
-            switch(location) {
-			case 0: ui->listSun->addItem(newEvent);
-				break;
-			case 1: ui->listMon->addItem(newEvent);
-				break;
-			case 2: ui->listTues->addItem(newEvent);
-				break;
-			case 3: ui->listWed->addItem(newEvent);
-				break;
-			case 4: ui->listThurs->addItem(newEvent);
-				break;
-			case 5: ui->listFri->addItem(newEvent);
-				break;
-			case 6: ui->listSat->addItem(newEvent);
-				break;
+                switch(location) {
+                case 0: ui->listSun->addItem(newEvent);
+                    break;
+                case 1: ui->listMon->addItem(newEvent);
+                    break;
+                case 2: ui->listTues->addItem(newEvent);
+                    break;
+                case 3: ui->listWed->addItem(newEvent);
+                    break;
+                case 4: ui->listThurs->addItem(newEvent);
+                    break;
+                case 5: ui->listFri->addItem(newEvent);
+                    break;
+                case 6: ui->listSat->addItem(newEvent);
+                    break;
+                }
             }
 
         }
