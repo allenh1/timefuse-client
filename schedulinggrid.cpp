@@ -29,6 +29,14 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 
     ui->lineMonth->hide();
     ui->lineYear->hide();
+    ui->labelTest->hide();
+    ui->labelTest_2->hide();
+    ui->frameWeek->hide();
+
+
+
+    QModelIndex newIndex = ui->tableCalendar->model()->index(0,0);
+    ui->tableCalendar->setCurrentIndex(newIndex);
 
     //I call colorCalendar in home_screen.cpp. doing it here doesn't work.
     //I don't know why but OK!!!
@@ -41,6 +49,13 @@ schedulingGrid::~schedulingGrid()
     delete ui;
     delete m_p_username;
     delete m_p_password;
+}
+
+void schedulingGrid::fromHome()
+{
+    schedulingGrid::colorCalendar();
+    ui->frameWeek->hide();
+    ui->frameMonth->show();
 }
 
 
@@ -177,7 +192,7 @@ void schedulingGrid::generateCalendar()
         int currentWeek = i/7 + (daycode == 0);
         QTableWidgetItem *twi = new QTableWidgetItem("-");
         ui->tableCalendar->setItem(currentWeek, currentDay, twi);
-    } if (calls) colorCalendar();
+    } if (calls && ui->frameMonth->isVisible()) colorCalendar();
     if (!calls) calls = 1; /* needed to avoid a crash */
     initial = 1;
 }
@@ -194,7 +209,7 @@ void schedulingGrid::on_pushLeft_clicked()
         ui->lineYear->setText(QString::number(year - 1));
         ui->lineMonth->setText(QString::number(12));
     }
-    colorCalendar();
+    //colorCalendar();
     schedulingGrid::generateCalendar();
 }
 
@@ -209,7 +224,7 @@ void schedulingGrid::on_pushRight_clicked()
         ui->lineYear->setText(QString::number(year + 1));
         ui->lineMonth->setText(QString::number(1));
     }
-    colorCalendar();
+    //colorCalendar();
     schedulingGrid::generateCalendar();
 }
 
@@ -451,5 +466,53 @@ void schedulingGrid::on_back_button()
 
 void schedulingGrid::on_tableCalendar_currentCellChanged(int, int, int, int)
 {
+    //schedulingGrid::generateWeek();
+}
+
+void schedulingGrid::on_PushSwitchViews_clicked()
+{
+    if (ui->frameMonth->isHidden()) {
+        schedulingGrid::colorCalendar();
+        ui->frameMonth->show();
+        ui->frameWeek->hide();
+    } else {
+        ui->frameMonth->hide();
+        schedulingGrid::generateWeek();
+        ui->frameWeek->show();
+
+    }
+}
+
+void schedulingGrid::on_pushRightW_clicked()
+{
+
+    if (ui->tableCalendar->currentRow() != 5) {
+        QModelIndex newIndex = ui->tableCalendar->model()->index(ui->tableCalendar->currentRow() + 1, ui->tableCalendar->currentColumn());
+        ui->tableCalendar->setCurrentIndex(newIndex);
+    } else {
+        schedulingGrid::on_pushRight_clicked();
+        QModelIndex newIndex = ui->tableCalendar->model()->index(0, ui->tableCalendar->currentColumn());
+        ui->tableCalendar->setCurrentIndex(newIndex);
+    }
+    if ((ui->tableCalendar->item(ui->tableCalendar->currentRow(), 0))->text() == (ui->tableCalendar->item(ui->tableCalendar->currentRow(), 6))->text()) {
+        schedulingGrid::on_pushRightW_clicked();
+    }
+    schedulingGrid::generateWeek();
+}
+
+void schedulingGrid::on_pushLeftW_clicked()
+{
+    if (ui->tableCalendar->currentRow() != 0) {
+        QModelIndex newIndex = ui->tableCalendar->model()->index(ui->tableCalendar->currentRow() - 1, ui->tableCalendar->currentColumn());
+        ui->tableCalendar->setCurrentIndex(newIndex);
+    } else {
+        schedulingGrid::on_pushLeft_clicked();
+        QModelIndex newIndex = ui->tableCalendar->model()->index(5, ui->tableCalendar->currentColumn());
+        ui->tableCalendar->setCurrentIndex(newIndex);
+    }
+
+    if ((ui->tableCalendar->item(ui->tableCalendar->currentRow(), 0))->text() == (ui->tableCalendar->item(ui->tableCalendar->currentRow(), 6))->text()) {
+        schedulingGrid::on_pushLeftW_clicked();
+    }
     schedulingGrid::generateWeek();
 }

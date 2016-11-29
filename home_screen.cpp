@@ -79,8 +79,10 @@ void home_screen::to_see_schedule()
 	m_p_schedule->m_p_username = m_p_username;
 	m_p_schedule->m_p_password = m_p_password;
 	
-	m_p_schedule->show();
-    m_p_schedule->colorCalendar();
+
+    m_p_schedule->fromHome();
+    m_p_schedule->show();
+
 	this->hide();
 }
 
