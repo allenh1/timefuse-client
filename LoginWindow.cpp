@@ -65,7 +65,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 			this, &LoginWindow::hide_reset);
 
 	connect(m_p_home_screen, &home_screen::return_to_login,
-			this, &LoginWindow::hide_home_screen);
+            this, &LoginWindow::hide_home_screen);
 }
 
 LoginWindow::~LoginWindow()

@@ -30,7 +30,7 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
-    void colorCalendar();
+    void fromHome();
 	
 	Q_SLOT void on_back_button();
 	Q_SIGNAL void return_to_home_screen();
@@ -41,6 +41,12 @@ public:
 
 private slots:
     void on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+
+    void on_PushSwitchViews_clicked();
+
+    void on_pushRightW_clicked();
+
+    void on_pushLeftW_clicked();
 
 private:
 	Ui::schedulingGrid *ui;
@@ -53,7 +59,7 @@ private:
 
     createevent * m_p_createevent;
     int initial = 0;
-    void please();
+    void colorCalendar();
 };
 
 const QString months[]=
