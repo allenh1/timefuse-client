@@ -24,6 +24,12 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
+	QString * m_p_start_date;
+	QString * m_p_duration;
+	QString * m_p_group_name;
+	
+	QString * m_p_selected_time;
+
 	Q_SIGNAL void return_to_group_event();
     void fill_fields();
 private:

@@ -8,7 +8,13 @@ suggested_time::suggested_time(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
+	
+	m_p_start_date = new QString("");
+	m_p_duration = new QString("");
+	m_p_group_name = new QString("");
 
+	m_p_selected_time = new QString("");
+	
     // connect buttons
 	connect(m_p_ui->back_button, &QPushButton::released,
 			this, &suggested_time::on_back_button);
@@ -25,7 +31,8 @@ suggested_time::~suggested_time()
 
 void suggested_time::on_selected_time()
 {
-   
+	if(m_p_ui->list_times->currentItem() == NULL) return;
+	(*m_p_selected_time) = m_p_ui->list_times->currentItem()->text();
 }
 
 void suggested_time::on_back_button()
@@ -41,7 +48,10 @@ void suggested_time::fill_fields()
 
 	// more stuff needs to be added for this query
     (*request)+=m_p_username; (*request)+=":::";
-	(*request)+=m_p_password; (*request)+="\r\n\0";
+	(*request)+=m_p_password; (*request)+=":::";
+	(*request)+=m_p_group_name; (*request)+=":::";
+	(*request)+=m_p_start_date; (*request)+=":::";
+	(*request)+=m_p_duration; (*request)+="\r\n\0";
 	
     QString * response = setup_connection(request);
 

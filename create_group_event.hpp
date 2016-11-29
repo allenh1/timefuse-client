@@ -26,6 +26,8 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
+	QString * m_p_time_suggested;
+
 	Q_SIGNAL void return_to_home_screen();
 private:
     Ui::create_group_event * m_p_ui;
