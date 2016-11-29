@@ -6,7 +6,7 @@
 #include <QDialog>
 #include <QString>
 
-#include "usercreatedevent.hpp"
+//#include "usercreatedevent.hpp"
 #include "tcp_connection.hpp"
 #include "ui_createevent.h"
 
@@ -24,7 +24,15 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
+    QDate selected;
+
 	Q_SIGNAL void return_to_schedule();
+
+    void changeDate();
+
+private slots:
+    void on_pushCancel_clicked();
+
 private:
 	Q_SLOT void on_pushButton_clicked();
 	

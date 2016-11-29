@@ -1,4 +1,6 @@
 #include "schedulinggrid.hpp"
+#include <time.h>
+
 QFont eventFont("Segoe UI", 7);
 
 schedulingGrid::schedulingGrid(QWidget *parent) :
@@ -7,12 +9,32 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableCalendar->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    schedulingGrid::on_pushCalendar_clicked();
+
     //ui->tableWeek->horizontalHeaderItem(0)->setText("Whatever");
     m_p_username = new QString("");
     m_p_password = new QString("");
     connect(ui->back_button, &QPushButton::released,
             this, &schedulingGrid::on_back_button);
+
+    m_p_createevent = new createevent();
+    connect(ui->pushCreateEvent, &QPushButton::released,
+            this, &schedulingGrid::to_create_event);
+    connect(m_p_createevent, &createevent::return_to_schedule,
+            this, &schedulingGrid::from_create_event);
+
+    QDate today = QDate::currentDate();
+    ui->lineMonth->setText(QString::number(today.month()));
+    ui->lineYear->setText(QString::number(today.year()));
+    schedulingGrid::generateCalendar();
+
+    ui->lineMonth->hide();
+    ui->lineYear->hide();
+
+    //I call colorCalendar in home_screen.cpp. doing it here doesn't work.
+    //I don't know why but OK!!!
+
+
+
 }
 schedulingGrid::~schedulingGrid()
 {
@@ -20,8 +42,10 @@ schedulingGrid::~schedulingGrid()
     delete m_p_username;
     delete m_p_password;
 }
+
+
 /* This will show how to properly color in the calender */
-void schedulingGrid::colorCalender()
+void schedulingGrid::colorCalendar()
 {	
 	/**
 	 * @todo Set the users' color settings to
@@ -29,7 +53,7 @@ void schedulingGrid::colorCalender()
 	 *
 	 * QList<schedule_set> coloration;
 	 */
-
+    //std::cerr<<"request to COLOR"<<std::endl;
 	/* ask for user events in the selected month */
     QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
     (*user_request)+=m_p_username; (*user_request)+=":::";
@@ -89,6 +113,7 @@ void schedulingGrid::colorCalender()
         if (user_occupied_days & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                                     ((x + daycode) % 7))->setBackgroundColor(Qt::blue);
+            std::cerr<<"blue"<<std::endl;
         } if (group_occupied_days & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                                     ((x + daycode) % 7))->setBackgroundColor(Qt::yellow);
@@ -98,27 +123,8 @@ void schedulingGrid::colorCalender()
 	delete user_request, delete user_response;
 }
 
-// kind of a simple way of doing it
-// maybe group events can be a different color?
-// maybe a day that has both personal and group events can be an even different color?
-// This will show how I think we can load in the schedule itself
-// void schedulingGrid::fillSchedule()
-// {
-// int currentRow = ui->tableCalendar->currentRow();
-// int firstDay = ui->tableCalendar->item(currentRow, 0)->text();
-// int lastDay = ui->tableCalendar->item(currentRow, 6)->text();
-// those will give the range of days needed for the REQUEST_EVENTS query
-//
-// loop for all returned events:
-//  get start date of event
-//  add it as an item to the QListWidget with the corresponding date
-// end loop:
-// }
-//
-//
-//
-// obviously this is only a temporary solution, but it should be fine for now
-void schedulingGrid::on_pushCalendar_clicked()
+
+void schedulingGrid::generateCalendar()
 {
     /**
      * because the built in QCalendarWidget has little room for
@@ -171,8 +177,9 @@ void schedulingGrid::on_pushCalendar_clicked()
         int currentWeek = i/7 + (daycode == 0);
         QTableWidgetItem *twi = new QTableWidgetItem("-");
         ui->tableCalendar->setItem(currentWeek, currentDay, twi);
-    } if (calls) colorCalender();
+    } if (calls) colorCalendar();
     if (!calls) calls = 1; /* needed to avoid a crash */
+    initial = 1;
 }
 
 void schedulingGrid::on_pushLeft_clicked()
@@ -187,8 +194,8 @@ void schedulingGrid::on_pushLeft_clicked()
         ui->lineYear->setText(QString::number(year - 1));
         ui->lineMonth->setText(QString::number(12));
     }
-    colorCalender();
-    schedulingGrid::on_pushCalendar_clicked();
+    colorCalendar();
+    schedulingGrid::generateCalendar();
 }
 
 void schedulingGrid::on_pushRight_clicked()
@@ -202,24 +209,12 @@ void schedulingGrid::on_pushRight_clicked()
         ui->lineYear->setText(QString::number(year + 1));
         ui->lineMonth->setText(QString::number(1));
     }
-    colorCalender();
-    schedulingGrid::on_pushCalendar_clicked();
+    colorCalendar();
+    schedulingGrid::generateCalendar();
 }
 
-void schedulingGrid::on_pushGetDay_clicked()
-{
-    /* int currentRow = ui->tableCalendar->currentRow(); */
-    /* int currentColumn = ui->tableCalendar->currentColumn(); */
-    /* bool ok; */
-    /* int year = (ui->lineYear->displayText()).toInt(&ok,10); */
-    /* int month = (ui->lineMonth->displayText()).toInt(&ok,10); */
-    // QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
-    // int row = ui->tableWeek->currentRow();
-    // QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
-    // QString time = "0:00";
-}
 
-void schedulingGrid::on_pushWeek_clicked()
+void schedulingGrid::generateWeek()
 {
     QStringList days;
 
@@ -250,7 +245,6 @@ void schedulingGrid::on_pushWeek_clicked()
     int endDate = -1;
     QString currentDay;
     // int currentRow = ui->tableCalendar->currentRow();
-    // days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
 
     bool ok;
 
@@ -279,8 +273,7 @@ void schedulingGrid::on_pushWeek_clicked()
         days << currentDay;
     }
     endDate = startDate + (endDay-startDay);
-    ui->labelStart->setText(QString::number(startDate));
-    ui->labelEnd->setText(QString::number(endDate));
+
 
     ui->labelSunday->setText(days[0]);
     ui->labelMonday->setText(days[1]);
@@ -318,46 +311,93 @@ void schedulingGrid::on_pushWeek_clicked()
         QString * response = setup_connection(request);
         ui->labelTest_2->setText(*response);
 
+        QString currentGroup = "";
+
+        //////////////
+
+        /* select all groups in which a given user is a member */
+        QString * get_groups = new QString("REQUEST_GROUPS ");
+        *get_groups += *m_p_username + ":::" + *m_p_password + "\r\n\0";
+
+        /* split along the '\n' character */
+        QString * get_group_response = setup_connection(get_groups);
+        QStringList list = get_group_response->split("\n");
+
+        /* ask for (every) group in the selected month */
+        for (size_t x = 0; x < list.size() - 1; ++x) {
+            /* send the current group's select query */
+            QString * group_request = new QString("REQUEST_GROUP_EVENTS ");
+            (*group_request)+=m_p_username;	(*group_request)+=":::";
+            (*group_request)+=m_p_password;	(*group_request)+=":::";
+
+            QString year = ui->lineYear->displayText();
+            QString month = ui->lineMonth->displayText();
+            QString day = ui->tableCalendar->item(currentRow, startDay)->text();
+
+            (*group_request)+=year + "-" + month + "-" + day + ":::";
+
+            day = ui->tableCalendar->item(currentRow, endDay)->text();
+
+            (*group_request)+=year + "-" + month + "-" + day + ":::" + list[x] + "\r\n\0";
+            std::cerr<<group_request->toStdString()<<std::endl;
+            QString * group_response = setup_connection(group_request);
+            if(group_response->contains("ERROR")) {
+                QMessageBox::critical(this, tr("Error"), *group_response);
+            } else {
+                *response += list[x] + "\n";
+                *response += *group_response;
+            }
+        }
+
+        //////////////
+
+
         QStringList weekEvents = response->split("\n",QString::SkipEmptyParts);
-        ui->labelStart->setText(QString::number(weekEvents.size()));
 
         for (int i = 0; i<weekEvents.size(); ++i) {
-            QStringList event = (weekEvents.at(i)).split(":::");
-            QStringList date = event.at(0).split("-");
-            int day = date.at(2).toInt(&ok,10);
-            QString eventInfo;
-            //eventInfo += "d";
-            QString time = event.at(1);
-            QString name = event.at(4);
-            QString loc = event.at(3);
-            eventInfo += time += "\n";
-            eventInfo += name += "\n";
-            eventInfo += "@ ";
-            eventInfo += loc;
 
-            int location = day - startDate;
-            //ui->labelTest->setText(QString::number(location));
+            if (weekEvents.at(i).contains(":::") == false) {
+                currentGroup = weekEvents.at(i);
+            } else {
 
-            QListWidgetItem * newEvent = new QListWidgetItem;
-            newEvent->setText(eventInfo);
-            newEvent->setFont(eventFont);
+                QStringList event = (weekEvents.at(i)).split(":::");
+                QStringList date = event.at(0).split("-");
+                int day = date.at(2).toInt(&ok,10);
+                QString eventInfo;
+                //eventInfo += "d";
+                QString time = event.at(1);
+                QString name = event.at(4);
+                QString loc = event.at(3);
+                eventInfo += time += "\n";
+                eventInfo += name += "\n";
+                eventInfo += "@ ";
+                eventInfo += loc += "\n";
+                eventInfo += currentGroup;
+
+                int location = day - startDate + startDay;
+                //ui->labelTest->setText(QString::number(location));
+
+                QListWidgetItem * newEvent = new QListWidgetItem;
+                newEvent->setText(eventInfo);
+                newEvent->setFont(eventFont);
 
 
-            switch(location) {
-			case 0: ui->listSun->addItem(newEvent);
-				break;
-			case 1: ui->listMon->addItem(newEvent);
-				break;
-			case 2: ui->listTues->addItem(newEvent);
-				break;
-			case 3: ui->listWed->addItem(newEvent);
-				break;
-			case 4: ui->listThurs->addItem(newEvent);
-				break;
-			case 5: ui->listFri->addItem(newEvent);
-				break;
-			case 6: ui->listSat->addItem(newEvent);
-				break;
+                switch(location) {
+                case 0: ui->listSun->addItem(newEvent);
+                    break;
+                case 1: ui->listMon->addItem(newEvent);
+                    break;
+                case 2: ui->listTues->addItem(newEvent);
+                    break;
+                case 3: ui->listWed->addItem(newEvent);
+                    break;
+                case 4: ui->listThurs->addItem(newEvent);
+                    break;
+                case 5: ui->listFri->addItem(newEvent);
+                    break;
+                case 6: ui->listSat->addItem(newEvent);
+                    break;
+                }
             }
 
         }
@@ -368,11 +408,39 @@ void schedulingGrid::on_pushWeek_clicked()
 
 void schedulingGrid::on_pushCreateEvent_clicked()
 {
+    /*
     createevent ce;
     ce.m_p_username = m_p_username;
     ce.m_p_password = m_p_password;
     ce.setModal(true);
     ce.exec();
+    */
+    //m_p_createevent->
+}
+
+void schedulingGrid::to_create_event()
+{
+    m_p_createevent->m_p_username = m_p_username;
+    m_p_createevent->m_p_password = m_p_password;
+
+    bool ok;
+    int year = (ui->lineYear->displayText()).toInt(&ok,10);
+    int month = (ui->lineMonth->displayText()).toInt(&ok,10);
+    int day = (ui->tableCalendar->item(ui->tableCalendar->currentRow(),ui->tableCalendar->currentColumn())->text()).toInt(&ok,10);
+
+    QDate * selected = new QDate(year,month,day);
+    m_p_createevent->selected = *selected;
+    m_p_createevent->changeDate();
+
+    m_p_createevent->show();
+    this->hide();
+}
+
+void schedulingGrid::from_create_event()
+{
+    schedulingGrid::colorCalendar();
+    m_p_createevent->hide();
+    this->show();
 }
 
 void schedulingGrid::on_back_button()
@@ -380,7 +448,8 @@ void schedulingGrid::on_back_button()
     Q_EMIT(return_to_home_screen());
 }
 
-void schedulingGrid::on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+
+void schedulingGrid::on_tableCalendar_currentCellChanged(int, int, int, int)
 {
-    schedulingGrid::on_pushWeek_clicked();
+    schedulingGrid::generateWeek();
 }
