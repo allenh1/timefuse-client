@@ -30,7 +30,7 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
-	void colorCalender();
+    void colorCalendar();
 	
 	Q_SLOT void on_back_button();
 	Q_SIGNAL void return_to_home_screen();
@@ -52,7 +52,8 @@ private:
     Q_SLOT void on_pushCreateEvent_clicked();
 
     createevent * m_p_createevent;
-
+    int initial = 0;
+    void please();
 };
 
 const QString months[]=

@@ -80,6 +80,7 @@ void home_screen::to_see_schedule()
 	m_p_schedule->m_p_password = m_p_password;
 	
 	m_p_schedule->show();
+    m_p_schedule->colorCalendar();
 	this->hide();
 }
 

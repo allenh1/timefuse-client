@@ -1,4 +1,6 @@
 #include "schedulinggrid.hpp"
+#include <time.h>
+
 QFont eventFont("Segoe UI", 7);
 
 schedulingGrid::schedulingGrid(QWidget *parent) :
@@ -23,10 +25,15 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     QDate today = QDate::currentDate();
     ui->lineMonth->setText(QString::number(today.month()));
     ui->lineYear->setText(QString::number(today.year()));
+    schedulingGrid::generateCalendar();
+
     ui->lineMonth->hide();
     ui->lineYear->hide();
 
-    schedulingGrid::generateCalendar();
+    //I call colorCalendar in home_screen.cpp. doing it here doesn't work.
+    //I don't know why but OK!!!
+
+
 
 }
 schedulingGrid::~schedulingGrid()
@@ -35,8 +42,10 @@ schedulingGrid::~schedulingGrid()
     delete m_p_username;
     delete m_p_password;
 }
+
+
 /* This will show how to properly color in the calender */
-void schedulingGrid::colorCalender()
+void schedulingGrid::colorCalendar()
 {	
 	/**
 	 * @todo Set the users' color settings to
@@ -44,7 +53,7 @@ void schedulingGrid::colorCalender()
 	 *
 	 * QList<schedule_set> coloration;
 	 */
-
+    std::cerr<<"request to COLOR"<<std::endl;
 	/* ask for user events in the selected month */
     QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
     (*user_request)+=m_p_username; (*user_request)+=":::";
@@ -104,6 +113,7 @@ void schedulingGrid::colorCalender()
         if (user_occupied_days & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                                     ((x + daycode) % 7))->setBackgroundColor(Qt::blue);
+            std::cerr<<"blue"<<std::endl;
         } if (group_occupied_days & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                                     ((x + daycode) % 7))->setBackgroundColor(Qt::yellow);
@@ -167,8 +177,9 @@ void schedulingGrid::generateCalendar()
         int currentWeek = i/7 + (daycode == 0);
         QTableWidgetItem *twi = new QTableWidgetItem("-");
         ui->tableCalendar->setItem(currentWeek, currentDay, twi);
-    } if (calls) colorCalender();
+    } if (calls) colorCalendar();
     if (!calls) calls = 1; /* needed to avoid a crash */
+    initial = 1;
 }
 
 void schedulingGrid::on_pushLeft_clicked()
@@ -183,7 +194,7 @@ void schedulingGrid::on_pushLeft_clicked()
         ui->lineYear->setText(QString::number(year - 1));
         ui->lineMonth->setText(QString::number(12));
     }
-    colorCalender();
+    colorCalendar();
     schedulingGrid::generateCalendar();
 }
 
@@ -198,7 +209,7 @@ void schedulingGrid::on_pushRight_clicked()
         ui->lineYear->setText(QString::number(year + 1));
         ui->lineMonth->setText(QString::number(1));
     }
-    colorCalender();
+    colorCalendar();
     schedulingGrid::generateCalendar();
 }
 
@@ -234,7 +245,6 @@ void schedulingGrid::generateWeek()
     int endDate = -1;
     QString currentDay;
     // int currentRow = ui->tableCalendar->currentRow();
-    // days << "K" << "E" << "N" << "D" << "A" << "L" << "L" ;
 
     bool ok;
 
@@ -263,8 +273,7 @@ void schedulingGrid::generateWeek()
         days << currentDay;
     }
     endDate = startDate + (endDay-startDay);
-    ui->labelStart->setText(QString::number(startDate));
-    ui->labelEnd->setText(QString::number(endDate));
+
 
     ui->labelSunday->setText(days[0]);
     ui->labelMonday->setText(days[1]);
@@ -303,7 +312,6 @@ void schedulingGrid::generateWeek()
         ui->labelTest_2->setText(*response);
 
         QStringList weekEvents = response->split("\n",QString::SkipEmptyParts);
-        ui->labelStart->setText(QString::number(weekEvents.size()));
 
         for (int i = 0; i<weekEvents.size(); ++i) {
             QStringList event = (weekEvents.at(i)).split(":::");
@@ -382,7 +390,7 @@ void schedulingGrid::to_create_event()
 
 void schedulingGrid::from_create_event()
 {
-    schedulingGrid::colorCalender();
+    schedulingGrid::colorCalendar();
     m_p_createevent->hide();
     this->show();
 }
