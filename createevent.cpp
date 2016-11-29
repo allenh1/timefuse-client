@@ -34,10 +34,14 @@ void createevent::on_pushButton_clicked()
     (*request)+=QString::number(month); (*request)+='-';
     (*request)+=QString::number(day); (*request)+=":::";
     (*request)+=QString::number(hour); (*request)+=':';
-    (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=":::";
+    (*request)+=QString::number(minute).rightJustified(2, '0');
+	(*request)+=":::";
     (*request)+=ui->duration_input_2->displayText(); (*request)+=":::";
     (*request)+=ui->location_input_2->displayText(); (*request)+=":::";
-    (*request)+=ui->title_input_2->displayText();
+	/**
+	 * @todo Change the ":::1" to the user input value
+	 */
+    (*request)+=ui->title_input_2->displayText() + ":::1";
 	
     QString * response = setup_connection(request);
 	std::cerr<<"response: "<<response->toStdString()<<std::endl;
