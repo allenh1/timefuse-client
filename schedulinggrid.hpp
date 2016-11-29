@@ -6,9 +6,10 @@
 #include <cmath>
 
 #include "ui_schedulinggrid.h"
-#include "usercreatedevent.hpp"
+//#include "usercreatedevent.hpp"
 #include "tcp_connection.hpp"
 #include "createevent.hpp"
+
 /* #include "schedule_set.hpp" */
 
 typedef unsigned short ushort;
@@ -33,6 +34,11 @@ public:
 	
 	Q_SLOT void on_back_button();
 	Q_SIGNAL void return_to_home_screen();
+
+    Q_SLOT void to_create_event();
+
+    Q_SLOT void from_create_event();
+
 private slots:
     void on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
@@ -45,6 +51,9 @@ private:
     Q_SLOT void on_pushGetDay_clicked();
     Q_SLOT void on_pushWeek_clicked();
     Q_SLOT void on_pushCreateEvent_clicked();
+
+    createevent * m_p_createevent;
+
 };
 
 const QString months[]=

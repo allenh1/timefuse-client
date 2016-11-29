@@ -33,7 +33,6 @@ HEADERS += user.hpp \
            schedulinggrid.hpp \
            add_group.h \
            createevent.hpp \
-           usercreatedevent.hpp \
            account_settings.hpp \
            manage_groups.hpp \
            create_group_event.hpp \

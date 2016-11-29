@@ -8,13 +8,24 @@ createevent::createevent(QWidget *parent) :
 
 	m_p_username = new QString("");
 	m_p_password = new QString("");
+
+
+
+
 }
+
+
 
 createevent::~createevent()
 {
     delete ui;
 	delete m_p_username;
 	delete m_p_password;
+}
+
+void createevent::changeDate()
+{
+    ui->dateEdit->setDate(selected);
 }
 
 void createevent::on_pushButton_clicked()
@@ -25,6 +36,11 @@ void createevent::on_pushButton_clicked()
     int month = ui->dateEdit->date().month();
     int hour = ui->begin_time_edit_2->time().hour();
     int minute = ui->begin_time_edit_2->time().minute();
+
+    int fixed = 1;
+    if (ui->radioNegotiable->isChecked()) {
+        fixed = 0;
+    }
 
 	// same thing here
 	
@@ -37,7 +53,8 @@ void createevent::on_pushButton_clicked()
     (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=":::";
     (*request)+=ui->duration_input_2->displayText(); (*request)+=":::";
     (*request)+=ui->location_input_2->displayText(); (*request)+=":::";
-    (*request)+=ui->title_input_2->displayText();
+    (*request)+=ui->title_input_2->displayText(); (*request)+=":::";
+    (*request)+=QString::number(fixed);
 	
     QString * response = setup_connection(request);
 	std::cerr<<"response: "<<response->toStdString()<<std::endl;
@@ -45,6 +62,11 @@ void createevent::on_pushButton_clicked()
     if(response->contains("ERROR")) {
 		QMessageBox::critical(this, tr("Error"), *response);
 	} else {
-		this->close();
+        Q_EMIT(return_to_schedule());
 	}
+}
+
+void createevent::on_pushCancel_clicked()
+{
+    Q_EMIT(return_to_schedule());
 }

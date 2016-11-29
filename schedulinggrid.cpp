@@ -7,12 +7,25 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableCalendar->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    schedulingGrid::on_pushCalendar_clicked();
+
     //ui->tableWeek->horizontalHeaderItem(0)->setText("Whatever");
     m_p_username = new QString("");
     m_p_password = new QString("");
     connect(ui->back_button, &QPushButton::released,
             this, &schedulingGrid::on_back_button);
+
+    m_p_createevent = new createevent();
+    connect(ui->pushCreateEvent, &QPushButton::released,
+            this, &schedulingGrid::to_create_event);
+    connect(m_p_createevent, &createevent::return_to_schedule,
+            this, &schedulingGrid::from_create_event);
+
+    QDate today = QDate::currentDate();
+    ui->lineMonth->setText(QString::number(today.month()));
+    ui->lineYear->setText(QString::number(today.year()));
+
+    schedulingGrid::on_pushCalendar_clicked();
+
 }
 schedulingGrid::~schedulingGrid()
 {
@@ -98,26 +111,7 @@ void schedulingGrid::colorCalender()
 	delete user_request, delete user_response;
 }
 
-// kind of a simple way of doing it
-// maybe group events can be a different color?
-// maybe a day that has both personal and group events can be an even different color?
-// This will show how I think we can load in the schedule itself
-// void schedulingGrid::fillSchedule()
-// {
-// int currentRow = ui->tableCalendar->currentRow();
-// int firstDay = ui->tableCalendar->item(currentRow, 0)->text();
-// int lastDay = ui->tableCalendar->item(currentRow, 6)->text();
-// those will give the range of days needed for the REQUEST_EVENTS query
-//
-// loop for all returned events:
-//  get start date of event
-//  add it as an item to the QListWidget with the corresponding date
-// end loop:
-// }
-//
-//
-//
-// obviously this is only a temporary solution, but it should be fine for now
+
 void schedulingGrid::on_pushCalendar_clicked()
 {
     /**
@@ -368,17 +362,46 @@ void schedulingGrid::on_pushWeek_clicked()
 
 void schedulingGrid::on_pushCreateEvent_clicked()
 {
+    /*
     createevent ce;
     ce.m_p_username = m_p_username;
     ce.m_p_password = m_p_password;
     ce.setModal(true);
     ce.exec();
+    */
+    //m_p_createevent->
+}
+
+void schedulingGrid::to_create_event()
+{
+    m_p_createevent->m_p_username = m_p_username;
+    m_p_createevent->m_p_password = m_p_password;
+
+    bool ok;
+    int year = (ui->lineYear->displayText()).toInt(&ok,10);
+    int month = (ui->lineMonth->displayText()).toInt(&ok,10);
+    int day = (ui->tableCalendar->item(ui->tableCalendar->currentRow(),ui->tableCalendar->currentColumn())->text()).toInt(&ok,10);
+
+    QDate * selected = new QDate(year,month,day);
+    m_p_createevent->selected = *selected;
+    m_p_createevent->changeDate();
+
+    m_p_createevent->show();
+    this->hide();
+}
+
+void schedulingGrid::from_create_event()
+{
+    schedulingGrid::colorCalender();
+    m_p_createevent->hide();
+    this->show();
 }
 
 void schedulingGrid::on_back_button()
 {
     Q_EMIT(return_to_home_screen());
 }
+
 
 void schedulingGrid::on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
