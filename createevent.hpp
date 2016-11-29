@@ -6,7 +6,6 @@
 #include <QDialog>
 #include <QString>
 
-//#include "usercreatedevent.hpp"
 #include "tcp_connection.hpp"
 #include "ui_createevent.h"
 
