@@ -24,7 +24,7 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     ui->lineMonth->setText(QString::number(today.month()));
     ui->lineYear->setText(QString::number(today.year()));
 
-    schedulingGrid::on_pushCalendar_clicked();
+    schedulingGrid::generateCalendar();
 
 }
 schedulingGrid::~schedulingGrid()
@@ -112,7 +112,7 @@ void schedulingGrid::colorCalender()
 }
 
 
-void schedulingGrid::on_pushCalendar_clicked()
+void schedulingGrid::generateCalendar()
 {
     /**
      * because the built in QCalendarWidget has little room for
@@ -182,7 +182,7 @@ void schedulingGrid::on_pushLeft_clicked()
         ui->lineMonth->setText(QString::number(12));
     }
     colorCalender();
-    schedulingGrid::on_pushCalendar_clicked();
+    schedulingGrid::generateCalendar();
 }
 
 void schedulingGrid::on_pushRight_clicked()
@@ -197,23 +197,11 @@ void schedulingGrid::on_pushRight_clicked()
         ui->lineMonth->setText(QString::number(1));
     }
     colorCalender();
-    schedulingGrid::on_pushCalendar_clicked();
+    schedulingGrid::generateCalendar();
 }
 
-void schedulingGrid::on_pushGetDay_clicked()
-{
-    /* int currentRow = ui->tableCalendar->currentRow(); */
-    /* int currentColumn = ui->tableCalendar->currentColumn(); */
-    /* bool ok; */
-    /* int year = (ui->lineYear->displayText()).toInt(&ok,10); */
-    /* int month = (ui->lineMonth->displayText()).toInt(&ok,10); */
-    // QString day = ui->tableWeek->horizontalHeaderItem(ui->tableWeek->currentColumn())->text();
-    // int row = ui->tableWeek->currentRow();
-    // QString time = ui->tableWeek->verticalHeaderItem(ui->tableWeek->currentRow())->text();
-    // QString time = "0:00";
-}
 
-void schedulingGrid::on_pushWeek_clicked()
+void schedulingGrid::generateWeek()
 {
     QStringList days;
 
@@ -403,7 +391,7 @@ void schedulingGrid::on_back_button()
 }
 
 
-void schedulingGrid::on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+void schedulingGrid::on_tableCalendar_currentCellChanged(int, int, int, int)
 {
-    schedulingGrid::on_pushWeek_clicked();
+    schedulingGrid::generateWeek();
 }
