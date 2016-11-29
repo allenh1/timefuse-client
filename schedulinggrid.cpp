@@ -7,8 +7,6 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::schedulingGrid)
 {
-    QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
-    this->setPalette(qpalette);
     QFont font(QString("Courier"), 10.5, QFont::Thin, false);
     this->setFont(font);
 
@@ -38,17 +36,13 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     ui->labelTest_2->hide();
     ui->frameWeek->hide();
 
-
-
     QModelIndex newIndex = ui->tableCalendar->model()->index(0,0);
     ui->tableCalendar->setCurrentIndex(newIndex);
 
     //I call colorCalendar in home_screen.cpp. doing it here doesn't work.
     //I don't know why but OK!!!
-
-
-
 }
+
 schedulingGrid::~schedulingGrid()
 {
     delete ui;
