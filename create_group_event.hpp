@@ -8,6 +8,7 @@
 #include <QMessageBox>
 
 #include "ui_create_group_event.h"
+#include "suggested_time.hpp"
 #include "tcp_connection.hpp"
 
 namespace Ui {
@@ -25,13 +26,18 @@ public:
 	QString * m_p_username;
 	QString * m_p_password;
 
-	Q_SIGNAL void return_to_home_screen();
+	QString * m_p_time_suggested;
 
-	Q_SLOT void on_cancel();
-	Q_SLOT void add_group_members();
-	Q_SLOT void on_create_group_event();
+	Q_SIGNAL void return_to_home_screen();
 private:
     Ui::create_group_event * m_p_ui;
+    suggested_time * m_p_suggested_time;
+
+    Q_SLOT void on_cancel();
+    Q_SLOT void add_group_members();
+    Q_SLOT void on_create_group_event();
+    Q_SLOT void suggest_a_time();
+    Q_SLOT void from_suggested_time();
 };
 
 #endif 

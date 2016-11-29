@@ -9,6 +9,10 @@ create_group_event::create_group_event(QWidget *parent) :
 	m_p_username = new QString("");
 	m_p_password = new QString("");
 
+	m_p_time_suggested = new QString("");
+
+    m_p_suggested_time = new suggested_time();
+
     m_p_ui->group_to_add->setPlaceholderText(tr("Enter a group name"));
 	m_p_ui->duration_input->setPlaceholderText(tr("in minutes"));
 	m_p_ui->title_input->setPlaceholderText(tr("Group event name"));
@@ -21,6 +25,10 @@ create_group_event::create_group_event(QWidget *parent) :
 			this, &create_group_event::add_group_members);
 	connect(m_p_ui->create_event, &QPushButton::released,
 			this, &create_group_event::on_create_group_event);
+    connect(m_p_ui->get_a_time, &QPushButton::released,
+            this, &create_group_event::suggest_a_time);
+    connect(m_p_suggested_time, &suggested_time::return_to_group_event,
+            this, &create_group_event::from_suggested_time);
 }
 
 create_group_event::~create_group_event()
@@ -43,6 +51,46 @@ void create_group_event::on_cancel()
 	m_p_ui->attendees_list->clear();
 
 	Q_EMIT(return_to_home_screen());
+}
+
+void create_group_event::suggest_a_time()
+{
+	m_p_suggested_time->m_p_username = m_p_username;
+	m_p_suggested_time->m_p_password = m_p_password;
+
+	(*m_p_suggested_time->m_p_group_name) = m_p_ui->group_to_add->text();
+	(*m_p_suggested_time->m_p_duration) = m_p_ui->duration_input->text();
+
+	int year = m_p_ui->dateEdit->date().year();
+    int day = m_p_ui->dateEdit->date().day();
+    int month = m_p_ui->dateEdit->date().month();
+
+	(*m_p_suggested_time->m_p_start_date)+=QString::number(year) + "-";
+	(*m_p_suggested_time->m_p_start_date)+=QString::number(month) + "-";
+	(*m_p_suggested_time->m_p_start_date)+=QString::number(day);
+	
+    this->hide();
+    m_p_suggested_time->show();
+}
+
+void create_group_event::from_suggested_time()
+{
+	m_p_suggested_time->m_p_username->clear();
+	m_p_suggested_time->m_p_password->clear();
+
+	m_p_suggested_time->m_p_duration->clear();
+	m_p_suggested_time->m_p_start_date->clear();
+	m_p_suggested_time->m_p_group_name->clear();
+
+	m_p_time_suggested->clear();
+	(*m_p_time_suggested)+=m_p_suggested_time->m_p_selected_time;
+
+	/**
+	 * @TODO parse time suggested string and update to display
+	 */
+	
+    m_p_suggested_time->hide();
+    this->show();
 }
 
 void create_group_event::add_group_members()
