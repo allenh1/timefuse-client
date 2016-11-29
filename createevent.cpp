@@ -8,13 +8,7 @@ createevent::createevent(QWidget *parent) :
 
     m_p_username = new QString("");
     m_p_password = new QString("");
-
-
-
-
 }
-
-
 
 createevent::~createevent()
 {
@@ -54,20 +48,14 @@ void createevent::on_pushButton_clicked()
     (*request)+=":::";
     (*request)+=ui->duration_input_2->displayText(); (*request)+=":::";
     (*request)+=ui->location_input_2->displayText(); (*request)+=":::";
-    /**
-     * @todo Change the ":::1" to the user input value
-     */
     (*request)+=ui->title_input_2->displayText() + ":::";
     (*request)+=QString::number(fixed);
 
     QString * response = setup_connection(request);
     std::cerr<<"response: "<<response->toStdString()<<std::endl;
 
-    if(response->contains("ERROR")) {
-        QMessageBox::critical(this, tr("Error"), *response);
-    } else {
-        Q_EMIT(return_to_schedule());
-    }
+    if(response->contains("ERROR")) QMessageBox::critical(this, tr("Error"), *response);
+	else Q_EMIT(return_to_schedule());
 }
 
 void createevent::on_pushCancel_clicked()
