@@ -6,21 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>265</width>
-    <height>270</height>
+    <width>430</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Friends List</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(76, 76, 76);
+font: 12pt &quot;Courier&quot;;</string>
+  </property>
   <widget class="QLabel" name="title">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>10</y>
-     <width>81</width>
-     <height>20</height>
+     <x>70</x>
+     <y>30</y>
+     <width>161</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+font: 14pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>MY FRIENDS</string>
@@ -29,11 +37,15 @@
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>230</y>
-     <width>81</width>
+     <x>70</x>
+     <y>300</y>
+     <width>91</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 13pt &quot;Courier&quot;;
+background-color: rgb(61, 229, 229);</string>
    </property>
    <property name="text">
     <string>Back</string>
@@ -42,11 +54,15 @@
   <widget class="QPushButton" name="delete_friend">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>230</y>
-     <width>81</width>
+     <x>170</x>
+     <y>300</y>
+     <width>91</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 13pt &quot;Courier&quot;;
+background-color: rgb(255, 0, 128);</string>
    </property>
    <property name="text">
     <string>Delete</string>
@@ -55,11 +71,15 @@
   <widget class="QPushButton" name="requests">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>230</y>
-     <width>81</width>
+     <x>270</x>
+     <y>300</y>
+     <width>91</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 13pt &quot;Courier&quot;;
+background-color: rgb(86, 231, 115);</string>
    </property>
    <property name="text">
     <string>Requests</string>
@@ -68,31 +88,40 @@
   <widget class="QListWidget" name="list_friends">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>241</width>
-     <height>151</height>
+     <x>70</x>
+     <y>60</y>
+     <width>281</width>
+     <height>181</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="username_input">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>190</y>
-     <width>211</width>
+     <x>70</x>
+     <y>250</y>
+     <width>251</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QPushButton" name="add_friend">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>190</y>
+     <x>320</x>
+     <y>250</y>
      <width>31</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(204, 204, 204);</string>
    </property>
    <property name="text">
     <string>+</string>

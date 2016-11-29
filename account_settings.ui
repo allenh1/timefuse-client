@@ -6,22 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>381</width>
-    <height>332</height>
+    <width>430</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Account Settings</string>
   </property>
   <property name="styleSheet">
+<<<<<<< HEAD
    <string notr="true">background-color: rgb(76, 76, 76);</string>
+=======
+   <string notr="true">background-color: rgb(76, 76, 76);
+font: 12pt &quot;Courier&quot;;</string>
+>>>>>>> c92d0c3... added colors to the ui of account settings
   </property>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>361</width>
+     <x>20</x>
+     <y>40</y>
+     <width>391</width>
      <height>221</height>
     </rect>
    </property>
@@ -29,8 +34,12 @@
     <item row="0" column="0">
      <widget class="QLabel" name="label">
       <property name="styleSheet">
+<<<<<<< HEAD
        <string notr="true">color: rgb(248, 253, 253);
 font: 13pt &quot;Courier&quot;;</string>
+=======
+       <string notr="true">color: rgb(248, 253, 253);</string>
+>>>>>>> c92d0c3... added colors to the ui of account settings
       </property>
       <property name="text">
        <string>Username:</string>
@@ -40,8 +49,12 @@ font: 13pt &quot;Courier&quot;;</string>
     <item row="1" column="0">
      <widget class="QLabel" name="label">
       <property name="styleSheet">
+<<<<<<< HEAD
        <string notr="true">color: rgb(255, 255, 255);
 font: 13pt &quot;Courier&quot;;</string>
+=======
+       <string notr="true">color: rgb(255, 255, 255);</string>
+>>>>>>> c92d0c3... added colors to the ui of account settings
       </property>
       <property name="text">
        <string>New Username:</string>
@@ -51,8 +64,12 @@ font: 13pt &quot;Courier&quot;;</string>
     <item row="2" column="0">
      <widget class="QLabel" name="label_2">
       <property name="styleSheet">
+<<<<<<< HEAD
        <string notr="true">color: rgb(250, 253, 253);
 font: 13pt &quot;Courier&quot;;</string>
+=======
+       <string notr="true">color: rgb(250, 253, 253);</string>
+>>>>>>> c92d0c3... added colors to the ui of account settings
       </property>
       <property name="text">
        <string>Email:</string>
@@ -62,8 +79,12 @@ font: 13pt &quot;Courier&quot;;</string>
     <item row="4" column="0">
      <widget class="QLabel" name="label_4">
       <property name="styleSheet">
+<<<<<<< HEAD
        <string notr="true">color: rgb(255, 255, 255);
 font: 13pt &quot;Courier&quot;;</string>
+=======
+       <string notr="true">color: rgb(255, 255, 255);</string>
+>>>>>>> c92d0c3... added colors to the ui of account settings
       </property>
       <property name="text">
        <string>Old Password:</string>
@@ -73,8 +94,12 @@ font: 13pt &quot;Courier&quot;;</string>
     <item row="5" column="0">
      <widget class="QLabel" name="label_4">
       <property name="styleSheet">
+<<<<<<< HEAD
        <string notr="true">color: rgb(255, 255, 255);
 font: 13pt &quot;Courier&quot;;</string>
+=======
+       <string notr="true">color: rgb(255, 255, 255);</string>
+>>>>>>> c92d0c3... added colors to the ui of account settings
       </property>
       <property name="text">
        <string>New Password:</string>
@@ -84,8 +109,12 @@ font: 13pt &quot;Courier&quot;;</string>
     <item row="3" column="0">
      <widget class="QLabel" name="label_3">
       <property name="styleSheet">
+<<<<<<< HEAD
        <string notr="true">color: rgb(255, 255, 255);
 font: 13pt &quot;Courier&quot;;</string>
+=======
+       <string notr="true">color: rgb(255, 255, 255);</string>
+>>>>>>> c92d0c3... added colors to the ui of account settings
       </property>
       <property name="text">
        <string>Phone Number:</string>
@@ -95,8 +124,12 @@ font: 13pt &quot;Courier&quot;;</string>
     <item row="0" column="1">
      <widget class="QLineEdit" name="username_input">
       <property name="styleSheet">
+<<<<<<< HEAD
        <string notr="true">background-color: rgb(255, 255, 255);
 font: 13pt &quot;Cambria&quot;;</string>
+=======
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+>>>>>>> c92d0c3... added colors to the ui of account settings
       </property>
       <property name="text">
        <string/>
@@ -143,16 +176,16 @@ font: 13pt &quot;Cambria&quot;;</string>
   <widget class="QPushButton" name="save_changes">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>250</y>
-     <width>111</width>
+     <x>20</x>
+     <y>300</y>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(86, 231, 115);
-color: rgb(255, 255, 255);
-font: 75 13pt &quot;Courier&quot;;</string>
+	color: rgb(255, 255, 255);
+	font: 75 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Save</string>
@@ -161,16 +194,17 @@ font: 75 13pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="cancel_button">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>290</y>
-     <width>361</width>
+     <x>20</x>
+     <y>360</y>
+     <width>391</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 0, 128);
-color: rgb(255, 255, 255);
-font: 75 13pt &quot;Courier&quot;;</string>
+	color: rgb(255, 255, 255);
+	font: 75 13pt &quot;Courier&quot;;
+	</string>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -179,17 +213,16 @@ font: 75 13pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="leave_of_absence">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>250</y>
-     <width>121</width>
+     <x>150</x>
+     <y>300</y>
+     <width>131</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(61, 229, 229);
-
-color: rgb(255, 255, 255);
-font: 75 13pt &quot;Courier&quot;;</string>
+	color: rgb(255, 255, 255);
+	font: 75 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Group Absence</string>
@@ -198,9 +231,9 @@ font: 75 13pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="present">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>250</y>
-     <width>111</width>
+     <x>290</x>
+     <y>300</y>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
@@ -216,9 +249,9 @@ font: 75 13pt &quot;Courier&quot;;</string>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>230</y>
-     <width>361</width>
+     <x>20</x>
+     <y>270</y>
+     <width>391</width>
      <height>16</height>
     </rect>
    </property>

@@ -6,34 +6,49 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>265</width>
-    <height>270</height>
+    <width>430</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Manage Groups</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(76, 76, 76);
+font: 12pt &quot;Courier&quot;;</string>
+  </property>
   <widget class="QLabel" name="title">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>10</y>
-     <width>71</width>
-     <height>20</height>
+     <x>130</x>
+     <y>40</y>
+     <width>161</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+font: 17pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>MY GROUPS</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="create_new_group">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>230</y>
-     <width>121</width>
-     <height>32</height>
+     <x>160</x>
+     <y>310</y>
+     <width>120</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 13pt &quot;Courier&quot;;
+background-color: rgb(227, 201, 69);</string>
    </property>
    <property name="text">
     <string>Create Group</string>
@@ -42,11 +57,15 @@
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>132</x>
-     <y>230</y>
-     <width>121</width>
-     <height>32</height>
+     <x>300</x>
+     <y>310</y>
+     <width>101</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 13pt &quot;Courier&quot;;
+background-color: rgb(255, 0, 128);</string>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -55,11 +74,15 @@
   <widget class="QPushButton" name="delete_group">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>190</y>
-     <width>81</width>
-     <height>31</height>
+     <x>80</x>
+     <y>260</y>
+     <width>101</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 13pt &quot;Courier&quot;;
+background-color: rgb(61, 229, 229);</string>
    </property>
    <property name="text">
     <string>Delete</string>
@@ -68,11 +91,15 @@
   <widget class="QPushButton" name="edit_group">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>190</y>
-     <width>81</width>
-     <height>31</height>
+     <x>40</x>
+     <y>310</y>
+     <width>101</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 13pt &quot;Courier&quot;;
+background-color: rgb(86, 231, 115);</string>
    </property>
    <property name="text">
     <string>Edit</string>
@@ -81,11 +108,15 @@
   <widget class="QPushButton" name="leave_group">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>190</y>
-     <width>81</width>
-     <height>31</height>
+     <x>220</x>
+     <y>260</y>
+     <width>101</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 13pt &quot;Courier&quot;;
+background-color: rgb(204, 102, 255);</string>
    </property>
    <property name="text">
     <string>Leave</string>
@@ -94,11 +125,14 @@
   <widget class="QListWidget" name="list_groups">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>241</width>
-     <height>151</height>
+     <x>60</x>
+     <y>70</y>
+     <width>311</width>
+     <height>171</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
  </widget>

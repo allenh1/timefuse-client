@@ -6,25 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>243</width>
-    <height>239</height>
+    <width>430</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Home</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(76, 76, 76);
+font: 12pt &quot;Courier&quot;;</string>
+  </property>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>80</y>
-     <width>221</width>
-     <height>151</height>
+     <x>90</x>
+     <y>160</y>
+     <width>231</width>
+     <height>171</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="2" column="0">
      <widget class="QPushButton" name="manage_groups">
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;Courier&quot;;
+background-color: rgb(227, 201, 69);</string>
+      </property>
       <property name="text">
        <string>Manage Groups</string>
       </property>
@@ -32,6 +40,10 @@
     </item>
     <item row="1" column="0">
      <widget class="QPushButton" name="create_event">
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;Courier&quot;;
+background-color: rgb(86, 231, 115);</string>
+      </property>
       <property name="text">
        <string>Create Group Event</string>
       </property>
@@ -39,6 +51,10 @@
     </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="see_schedule">
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;Courier&quot;;
+background-color: rgb(61, 229, 229);</string>
+      </property>
       <property name="text">
        <string>See My Schedule</string>
       </property>
@@ -46,6 +62,10 @@
     </item>
     <item row="3" column="0">
      <widget class="QPushButton" name="friend_list">
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;Courier&quot;;
+background-color: rgb(255, 0, 128);</string>
+      </property>
       <property name="text">
        <string>See My Friends</string>
       </property>
@@ -56,11 +76,16 @@
   <widget class="QPushButton" name="account_settings">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>40</y>
-     <width>111</width>
-     <height>30</height>
+     <x>230</x>
+     <y>130</y>
+     <width>101</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+font: 14pt &quot;Courier&quot;;
+background-color: rgb(255, 128, 0);</string>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -69,24 +94,35 @@
   <widget class="QLabel" name="timefuse">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>10</y>
-     <width>61</width>
-     <height>21</height>
+     <x>0</x>
+     <y>60</y>
+     <width>421</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+font: 24pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>TIMEFUSE</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="logout_button">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>40</y>
+     <x>80</x>
+     <y>130</y>
      <width>101</width>
-     <height>30</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;Courier&quot;;
+background-color: rgb(204, 102, 255);</string>
    </property>
    <property name="text">
     <string>Logout</string>

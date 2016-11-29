@@ -16,6 +16,9 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(76,76,76);</string>
+  </property>
   <widget class="QWidget" name="centralWidget" native="true">
    <property name="geometry">
     <rect>
@@ -34,6 +37,10 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Courier&quot;;
+background-color: rgb(86, 231, 115);</string>
+    </property>
     <property name="text">
      <string>Create Event</string>
     </property>
@@ -46,6 +53,10 @@
       <width>91</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Courier&quot;;
+background-color: rgb(255, 0, 128);</string>
     </property>
     <property name="text">
      <string>Back</string>
@@ -313,6 +324,10 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Courier&quot;;
+background-color: rgb(227, 201, 69);</string>
+    </property>
     <property name="text">
      <string>Switch Views</string>
     </property>
@@ -340,6 +355,9 @@
        <width>421</width>
        <height>251</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -441,6 +459,10 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+font: 12pt &quot;Courier&quot;;</string>
+     </property>
      <property name="text">
       <string>TextLabel</string>
      </property>
@@ -457,6 +479,9 @@
        <height>251</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(204, 204, 204);</string>
+     </property>
      <property name="text">
       <string>&gt;</string>
      </property>
@@ -469,6 +494,9 @@
        <width>20</width>
        <height>251</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(204, 204, 204);</string>
      </property>
      <property name="text">
       <string>&lt;</string>
