@@ -63,7 +63,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Account Settings</string>
+    <string>Settings</string>
    </property>
   </widget>
   <widget class="QLabel" name="timefuse">

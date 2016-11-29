@@ -31,7 +31,7 @@
     <rect>
      <x>10</x>
      <y>230</y>
-     <width>111</width>
+     <width>121</width>
      <height>32</height>
     </rect>
    </property>
@@ -42,9 +42,9 @@
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>132</x>
      <y>230</y>
-     <width>113</width>
+     <width>121</width>
      <height>32</height>
     </rect>
    </property>
@@ -55,10 +55,10 @@
   <widget class="QPushButton" name="delete_group">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>90</x>
      <y>190</y>
-     <width>51</width>
-     <height>30</height>
+     <width>81</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -68,9 +68,9 @@
   <widget class="QPushButton" name="edit_group">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>10</x>
      <y>190</y>
-     <width>51</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -83,8 +83,8 @@
     <rect>
      <x>170</x>
      <y>190</y>
-     <width>51</width>
-     <height>30</height>
+     <width>81</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
