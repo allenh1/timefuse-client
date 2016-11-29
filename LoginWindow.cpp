@@ -3,12 +3,17 @@
 LoginWindow::LoginWindow(QWidget *parent)
 	: QWidget(parent)
 {
+    QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
+    this->setPalette(qpalette);
+    QFont font(QString("Courier"), 10.5, QFont::Thin, false);
+    this->setFont(font);
+
 	m_p_login_button = new QPushButton(tr("Sign In"));
 	m_p_create_button = new QPushButton(tr("Create Account"));
 	m_p_reset_button = new QPushButton(tr("Reset Password"));
     
 	m_p_user_label = new QLabel(tr("Username:"));
-	m_p_password_label = new QLabel(tr("Password: "));
+    m_p_password_label = new QLabel(tr("Password:"));
     
 	m_p_user_edit = new QLineEdit();
 	m_p_password_edit = new QLineEdit();
