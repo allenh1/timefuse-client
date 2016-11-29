@@ -4,6 +4,11 @@ create_account_window::create_account_window(QWidget *parent) :
     QWidget(parent),
     m_p_ui(new Ui::create_account_window)
 {
+	QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
+	this->setPalette(qpalette);
+	QFont font(QString("Courier"), 10.5, QFont::Thin, false);
+	this->setFont(font);
+	
     m_p_ui->setupUi(this);
 
 	/* set the password edit to not show text */

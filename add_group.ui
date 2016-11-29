@@ -50,7 +50,7 @@
     <rect>
      <x>170</x>
      <y>220</y>
-     <width>88</width>
+     <width>151</width>
      <height>30</height>
     </rect>
    </property>
@@ -61,9 +61,9 @@
   <widget class="QPushButton" name="add_group_button">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>10</x>
      <y>220</y>
-     <width>88</width>
+     <width>151</width>
      <height>30</height>
     </rect>
    </property>
