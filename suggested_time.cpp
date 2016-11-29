@@ -44,24 +44,26 @@ void suggested_time::on_back_button()
 void suggested_time::fill_fields()
 {
 	m_p_ui->list_times->clear();
-	/*QString * request = new QString("REQUEST_TIMES ");
-
-	// more stuff needs to be added for this query
-    (*request)+=m_p_username; (*request)+=":::";
-	(*request)+=m_p_password; (*request)+=":::";
-	(*request)+=m_p_group_name; (*request)+=":::";
-	(*request)+=m_p_start_date; (*request)+=":::";
-	(*request)+=m_p_duration; (*request)+="\r\n\0";
-	
-    QString * response = setup_connection(request);
-
-	if(!response->contains("ERROR")) {
-		response->replace("\r\n","");
-	    QStringList list = response->split('\n');
-		
-		for(int i=0;i<list.size();i++) {
-			if(i==list.size()-1) continue;
-			m_p_ui->list_times->addItem(list.at(i));
-		}
-		} delete response; delete request; */
+	/**
+	 * @TODO backend needs to accept this request
+	 * QString * request = new QString("REQUEST_TIMES ");
+	 *
+	 * (*request)+=m_p_username; (*request)+=":::";
+	 * (*request)+=m_p_password; (*request)+=":::";
+	 * (*request)+=m_p_group_name; (*request)+=":::";
+	 * (*request)+=m_p_start_date; (*request)+=":::";
+	 * (*request)+=m_p_duration; (*request)+="\r\n\0";
+	 *
+	 * QString * response = setup_connection(request);
+	 *
+	 * if(!response->contains("ERROR")) {
+	 *	response->replace("\r\n","");
+	 *  QStringList list = response->split('\n');
+	 *	
+	 *	for(int i=0;i<list.size();i++) {
+	 *		if(i==list.size()-1) continue;
+	 *		m_p_ui->list_times->addItem(list.at(i));
+	 *	}
+	 * } delete response; delete request; 
+	 */
 }
