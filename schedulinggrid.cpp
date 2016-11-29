@@ -23,6 +23,8 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     QDate today = QDate::currentDate();
     ui->lineMonth->setText(QString::number(today.month()));
     ui->lineYear->setText(QString::number(today.year()));
+    ui->lineMonth->hide();
+    ui->lineYear->hide();
 
     schedulingGrid::generateCalendar();
 
