@@ -5,12 +5,11 @@
 #include <QDebug>
 #include <cmath>
 
+#include "group_event_thread.hpp"
+#include "user_event_thread.hpp"
 #include "ui_schedulinggrid.h"
-//#include "usercreatedevent.hpp"
 #include "tcp_connection.hpp"
 #include "createevent.hpp"
-
-/* #include "schedule_set.hpp" */
 
 typedef unsigned short ushort;
 typedef unsigned int uint;

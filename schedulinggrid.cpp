@@ -7,6 +7,8 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::schedulingGrid)
 {
+	QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
+    this->setPalette(qpalette);
     QFont font(QString("Courier"), 10.5, QFont::Thin, false);
     this->setFont(font);
 
