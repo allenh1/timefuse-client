@@ -43,6 +43,7 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 
     //I call colorCalendar in home_screen.cpp. doing it here doesn't work.
     //I don't know why but OK!!!
+	//----- it doesn't work bc the user hasn't logged in yet when this is called
 }
 
 schedulingGrid::~schedulingGrid()
@@ -71,6 +72,8 @@ void schedulingGrid::colorCalendar()
 	 */
     //std::cerr<<"request to COLOR"<<std::endl;
 	/* ask for user events in the selected month */
+	
+	
     QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
     (*user_request)+=m_p_username; (*user_request)+=":::";
     (*user_request)+=m_p_password; (*user_request)+=":::";

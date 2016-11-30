@@ -16,7 +16,7 @@ public:
 
 	bool init();
 
-	Q_SLOT void run();
+	Q_SLOT int run();
 
 	QString get_response() {
 		QString temp;

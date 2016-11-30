@@ -18,7 +18,7 @@ public:
 
 	bool init();
 
-	Q_SLOT void run();
+	Q_SLOT int run();
 
 	uint get_occupied_days() {
 		register uint temp = 0;

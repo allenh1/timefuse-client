@@ -49,6 +49,9 @@ private slots:
 
 private:
 	Ui::schedulingGrid *ui;
+
+	group_event_thread * group_event;
+	user_event_thread * user_event;
 	
     Q_SLOT void generateCalendar();
     Q_SLOT void on_pushLeft_clicked();

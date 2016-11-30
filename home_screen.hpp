@@ -1,9 +1,13 @@
 #ifndef HOME_SCREEN_HPP
 #define HOME_SCREEN_HPP
+#include <QStringList>
+#include <QDateTime>
 #include <QWidget>
 #include <QtGui>
 
+#include "group_event_thread.hpp"
 #include "create_group_event.hpp"
+#include "user_event_thread.hpp"
 #include "account_settings.hpp"
 #include "manage_groups.hpp"
 #include "ui_home_screen.h"
@@ -48,5 +52,8 @@ private:
 	manage_groups * m_p_manage_groups;
 	create_group_event * m_p_create_event;
 	friends_list * m_p_friends_list;
+
+	group_event_thread * m_p_group_thread;
+	user_event_thread * m_p_user_thread;
 };
 #endif
