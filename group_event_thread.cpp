@@ -64,8 +64,10 @@ void group_event_thread::run_once(QString month, QString year) {
 		m_occupied_days = group_occupied_days;
 	} delete get_group_response; delete get_groups;
 	uint temp = m_occupied_days;
-	std::cerr<<"group event: \t"<<temp<<"month: "<<month.toInt()<<std::endl;
-	Q_EMIT(value_changed(temp, month.toInt()));
+	std::cerr<<"group event: "<<temp<<"\tmonth: "<<month.toInt()<<
+		"\tyear: "<<year.toInt()<<std::endl;
+	QString date = month+":"+year;
+	Q_EMIT(value_changed(date, temp));
 }
 
 void group_event_thread::run_method()
@@ -73,12 +75,10 @@ void group_event_thread::run_method()
 	int m = m_p_month->toInt();
 	int y = m_p_year->toInt();
 	run_once(QString::number(m), QString::number(y));
-	for(int i=1; i < 4; ++i) {
+	for(int i=1; i < 7; ++i) {
 		if(i < m) {
 			run_once(QString::number(m-i), QString::number(y));
-		} else if((m-i) == 0) {
-			run_once(QString::number(12), QString::number(y-1));
-		} else if((m-i) < 0){
+		} else if((m-i) <= 0){
 			run_once(QString::number(12+(m-i)), QString::number(y-1));
 		} if((m+i) > 12) {
 			run_once(QString::number((m+i)%12), QString::number(y+1));

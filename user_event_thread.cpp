@@ -53,10 +53,11 @@ void user_event_thread::run_once(QString month, QString year)
 
 	delete m_p_response;
 	m_p_response = setup_connection(user_request); delete user_request;
-	QString temp = *m_p_response;
-	std::cerr<<"user event: \t"<<temp.toStdString()<<
-		"month: "<<month.toInt()<<std::endl;
-	Q_EMIT(value_changed(temp, month.toInt()));
+	uint t = m_p_response->split("\n")[0].toInt();
+    std::cerr<<"user event: "<<t<<"month: "<<month.toInt()<<
+		"\tyear: "<<year.toInt()<<std::endl;
+	QString date = month+":"+year;
+	Q_EMIT(value_changed(date, t));
 }
 
 void user_event_thread::run_method()
@@ -64,7 +65,7 @@ void user_event_thread::run_method()
 	int m = m_p_month->toInt();
 	int y = m_p_year->toInt();
 	run_once(QString::number(m), QString::number(y));
-	for(int i=1; i < 4; ++i) {
+	for(int i=1; i < 12; ++i) {
 		if(i < m) {
 			run_once(QString::number(m-i), QString::number(y));
 		} else if((m-i) == 0) {

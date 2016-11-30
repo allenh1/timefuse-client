@@ -144,6 +144,7 @@ void create_group_event::on_create_group_event()
     (*request)+=QString::number(minute).rightJustified(2, '0'); (*request)+=":::";
     (*request)+=m_p_ui->duration_input->displayText(); (*request)+=":::";
     (*request)+=m_p_ui->location_input->displayText(); (*request)+=":::";
+	(*request)+="-5"; (*request)+=":::";
     (*request)+=m_p_ui->title_input->displayText(); (*request)+="\r\n\0";
 
 	std::cerr<<"request: "<<request->toStdString()<<std::endl;

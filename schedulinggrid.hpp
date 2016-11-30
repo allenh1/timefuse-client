@@ -4,6 +4,7 @@
 #include <QString>
 #include <QDebug>
 #include <cmath>
+#include <map>
 
 #include "group_event_thread.hpp"
 #include "user_event_thread.hpp"
@@ -48,8 +49,8 @@ public:
 private:
 	Ui::schedulingGrid *ui;
 
-	Q_SLOT void set_user_occupied_days(QString, int);
-	Q_SLOT void set_group_occupied_days(uint, int);
+	Q_SLOT void set_user_occupied_days(QString, uint);
+	Q_SLOT void set_group_occupied_days(QString, uint);
 
 	Q_SLOT void on_back_button();
     Q_SLOT void on_PushSwitchViews_clicked();
@@ -62,8 +63,8 @@ private:
 
 	QMutex * m_p_user_occupied_days;
 	QMutex * m_p_group_occupied_days;
-	QString * user_occupied_days[12];
-	QString * group_occupied_days[12];
+	std::map<QString,uint> * user_occupied_days;
+	std::map<QString,uint> * group_occupied_days;
     createevent * m_p_createevent;
 };
 

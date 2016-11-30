@@ -36,8 +36,8 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     QModelIndex newIndex = ui->tableCalendar->model()->index(0,0);
     ui->tableCalendar->setCurrentIndex(newIndex);
 
-	for (int x = 1; x <= 12; ++x) user_occupied_days[x] = new QString("0\n");
-	for (int x = 1; x <= 12; ++x) group_occupied_days[x] = new QString("0\n");
+	user_occupied_days = new std::map<QString,uint>();
+	group_occupied_days = new std::map<QString,uint>();
 
 	m_p_group_thread = new group_event_thread(); 
 	m_p_user_thread = new user_event_thread();
@@ -65,24 +65,22 @@ void schedulingGrid::fromHome()
     ui->frameMonth->show();
 }
 
-void schedulingGrid::set_group_occupied_days(uint text, int month)
+void schedulingGrid::set_group_occupied_days(QString date, uint res)
 {
 	m_p_group_occupied_days->lock();
-	delete group_occupied_days[month];
-	group_occupied_days[month] = new QString(QString::number(text));
+	(*group_occupied_days)[QString(date)]=res;
 	m_p_group_occupied_days->unlock();
 
-	if (month == m_month) colorCalendar();
+	if (date.split(":")[0].toInt() == m_month) colorCalendar();
 }
 
-void schedulingGrid::set_user_occupied_days(QString text, int month)
+void schedulingGrid::set_user_occupied_days(QString date, uint res)
 {
 	m_p_user_occupied_days->lock();
-	delete user_occupied_days[month];
-	user_occupied_days[month] = new QString(text);
+	(*user_occupied_days)[QString(date)]=res;
 	m_p_user_occupied_days->unlock();
 
-	if (month == m_month) colorCalendar();
+	if (date.split(":")[0].toInt() == m_month) colorCalendar();
 }
 
 /* This will show how to properly color in the calender */
@@ -91,14 +89,26 @@ void schedulingGrid::colorCalendar()
 	/**
 	 * @todo change this to be a set color for each group
 	 */	
-
+	QString temp = QString::number(m_month)+":"+QString::number(m_year);
     /* prepare these values to be colored */
 	m_p_user_occupied_days->lock();
-	uint user_occupied = (uint) user_occupied_days[m_month]->split("\n")[0].toInt();
+	uint user_occupied; std::cerr<<"month = "<<temp.toStdString()<<std::endl;
+	std::map<QString,uint>::iterator a = user_occupied_days->find(temp);
+	if(!user_occupied_days->size()) {
+		user_occupied = 0;
+	} else if(a != user_occupied_days->end()) {
+		user_occupied = (*user_occupied_days)[temp];
+	} else user_occupied = 0; 
 	m_p_user_occupied_days->unlock();
 
 	m_p_group_occupied_days->lock();
-	uint group_occupied = group_occupied_days[m_month]->split("\n")[0].toInt();;
+	uint group_occupied;
+	std::map<QString,uint>::iterator g = group_occupied_days->find(temp);
+	if(!group_occupied_days->size()) {
+		group_occupied = 0;
+	} else if(g != group_occupied_days->end()) {
+		group_occupied = (*group_occupied_days)[temp];
+	} else group_occupied = 0; 
 	m_p_group_occupied_days->unlock();
 
     /* do math */
@@ -190,33 +200,39 @@ void schedulingGrid::generateCalendar()
 void schedulingGrid::on_pushLeft_clicked()
 {
     /* for now these two buttons hijack the text fields. */
+	bool new_year = false;
     if (m_month != 1) {
         m_month--;
     } else {
-        m_year--; m_month=12;
-    }
-	int month = m_month; int year = m_year;
+        m_year--; m_month=12; new_year=true;
+    } if (new_year) {
+		int year = m_year;
+	   	m_p_user_thread->set_year(QString::number(year));
+		m_p_group_thread->set_year(QString::number(year));
+	}
+	int month = m_month; 
     m_p_user_thread->set_month(QString::number(month));
-	m_p_user_thread->set_year(QString::number(year));
-
 	m_p_group_thread->set_month(QString::number(month));
-	m_p_group_thread->set_year(QString::number(year));
+
     schedulingGrid::generateCalendar();
 }
 
 void schedulingGrid::on_pushRight_clicked()
 {
+	bool new_year = false;
     if (m_month != 12) {
         ++m_month;
     } else {
-        ++m_year; m_month=1;
-    }
-	int month = m_month; int year = m_year;
+        ++m_year; m_month=1; new_year=true;
+    } if (new_year) {
+		int year = m_year;
+		m_p_user_thread->set_year(QString::number(year));
+		m_p_group_thread->set_year(QString::number(year));
+	}
+	int month = m_month; 
     m_p_user_thread->set_month(QString::number(month));
-	m_p_user_thread->set_year(QString::number(year));
-
 	m_p_group_thread->set_month(QString::number(month));
-	m_p_group_thread->set_year(QString::number(year));
+	
     schedulingGrid::generateCalendar();
 }
 

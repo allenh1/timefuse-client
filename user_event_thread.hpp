@@ -7,6 +7,8 @@
 
 #include "tcp_connection.hpp"
 
+typedef unsigned int uint;
+
 class user_event_thread : public QObject
 {
 	Q_OBJECT
@@ -56,7 +58,7 @@ public:
 		m_p_year_mutex->unlock();
 	};
 
-	Q_SIGNAL void value_changed(QString, int);
+	Q_SIGNAL void value_changed(QString, uint);
 private:
 	QThread * m_p_thread;
 	QMutex * m_p_response_mutex;

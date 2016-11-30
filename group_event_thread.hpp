@@ -18,7 +18,7 @@ public:
 
 	bool init();
 
-	Q_SIGNAL void value_changed(uint, int);
+	Q_SIGNAL void value_changed(QString, uint);
 	
 	Q_SLOT void run();
 	Q_SLOT void run_once(QString, QString);
