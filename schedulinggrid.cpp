@@ -56,6 +56,20 @@ schedulingGrid::~schedulingGrid()
     delete m_p_username;
     delete m_p_password;
 	delete m_p_user_occupied_days;
+	delete m_p_group_occupied_days;
+	delete user_occupied_days;
+	delete group_occupied_days;
+}
+
+void schedulingGrid::reset_maps()
+{
+	if(user_occupied_days->size() > 0) {
+		user_occupied_days->erase(user_occupied_days->begin(),
+								  user_occupied_days->end());
+	} if(group_occupied_days->size() > 0) {
+		group_occupied_days->erase(group_occupied_days->begin(),
+								  group_occupied_days->end());
+	}
 }
 
 void schedulingGrid::fromHome()

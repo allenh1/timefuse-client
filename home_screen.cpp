@@ -200,5 +200,10 @@ void home_screen::from_account_settings()
 
 void home_screen::on_logout()
 {
+	m_p_schedule->m_p_user_thread->set_username(QString(""));
+	m_p_schedule->m_p_user_thread->set_password(QString(""));
+	m_p_schedule->m_p_group_thread->set_username(QString(""));
+	m_p_schedule->m_p_group_thread->set_password(QString(""));
+	m_p_schedule->reset_maps();
 	Q_EMIT(return_to_login());
 }

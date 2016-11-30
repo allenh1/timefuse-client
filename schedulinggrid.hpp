@@ -38,7 +38,8 @@ public:
 
     void fromHome();
 	uint get_year();
-
+	void reset_maps();
+	
 	Q_SIGNAL void return_to_home_screen();
 
 	Q_SLOT void colorCalendar();

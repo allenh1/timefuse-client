@@ -57,6 +57,7 @@ void group_event_thread::run_once(QString month, QString year) {
 		(*group_request)+=month; (*group_request)+=":::";
 		(*group_request)+=year + ":::" + list[x] + "\r\n\0";
 		QString * group_response = setup_connection(group_request);
+		if(group_response->contains("ERROR")) continue;
 		group_occupied_days = group_occupied_days |
 			((uint) group_response->split("\n")[0].toInt());
 		delete group_request, delete group_response;

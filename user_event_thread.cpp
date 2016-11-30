@@ -53,6 +53,7 @@ void user_event_thread::run_once(QString month, QString year)
 
 	delete m_p_response;
 	m_p_response = setup_connection(user_request); delete user_request;
+	if(m_p_response->contains("ERROR")) return;
 	uint t = m_p_response->split("\n")[0].toInt();
     std::cerr<<"user event: "<<t<<"month: "<<month.toInt()<<
 		"\tyear: "<<year.toInt()<<std::endl;
