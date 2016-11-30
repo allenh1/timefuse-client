@@ -30,10 +30,13 @@ public:
 	QString * m_p_password;
 
     void fromHome();
-	
-	Q_SLOT void on_back_button();
-	Q_SIGNAL void return_to_home_screen();
+	uint get_year();
 
+	Q_SIGNAL void return_to_home_screen();
+	Q_SIGNAL void send_year(QString);
+	Q_SIGNAL void recolor_month();
+
+	Q_SLOT void on_back_button();
     Q_SLOT void to_create_event();
     Q_SLOT void from_create_event();
 	Q_SLOT void set_user_occupied_days(QString, int);
@@ -44,11 +47,8 @@ private slots:
 											 int previousColumn);
 
     void on_PushSwitchViews_clicked();
-
     void on_pushRightW_clicked();
-
     void on_pushLeftW_clicked();
-
 private:
 	Ui::schedulingGrid *ui;
 
@@ -65,7 +65,7 @@ private:
 	QString * user_occupied_days[12];
     createevent * m_p_createevent;
     int initial = 0;
-    void colorCalendar();
+    Q_SLOT void colorCalendar();
 };
 
 const QString months[]=

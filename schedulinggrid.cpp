@@ -15,7 +15,6 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     ui->setupUi(this);
     ui->tableCalendar->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    //ui->tableWeek->horizontalHeaderItem(0)->setText("Whatever");
     m_p_username = new QString("");
     m_p_password = new QString("");
     connect(ui->back_button, &QPushButton::released,
@@ -42,7 +41,7 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     QModelIndex newIndex = ui->tableCalendar->model()->index(0,0);
     ui->tableCalendar->setCurrentIndex(newIndex);
 
-	for (int x = 1; x <= 13; ++x) user_occupied_days[x] = NULL;
+	for (int x = 1; x <= 12; ++x) user_occupied_days[x] = new QString("0\n");
     //I call colorCalendar in home_screen.cpp. doing it here doesn't work.
     //I don't know why but OK!!!
 	//----- it doesn't work bc the user hasn't logged in yet when this is called
@@ -69,28 +68,18 @@ void schedulingGrid::set_user_occupied_days(QString text, int month)
 	delete user_occupied_days[month];
 	user_occupied_days[month] = new QString(text);
 	m_p_user_occupied_days->unlock();
+
+	if (month == ui->lineMonth->displayText().toInt()) Q_EMIT(recolor_month());
+}
+
+uint schedulingGrid::get_year()
+{
+	return ui->lineYear->displayText().toInt();
 }
 
 /* This will show how to properly color in the calender */
 void schedulingGrid::colorCalendar()
 {	
-	/**
-	 * @todo Set the users' color settings to
-	 * the existing settings within the database.
-	 *
-	 * QList<schedule_set> coloration;
-	 */
-    //std::cerr<<"request to COLOR"<<std::endl;
-	/* ask for user events in the selected month */
-	
-	
-    // QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
-    // (*user_request)+=m_p_username; (*user_request)+=":::";
-    // (*user_request)+=m_p_password; (*user_request)+=":::";
-    // (*user_request)+=ui->lineMonth->displayText(); (*user_request)+=":::";
-    // (*user_request)+=ui->lineYear->displayText(); bool ok;
-    // QString * user_response = setup_connection(user_request);
-
 	/**
 	 * @todo remove this request!
 	 */
@@ -122,7 +111,7 @@ void schedulingGrid::colorCalendar()
 	bool ok;
     ushort month = (ui->lineMonth->displayText()).toInt(&ok, 10);
     uint year = (ui->lineYear->displayText()).toInt(&ok,10);
-	
+	Q_EMIT (send_year(QString(ui->lineYear->displayText())));
 	/* prepare these values to be colored */
 	m_p_user_occupied_days->lock();
 	uint user_occupied = (uint) user_occupied_days[month]->split("\n")[0].toInt();

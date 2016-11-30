@@ -49,13 +49,13 @@ public:
 		m_p_month_mutex->unlock();
 	};
 	
-	void set_year(const QString & year) {
+	Q_SLOT void set_year(QString year) {
 		m_p_year_mutex->lock();
 		(*m_p_year)=year;
 		m_p_year_mutex->unlock();
 	};
 
-	Q_SIGNAL void value_changed(QString,int);
+	Q_SIGNAL void value_changed(QString, int);
 private:
 	QThread * m_p_thread;
 	QMutex * m_p_response_mutex;

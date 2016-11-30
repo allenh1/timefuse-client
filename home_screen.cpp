@@ -52,6 +52,9 @@ home_screen::home_screen(QWidget *parent) :
 	connect(m_p_user_thread, &user_event_thread::value_changed,
 			m_p_schedule, &schedulingGrid::set_user_occupied_days,
 			Qt::DirectConnection);
+	connect(m_p_schedule, &schedulingGrid::send_year,
+			m_p_user_thread, &user_event_thread::set_year,
+			Qt::DirectConnection);
 
 	// logout connection
 	connect(m_p_ui->logout_button, &QPushButton::released,
@@ -69,7 +72,6 @@ home_screen::~home_screen()
 	delete m_p_manage_groups;
 	delete m_p_friends_list;
 }
-
 
 void home_screen::to_account_settings()
 {

@@ -3,7 +3,6 @@
 user_event_thread::user_event_thread(QObject * _p_parent)
 {
 	m_p_thread = new QThread();
-	
 	m_p_response_mutex = new QMutex();
 	m_p_username_mutex = new QMutex();
 	m_p_password_mutex = new QMutex();
@@ -14,7 +13,7 @@ user_event_thread::user_event_thread(QObject * _p_parent)
 	m_p_username = new QString();
 	m_p_password = new QString();
 	m_p_month = new QString();
-	m_p_year = new QString("2016");
+	m_p_year = new QString();
 }
 
 user_event_thread::~user_event_thread()
@@ -38,8 +37,7 @@ bool user_event_thread::init()
 
 void user_event_thread::run()
 {
-	for(;;m_p_thread->msleep(10000)) {
-		*m_p_year = "2016";
+	for(;;m_p_thread->msleep(400)) {
 		for (int x = 1; x <= 12; ++x) {
 			QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
 
