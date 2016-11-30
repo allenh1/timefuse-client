@@ -262,7 +262,6 @@ void schedulingGrid::generateWeek()
         currentDay += "/";
         currentDay += ui->tableCalendar->item(currentRow, i)->text();
         days << currentDay;
-
     }
 
     ui->labelSunday->setText(days[0]);
@@ -433,13 +432,6 @@ void schedulingGrid::generateWeek()
 
 void schedulingGrid::to_create_event()
 {
-	m_p_createevent = new createevent();
-	connect(ui->pushCreateEvent, &QPushButton::released,
-			this, &schedulingGrid::to_create_event);
-    connect(m_p_createevent, &createevent::return_to_schedule,
-            this, &schedulingGrid::from_create_event);
-
-	
 	m_p_createevent->m_p_username = m_p_username;
     m_p_createevent->m_p_password = m_p_password;
 	
@@ -449,7 +441,7 @@ void schedulingGrid::to_create_event()
 
 void schedulingGrid::from_create_event()
 {
-    schedulingGrid::colorCalendar();
+    //schedulingGrid::colorCalendar();
     m_p_createevent->hide();
     this->show();
 }

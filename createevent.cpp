@@ -17,7 +17,7 @@ createevent::createevent(QWidget *parent) :
 	connect(ui->pushButton, &QPushButton::released,
 			this, &createevent::create_the_event);
 	connect(ui->pushCancel, &QPushButton::released,
-			this, &createevent::create_the_event);
+			this, &createevent::cancel_event);
 }
 
 createevent::~createevent()
