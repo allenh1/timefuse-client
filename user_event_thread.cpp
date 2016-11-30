@@ -34,12 +34,25 @@ bool user_event_thread::init() {
 }
 
 int user_event_thread::run() {
+	for(;;m_p_thread->msleep(10000)) {
+		QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
+
+		(*user_request)+=*m_p_username; (*user_request)+=":::";
+		(*user_request)+=*m_p_password; (*user_request)+=":::";
+		(*user_request)+=*m_p_month; (*user_request)+=":::";
+		(*user_request)+=*m_p_year; 
+
+		m_p_response = setup_connection(user_request); delete user_request;
+	} return 1;
+}
+
+void user_event_thread::run_once() {
 	QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
 
 	(*user_request)+=*m_p_username; (*user_request)+=":::";
-    (*user_request)+=*m_p_password; (*user_request)+=":::";
-    (*user_request)+=*m_p_month; (*user_request)+=":::";
-    (*user_request)+=*m_p_year; 
-
-	m_p_response = setup_connection(user_request); return 1;
+	(*user_request)+=*m_p_password; (*user_request)+=":::";
+	(*user_request)+=*m_p_month; (*user_request)+=":::";
+	(*user_request)+=*m_p_year; 
+	
+	m_p_response = setup_connection(user_request); delete user_request;
 }

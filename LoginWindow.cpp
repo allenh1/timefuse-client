@@ -147,11 +147,41 @@ void LoginWindow::login(QString username, QString password) {
 	if(response->size() != 0) {
 		std::cerr<<response->toStdString()<<std::endl;
 		if(response->contains(tr("OK"))) {
+			(*(m_p_home_screen->m_p_username))=username; 
+		    (*(m_p_home_screen->m_p_password))=encrypt_string(password);
+			
 			this->hide();
 			m_p_home_screen->show();
 
-			(*(m_p_home_screen->m_p_username))=username; 
-		    (*(m_p_home_screen->m_p_password))=encrypt_string(password);
+			QStringList today = QDateTime::currentDateTime()
+				.toString(QString("MM:YYYY")).split(":");
+			m_p_home_screen->m_p_group_thread->set_username(username);
+			m_p_home_screen->m_p_group_thread->
+				set_password(encrypt_string(password));
+			m_p_home_screen->m_p_group_thread->set_month(today[0]);
+			m_p_home_screen->m_p_group_thread->set_year(today[1]);
+
+			if(!m_p_home_screen->m_p_group_thread->init()) {
+				std::cerr<<"group event thread did not start"<<std::endl;
+			}
+
+			m_p_home_screen->m_p_user_thread->set_username(username);
+			m_p_home_screen->m_p_user_thread->
+				set_password(encrypt_string(password));
+			m_p_home_screen->m_p_user_thread->set_month(today[0]);
+			m_p_home_screen->m_p_user_thread->set_year(today[1]);
+			
+		    if(!m_p_home_screen->m_p_user_thread->init()) {
+				std::cerr<<"user event thread did not start"<<std::endl;
+			}
+
+			m_p_home_screen->m_p_friends_thread->set_username(username);
+			m_p_home_screen->m_p_friends_thread->
+				set_password(encrypt_string(password));
+
+			if(!m_p_home_screen->m_p_friends_thread->init()) {
+				std::cerr<<"friends thread did not start"<<std::endl;
+			}
 		} else {
 			QMessageBox::critical(this, tr("Error"), *response);
 		}
@@ -163,6 +193,14 @@ void LoginWindow::login(QString username, QString password) {
 
 void LoginWindow::hide_home_screen()
 {
-	m_p_home_screen->hide();
+	if(m_p_home_screen->m_p_user_thread->isRunning()) {
+		m_p_home_screen->m_p_user_thread->requestInterruption();
+		m_p_home_screen->m_p_user_thread->quit();
+		std::cerr<<"user thread stopped running"<<std::endl;
+	} if(m_p_home_screen->m_p_group_thread->isRunning()) {
+		m_p_home_screen->m_p_group_thread->requestInterruption();
+		m_p_home_screen->m_p_group_thread->quit();
+		std::cerr<<"group thread stopped running"<<std::endl;
+	} m_p_home_screen->hide();
 	this->show();
 }

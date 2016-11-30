@@ -19,24 +19,10 @@ home_screen::home_screen(QWidget *parent) :
 	m_p_account_settings = new account_settings();
 	m_p_manage_groups = new manage_groups();
 	m_p_friends_list = new friends_list();
-
-	QStringList today = QDateTime::currentDateTime()
-		.toString(QString("MM:YYYY")).split(":");
 	
-	m_p_group_thread = new group_event_thread();
-	m_p_group_thread->set_username(*m_p_username);
-	m_p_group_thread->set_password(*m_p_password);
-	m_p_group_thread->set_month(today[0]);
-	m_p_group_thread->set_year(today[1]);
-	if(!m_p_group_thread->init()) { /*throw except*/ } 
-
+	m_p_group_thread = new group_event_thread(); 
 	m_p_user_thread = new user_event_thread();
-	m_p_user_thread->set_username(*m_p_username);
-	m_p_user_thread->set_password(*m_p_password);
-	m_p_user_thread->set_month(today[0]);
-	m_p_user_thread->set_year(today[1]);
-	if(!m_p_user_thread->init()) {/*throw except*/}
-
+	m_p_friends_thread = new friends_thread();
 	
 	// connections to different windows
 	connect(m_p_ui->create_event, &QPushButton::released,

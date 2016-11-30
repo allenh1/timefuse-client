@@ -32,6 +32,36 @@ bool group_event_thread::init() {
 }
 
 int group_event_thread::run() {
+	for(;;m_p_thread->msleep(10000)) {
+		QString * get_groups = new QString("REQUEST_GROUPS ");
+		*get_groups += *m_p_username + ":::" + *m_p_password + "\r\n\0";
+
+		/* split along the '\n' character */
+		QString * get_group_response = setup_connection(get_groups);
+		QStringList list = get_group_response->split("\n");
+	
+		/* prepare these values to be colored */	
+		uint group_occupied_days = 0;
+
+		/* ask for (every) group in the selected month */
+		for (size_t x = 0; x < list.size(); ++x) {
+			/* send the current group's select query */
+			QString * group_request = new QString("REQUEST_GROUP_MONTH_EVENTS ");
+			(*group_request)+=*m_p_username;  (*group_request)+=":::";
+			(*group_request)+=*m_p_password;  (*group_request)+=":::";
+			(*group_request)+=*m_p_month;	(*group_request)+=":::";
+			(*group_request)+=*m_p_year + ":::" + list[x] + "\r\n\0";
+			QString * group_response = setup_connection(group_request);
+			group_occupied_days = group_occupied_days |
+				((uint) group_response->split("\n")[0].toInt());
+			delete group_request, delete group_response;
+		} if(m_occupied_days != group_occupied_days) {
+			m_occupied_days = group_occupied_days;
+		} delete get_group_response; delete get_groups;
+	} return 1;
+}
+
+void group_event_thread::run_once() {
 	QString * get_groups = new QString("REQUEST_GROUPS ");
 	*get_groups += *m_p_username + ":::" + *m_p_password + "\r\n\0";
 
@@ -54,6 +84,7 @@ int group_event_thread::run() {
 		group_occupied_days = group_occupied_days |
 			((uint) group_response->split("\n")[0].toInt());
 		delete group_request, delete group_response;
-	} m_occupied_days = group_occupied_days;
-	return 1;
+	} if(m_occupied_days != group_occupied_days) {
+		m_occupied_days = group_occupied_days;
+	} delete get_group_response; delete get_groups;
 }

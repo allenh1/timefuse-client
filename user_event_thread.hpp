@@ -15,9 +15,14 @@ public:
 	virtual ~user_event_thread();
 
 	bool init();
-
+	
 	Q_SLOT int run();
+	Q_SLOT void run_once();
 
+	bool isRunning() {return m_p_thread->isRunning();};
+	void quit() {m_p_thread->quit();};
+	void requestInterruption() {m_p_thread->requestInterruption();};
+	
 	QString get_response() {
 		QString temp;
 		m_p_response_mutex->lock();

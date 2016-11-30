@@ -9,9 +9,10 @@
 #include "create_group_event.hpp"
 #include "user_event_thread.hpp"
 #include "account_settings.hpp"
+#include "schedulinggrid.hpp"
+#include "friends_thread.hpp"
 #include "manage_groups.hpp"
 #include "ui_home_screen.h"
-#include "schedulinggrid.hpp"
 #include "friends_list.hpp"
 
 namespace Ui {
@@ -28,6 +29,10 @@ public:
 
 	QString * m_p_username;
 	QString * m_p_password;
+
+	group_event_thread * m_p_group_thread;
+	user_event_thread * m_p_user_thread;
+	friends_thread * m_p_friends_thread;
 
 	Q_SLOT void to_account_settings();
 	Q_SLOT void to_see_schedule();
@@ -52,8 +57,5 @@ private:
 	manage_groups * m_p_manage_groups;
 	create_group_event * m_p_create_event;
 	friends_list * m_p_friends_list;
-
-	group_event_thread * m_p_group_thread;
-	user_event_thread * m_p_user_thread;
 };
 #endif
