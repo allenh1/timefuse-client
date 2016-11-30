@@ -17,7 +17,8 @@ public:
 	bool init();
 	
 	Q_SLOT void run();
-	Q_SLOT void run_once();
+	Q_SLOT void run_once(QString month, QString year);
+	Q_SLOT void run_method();
 
 	const bool & isRunning() { return m_p_thread->isRunning(); };
 	void quit() { m_p_thread->quit(); };
