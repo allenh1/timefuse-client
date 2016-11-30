@@ -36,9 +36,12 @@ public:
 
     Q_SLOT void to_create_event();
     Q_SLOT void from_create_event();
-	Q_SLOT void set_user_occupied_days(QString);
+	Q_SLOT void set_user_occupied_days(QString, int);
 private slots:
-    void on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+    void on_tableCalendar_currentCellChanged(int currentRow,
+											 int currentColumn,
+											 int previousRow,
+											 int previousColumn);
 
     void on_PushSwitchViews_clicked();
 
@@ -59,7 +62,7 @@ private:
     Q_SLOT void on_pushCreateEvent_clicked();
 
 	QMutex * m_p_user_occupied_days;
-	QString user_occupied_days;
+	QString * user_occupied_days[12];
     createevent * m_p_createevent;
     int initial = 0;
     void colorCalendar();

@@ -42,6 +42,7 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     QModelIndex newIndex = ui->tableCalendar->model()->index(0,0);
     ui->tableCalendar->setCurrentIndex(newIndex);
 
+	for (int x = 1; x <= 13; ++x) user_occupied_days[x] = NULL;
     //I call colorCalendar in home_screen.cpp. doing it here doesn't work.
     //I don't know why but OK!!!
 	//----- it doesn't work bc the user hasn't logged in yet when this is called
@@ -62,11 +63,11 @@ void schedulingGrid::fromHome()
     ui->frameMonth->show();
 }
 
-void schedulingGrid::set_user_occupied_days(QString text)
+void schedulingGrid::set_user_occupied_days(QString text, int month)
 {
-	std::cerr<<"Updated text: \""<<text.toStdString()<<"\""<<std::endl;
 	m_p_user_occupied_days->lock();
-	user_occupied_days = text;
+	delete user_occupied_days[month];
+	user_occupied_days[month] = new QString(text);
 	m_p_user_occupied_days->unlock();
 }
 
@@ -100,12 +101,7 @@ void schedulingGrid::colorCalendar()
 	// /* split along the '\n' character */
 	// QString * get_group_response = setup_connection(get_groups);
 	// QStringList list = get_group_response->split("\n");
-	
-	/* prepare these values to be colored */
-	m_p_user_occupied_days->lock();
-	uint user_occupied = (uint) user_occupied_days.split("\n")[0].toInt();
-	m_p_user_occupied_days->unlock();
-	uint group_occupied = 0;
+
 	/* ask for (every) group in the selected month */
 	// for (size_t x = 0; x < list.size(); ++x) {
 	// 	/* send the current group's select query */
@@ -118,14 +114,20 @@ void schedulingGrid::colorCalendar()
 	// 	group_occupied_days = group_occupied_days | ((uint) group_response->split("\n")[0].toInt());
 	// 	delete group_request, delete group_response;
 	// }
-	
-	
+
+			
 	/**
 	 * @todo change this to be a set color for each group
 	 */	
 	bool ok;
     ushort month = (ui->lineMonth->displayText()).toInt(&ok, 10);
     uint year = (ui->lineYear->displayText()).toInt(&ok,10);
+	
+	/* prepare these values to be colored */
+	m_p_user_occupied_days->lock();
+	uint user_occupied = (uint) user_occupied_days[month]->split("\n")[0].toInt();
+	m_p_user_occupied_days->unlock();
+	uint group_occupied = 0;
 
     /* do math */
     ushort C = std::floor(year / 100); ushort m = month - 2;
