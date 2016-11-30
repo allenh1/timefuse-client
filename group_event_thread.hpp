@@ -18,8 +18,11 @@ public:
 
 	bool init();
 
-	Q_SLOT int run();
-	Q_SLOT void run_once();
+	Q_SIGNAL void value_changed(uint, int);
+	
+	Q_SLOT void run();
+	Q_SLOT void run_once(QString, QString);
+	Q_SLOT void run_method();
 
 	bool isRunning() {return m_p_thread->isRunning();};
 	void quit() {m_p_thread->quit();};

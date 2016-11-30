@@ -17,10 +17,12 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 
     m_p_username = new QString("");
     m_p_password = new QString("");
+
 	connect(ui->back_button, &QPushButton::released,
             this, &schedulingGrid::on_back_button);
 
     m_p_createevent = new createevent();
+
 	connect(ui->pushCreateEvent, &QPushButton::released,
 			this, &schedulingGrid::to_create_event);
     connect(m_p_createevent, &createevent::return_to_schedule,
@@ -29,16 +31,22 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     ui->frameWeek->hide();
 
 	m_p_user_occupied_days = new QMutex();
+	m_p_group_occupied_days = new QMutex();
 	
     QModelIndex newIndex = ui->tableCalendar->model()->index(0,0);
     ui->tableCalendar->setCurrentIndex(newIndex);
 
 	for (int x = 1; x <= 12; ++x) user_occupied_days[x] = new QString("0\n");
+	for (int x = 1; x <= 12; ++x) group_occupied_days[x] = new QString("0\n");
 
 	m_p_group_thread = new group_event_thread(); 
 	m_p_user_thread = new user_event_thread();
+	
 	connect(m_p_user_thread, &user_event_thread::value_changed,
 			this, &schedulingGrid::set_user_occupied_days,
+			Qt::DirectConnection);
+	connect(m_p_group_thread, &group_event_thread::value_changed,
+			this, &schedulingGrid::set_group_occupied_days,
 			Qt::DirectConnection);
 }
 
@@ -55,6 +63,16 @@ void schedulingGrid::fromHome()
     schedulingGrid::colorCalendar();
     ui->frameWeek->hide();
     ui->frameMonth->show();
+}
+
+void schedulingGrid::set_group_occupied_days(uint text, int month)
+{
+	m_p_group_occupied_days->lock();
+	delete group_occupied_days[month];
+	group_occupied_days[month] = new QString(QString::number(text));
+	m_p_group_occupied_days->unlock();
+
+	if (month == m_month) colorCalendar();
 }
 
 void schedulingGrid::set_user_occupied_days(QString text, int month)
@@ -78,7 +96,10 @@ void schedulingGrid::colorCalendar()
 	m_p_user_occupied_days->lock();
 	uint user_occupied = (uint) user_occupied_days[m_month]->split("\n")[0].toInt();
 	m_p_user_occupied_days->unlock();
-	uint group_occupied = 0;
+
+	m_p_group_occupied_days->lock();
+	uint group_occupied = group_occupied_days[m_month]->split("\n")[0].toInt();;
+	m_p_group_occupied_days->unlock();
 
     /* do math */
     ushort C = std::floor(m_year / 100); ushort m = m_month - 2;
@@ -174,19 +195,28 @@ void schedulingGrid::on_pushLeft_clicked()
     } else {
         m_year--; m_month=12;
     }
-    //colorCalendar();
+	int month = m_month; int year = m_year;
+    m_p_user_thread->set_month(QString::number(month));
+	m_p_user_thread->set_year(QString::number(year));
+
+	m_p_group_thread->set_month(QString::number(month));
+	m_p_group_thread->set_year(QString::number(year));
     schedulingGrid::generateCalendar();
 }
 
 void schedulingGrid::on_pushRight_clicked()
 {
-
     if (m_month != 12) {
         ++m_month;
     } else {
         ++m_year; m_month=1;
     }
-    //colorCalendar();
+	int month = m_month; int year = m_year;
+    m_p_user_thread->set_month(QString::number(month));
+	m_p_user_thread->set_year(QString::number(year));
+
+	m_p_group_thread->set_month(QString::number(month));
+	m_p_group_thread->set_year(QString::number(year));
     schedulingGrid::generateCalendar();
 }
 

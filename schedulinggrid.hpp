@@ -38,22 +38,20 @@ public:
     void fromHome();
 	uint get_year();
 
-	Q_SLOT void set_user_occupied_days(QString, int);
 	Q_SIGNAL void return_to_home_screen();
-	Q_SIGNAL void recolor_month();
 
 	Q_SLOT void colorCalendar();
 	Q_SLOT void generateCalendar();
-	Q_SLOT void on_back_button();
 
 	Q_SLOT void to_create_event();
     Q_SLOT void from_create_event();
 private:
 	Ui::schedulingGrid *ui;
 
-	group_event_thread * group_event;
-	user_event_thread * user_event;
+	Q_SLOT void set_user_occupied_days(QString, int);
+	Q_SLOT void set_group_occupied_days(uint, int);
 
+	Q_SLOT void on_back_button();
     Q_SLOT void on_PushSwitchViews_clicked();
     Q_SLOT void on_pushRightW_clicked();
     Q_SLOT void on_pushLeftW_clicked();
@@ -63,7 +61,9 @@ private:
 	Q_SLOT void generateWeek();
 
 	QMutex * m_p_user_occupied_days;
+	QMutex * m_p_group_occupied_days;
 	QString * user_occupied_days[12];
+	QString * group_occupied_days[12];
     createevent * m_p_createevent;
 };
 

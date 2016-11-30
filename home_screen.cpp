@@ -67,12 +67,13 @@ void home_screen::kick_off_threads() {
 	QDate d = QDate::currentDate();
 
 	std::cerr<<"today: "<<d.month()<<" "<<d.year()<<std::endl;
-	
+
 	m_p_schedule->m_month=d.month();
 	m_p_schedule->m_year=d.year();
 
 	m_p_schedule->generateCalendar();
-			
+
+	// user event thread
 	m_p_schedule->m_p_user_thread->set_username(*m_p_username);
 	m_p_schedule->m_p_user_thread->
 		set_password(*m_p_password);
@@ -83,7 +84,20 @@ void home_screen::kick_off_threads() {
 			
 	if(!m_p_schedule->m_p_user_thread->init()) {
 		std::cerr<<"user event thread did not start"<<std::endl;
-	} 
+	}
+
+	// group event thread 
+	m_p_schedule->m_p_group_thread->set_username(*m_p_username);
+	m_p_schedule->m_p_group_thread->
+		set_password(*m_p_password);
+	m_p_schedule->m_p_group_thread->set_month(
+		QString::number(d.month()));
+	m_p_schedule->m_p_group_thread->set_year(
+		QString::number(d.year()));
+			
+	if(!m_p_schedule->m_p_group_thread->init()) {
+		std::cerr<<"user event thread did not start"<<std::endl;
+	}
 }
 
 void home_screen::to_account_settings()
