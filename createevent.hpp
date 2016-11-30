@@ -13,28 +13,21 @@ namespace Ui {
 	class createevent;
 }
 
-class createevent : public QDialog
+class createevent : public QWidget
 {
     Q_OBJECT
 public:
     explicit createevent(QWidget *parent = 0);
     virtual ~createevent();
 
+	Ui::createevent * ui;
+	
 	QString * m_p_username;
 	QString * m_p_password;
 
-    QDate selected;
-
 	Q_SIGNAL void return_to_schedule();
-
-    void changeDate();
-
-private slots:
-    void on_pushCancel_clicked();
-
 private:
-	Q_SLOT void on_pushButton_clicked();
-	
-    Ui::createevent * ui;
+	Q_SLOT void create_the_event();
+	Q_SLOT void cancel_event();
 };
 #endif

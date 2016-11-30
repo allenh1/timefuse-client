@@ -1,13 +1,16 @@
 #ifndef HOME_SCREEN_HPP
 #define HOME_SCREEN_HPP
+#include <QStringList>
+#include <QDateTime>
 #include <QWidget>
 #include <QtGui>
 
 #include "create_group_event.hpp"
 #include "account_settings.hpp"
+#include "schedulinggrid.hpp"
+#include "friends_thread.hpp"
 #include "manage_groups.hpp"
 #include "ui_home_screen.h"
-#include "schedulinggrid.hpp"
 #include "friends_list.hpp"
 
 namespace Ui {
@@ -24,6 +27,11 @@ public:
 
 	QString * m_p_username;
 	QString * m_p_password;
+	
+	friends_thread * m_p_friends_thread;
+	friends_list * m_p_friends_list;
+
+	void kick_off_threads();
 
 	Q_SLOT void to_account_settings();
 	Q_SLOT void to_see_schedule();
@@ -47,6 +55,5 @@ private:
 	account_settings * m_p_account_settings;
 	manage_groups * m_p_manage_groups;
 	create_group_event * m_p_create_event;
-	friends_list * m_p_friends_list;
 };
 #endif

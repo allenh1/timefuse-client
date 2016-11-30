@@ -41,8 +41,8 @@ void friends_list::on_add_friend()
     if(m_p_ui->username_input->text().size() == 0) return;
     QString * request = new QString("CREATE_FRIENDSHIP ");
 
-    (*request)+=m_p_username; (*request)+=":::";
-    (*request)+=m_p_password; (*request)+=":::";
+    (*request)+=*m_p_username; (*request)+=":::";
+    (*request)+=*m_p_password; (*request)+=":::";
     (*request)+=m_p_ui->username_input->text();
 
 	m_p_ui->username_input->setText("");

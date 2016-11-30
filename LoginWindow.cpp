@@ -147,11 +147,13 @@ void LoginWindow::login(QString username, QString password) {
 	if(response->size() != 0) {
 		std::cerr<<response->toStdString()<<std::endl;
 		if(response->contains(tr("OK"))) {
+			(*(m_p_home_screen->m_p_username))=username; 
+		    (*(m_p_home_screen->m_p_password))=encrypt_string(password);
+			
 			this->hide();
 			m_p_home_screen->show();
 
-			(*(m_p_home_screen->m_p_username))=username; 
-		    (*(m_p_home_screen->m_p_password))=encrypt_string(password);
+			m_p_home_screen->kick_off_threads();
 		} else {
 			QMessageBox::critical(this, tr("Error"), *response);
 		}
@@ -163,6 +165,6 @@ void LoginWindow::login(QString username, QString password) {
 
 void LoginWindow::hide_home_screen()
 {
-	m_p_home_screen->hide();
+    m_p_home_screen->hide();
 	this->show();
 }
