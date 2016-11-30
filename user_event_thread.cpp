@@ -54,21 +54,27 @@ void user_event_thread::run_once(QString month, QString year)
 	delete m_p_response;
 	m_p_response = setup_connection(user_request); delete user_request;
 	QString temp = *m_p_response;
-	Q_EMIT (value_changed(temp, month.toInt()));
+	std::cerr<<"month = "<<month.toInt()<<std::endl;
+	std::cerr<<"response = "<<temp.toStdString()<<std::endl;
+	Q_EMIT(value_changed(temp, month.toInt()));
 }
 
 void user_event_thread::run_method()
 {
 	int m = m_p_month->toInt();
 	int y = m_p_year->toInt();
+	run_once(QString::number(m), QString::number(y));
 	for(int i=1; i < 4; ++i) {
 		if(i < m) {
-			int t = (m-i)%12;
-			run_once(QString::number(t), QString::number(y));
+			run_once(QString::number(m-i), QString::number(y));
 		} else if((m-i) == 0) {
-			run_once(QString::number(t), QString::number(y-1));
-		} else if(i == m){
-			run_once(QString::number(t), QString::number(y-1));
-		}	
+			run_once(QString::number(12), QString::number(y-1));
+		} else if((m-i) < 0){
+			run_once(QString::number(12+(m-i)), QString::number(y-1));
+		} if((m+i) > 12) {
+			run_once(QString::number((m+i)%12), QString::number(y+1));
+		} else if((m+i) <= 12) {
+			run_once(QString::number(m+i), QString::number(y));
+		}
 	}
 }

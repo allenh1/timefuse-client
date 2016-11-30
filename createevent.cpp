@@ -1,7 +1,7 @@
 #include "createevent.hpp"
 
 createevent::createevent(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::createevent)
 {
 	QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
@@ -13,6 +13,11 @@ createevent::createevent(QWidget *parent) :
 
     m_p_username = new QString("");
     m_p_password = new QString("");
+
+	connect(ui->pushButton, &QPushButton::released,
+			this, &createevent::create_the_event);
+	connect(ui->pushCancel, &QPushButton::released,
+			this, &createevent::create_the_event);
 }
 
 createevent::~createevent()
@@ -22,12 +27,7 @@ createevent::~createevent()
     delete m_p_password;
 }
 
-void createevent::changeDate()
-{
-    ui->dateEdit->setDate(selected);
-}
-
-void createevent::on_pushButton_clicked()
+void createevent::create_the_event()
 {
     QString * request = new QString("CREATE_USER_EVENT ");
     int year = ui->dateEdit->date().year();
@@ -56,11 +56,13 @@ void createevent::on_pushButton_clicked()
     QString * response = setup_connection(request);
     std::cerr<<"response: "<<response->toStdString()<<std::endl;
 
-    if(response->contains("ERROR")) QMessageBox::critical(this, tr("Error"), *response);
+    if(response->contains("ERROR")) {
+		QMessageBox::critical(this, tr("Error"), *response);
+	}
 	else Q_EMIT(return_to_schedule());
 }
 
-void createevent::on_pushCancel_clicked()
+void createevent::cancel_event()
 {
     Q_EMIT(return_to_schedule());
 }

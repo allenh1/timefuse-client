@@ -18,10 +18,8 @@ home_screen::home_screen(QWidget *parent) :
 	m_p_create_event = new create_group_event();
 	m_p_account_settings = new account_settings();
 	m_p_manage_groups = new manage_groups();
-	m_p_friends_list = new friends_list();
 	
-	m_p_group_thread = new group_event_thread(); 
-	m_p_user_thread = new user_event_thread();
+	m_p_friends_list = new friends_list();
 	m_p_friends_thread = new friends_thread();
 	
 	// connections to different windows
@@ -48,14 +46,6 @@ home_screen::home_screen(QWidget *parent) :
 	connect(m_p_friends_list, &friends_list::return_to_home_screen,
 			this, &home_screen::from_friends_list);
 
-	/* connect the thread signals */
-	connect(m_p_user_thread, &user_event_thread::value_changed,
-			m_p_schedule, &schedulingGrid::set_user_occupied_days,
-			Qt::DirectConnection);
-	connect(m_p_schedule, &schedulingGrid::send_year,
-			m_p_user_thread, &user_event_thread::set_year,
-			Qt::DirectConnection);
-
 	// logout connection
 	connect(m_p_ui->logout_button, &QPushButton::released,
 			this, &home_screen::on_logout);
@@ -71,6 +61,29 @@ home_screen::~home_screen()
 	delete m_p_account_settings;
 	delete m_p_manage_groups;
 	delete m_p_friends_list;
+}
+
+void home_screen::kick_off_threads() {
+	QDate d = QDate::currentDate();
+
+	std::cerr<<"today: "<<d.month()<<" "<<d.year()<<std::endl;
+	
+	m_p_schedule->m_month=d.month();
+	m_p_schedule->m_year=d.year();
+
+	m_p_schedule->generateCalendar();
+			
+	m_p_schedule->m_p_user_thread->set_username(*m_p_username);
+	m_p_schedule->m_p_user_thread->
+		set_password(*m_p_password);
+	m_p_schedule->m_p_user_thread->set_month(
+		QString::number(d.month()));
+	m_p_schedule->m_p_user_thread->set_year(
+				QString::number(d.year()));
+			
+	if(!m_p_schedule->m_p_user_thread->init()) {
+		std::cerr<<"user event thread did not start"<<std::endl;
+	} 
 }
 
 void home_screen::to_account_settings()
@@ -94,7 +107,6 @@ void home_screen::to_see_schedule()
 	 */
 	m_p_schedule->m_p_username = m_p_username;
 	m_p_schedule->m_p_password = m_p_password;
-	
 
     m_p_schedule->fromHome();
     m_p_schedule->show();

@@ -26,46 +26,45 @@ public:
     explicit schedulingGrid(QWidget *parent = 0);
     virtual ~schedulingGrid();
 
+	int m_month;
+	int m_year;
+	
 	QString * m_p_username;
 	QString * m_p_password;
+
+	group_event_thread * m_p_group_thread;
+	user_event_thread * m_p_user_thread;
 
     void fromHome();
 	uint get_year();
 
+	Q_SLOT void set_user_occupied_days(QString, int);
 	Q_SIGNAL void return_to_home_screen();
-	Q_SIGNAL void send_year(QString);
 	Q_SIGNAL void recolor_month();
 
+	Q_SLOT void colorCalendar();
+	Q_SLOT void generateCalendar();
 	Q_SLOT void on_back_button();
-    Q_SLOT void to_create_event();
-    Q_SLOT void from_create_event();
-	Q_SLOT void set_user_occupied_days(QString, int);
-private slots:
-    void on_tableCalendar_currentCellChanged(int currentRow,
-											 int currentColumn,
-											 int previousRow,
-											 int previousColumn);
 
-    void on_PushSwitchViews_clicked();
-    void on_pushRightW_clicked();
-    void on_pushLeftW_clicked();
+	Q_SLOT void to_create_event();
+    Q_SLOT void from_create_event();
 private:
 	Ui::schedulingGrid *ui;
 
 	group_event_thread * group_event;
 	user_event_thread * user_event;
-	
-    Q_SLOT void generateCalendar();
+
+    Q_SLOT void on_PushSwitchViews_clicked();
+    Q_SLOT void on_pushRightW_clicked();
+    Q_SLOT void on_pushLeftW_clicked();
     Q_SLOT void on_pushLeft_clicked();
     Q_SLOT void on_pushRight_clicked();
-    Q_SLOT void generateWeek();
-    Q_SLOT void on_pushCreateEvent_clicked();
+
+	Q_SLOT void generateWeek();
 
 	QMutex * m_p_user_occupied_days;
 	QString * user_occupied_days[12];
     createevent * m_p_createevent;
-    int initial = 0;
-    Q_SLOT void colorCalendar();
 };
 
 const QString months[]=
