@@ -35,9 +35,8 @@ public:
 	Q_SIGNAL void return_to_home_screen();
 
     Q_SLOT void to_create_event();
-
     Q_SLOT void from_create_event();
-
+	Q_SLOT void set_user_occupied_days(QString);
 private slots:
     void on_tableCalendar_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
@@ -59,6 +58,8 @@ private:
     Q_SLOT void generateWeek();
     Q_SLOT void on_pushCreateEvent_clicked();
 
+	QMutex * m_p_user_occupied_days;
+	QString user_occupied_days;
     createevent * m_p_createevent;
     int initial = 0;
     void colorCalendar();

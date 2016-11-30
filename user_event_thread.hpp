@@ -16,12 +16,12 @@ public:
 
 	bool init();
 	
-	Q_SLOT int run();
+	Q_SLOT void run();
 	Q_SLOT void run_once();
 
-	bool isRunning() {return m_p_thread->isRunning();};
-	void quit() {m_p_thread->quit();};
-	void requestInterruption() {m_p_thread->requestInterruption();};
+	const bool & isRunning() { return m_p_thread->isRunning(); };
+	void quit() { m_p_thread->quit(); };
+	void requestInterruption() { m_p_thread->requestInterruption(); };
 	
 	QString get_response() {
 		QString temp;
@@ -54,7 +54,8 @@ public:
 		(*m_p_year)=year;
 		m_p_year_mutex->unlock();
 	};
-	
+
+	Q_SIGNAL void value_changed(QString);
 private:
 	QThread * m_p_thread;
 	QMutex * m_p_response_mutex;

@@ -48,6 +48,11 @@ home_screen::home_screen(QWidget *parent) :
 	connect(m_p_friends_list, &friends_list::return_to_home_screen,
 			this, &home_screen::from_friends_list);
 
+	/* connect the thread signals */
+	connect(m_p_user_thread, &user_event_thread::value_changed,
+			m_p_schedule, &schedulingGrid::set_user_occupied_days,
+			Qt::DirectConnection);
+
 	// logout connection
 	connect(m_p_ui->logout_button, &QPushButton::released,
 			this, &home_screen::on_logout);

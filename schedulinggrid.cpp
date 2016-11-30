@@ -21,6 +21,7 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
     connect(ui->back_button, &QPushButton::released,
             this, &schedulingGrid::on_back_button);
 
+	m_p_user_occupied_days = new QMutex();
     m_p_createevent = new createevent();
     connect(ui->pushCreateEvent, &QPushButton::released,
             this, &schedulingGrid::to_create_event);
@@ -51,6 +52,7 @@ schedulingGrid::~schedulingGrid()
     delete ui;
     delete m_p_username;
     delete m_p_password;
+	delete m_p_user_occupied_days;
 }
 
 void schedulingGrid::fromHome()
@@ -60,6 +62,13 @@ void schedulingGrid::fromHome()
     ui->frameMonth->show();
 }
 
+void schedulingGrid::set_user_occupied_days(QString text)
+{
+	std::cerr<<"Updated text: \""<<text.toStdString()<<"\""<<std::endl;
+	m_p_user_occupied_days->lock();
+	user_occupied_days = text;
+	m_p_user_occupied_days->unlock();
+}
 
 /* This will show how to properly color in the calender */
 void schedulingGrid::colorCalendar()
@@ -74,46 +83,47 @@ void schedulingGrid::colorCalendar()
 	/* ask for user events in the selected month */
 	
 	
-    QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
-    (*user_request)+=m_p_username; (*user_request)+=":::";
-    (*user_request)+=m_p_password; (*user_request)+=":::";
-    (*user_request)+=ui->lineMonth->displayText(); (*user_request)+=":::";
-    (*user_request)+=ui->lineYear->displayText(); bool ok;
-    QString * user_response = setup_connection(user_request);
+    // QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
+    // (*user_request)+=m_p_username; (*user_request)+=":::";
+    // (*user_request)+=m_p_password; (*user_request)+=":::";
+    // (*user_request)+=ui->lineMonth->displayText(); (*user_request)+=":::";
+    // (*user_request)+=ui->lineYear->displayText(); bool ok;
+    // QString * user_response = setup_connection(user_request);
 
 	/**
 	 * @todo remove this request!
 	 */
 	/* select all groups in which a given user is a member */
-	QString * get_groups = new QString("REQUEST_GROUPS ");
-	*get_groups += *m_p_username + ":::" + *m_p_password + "\r\n\0";
+	// QString * get_groups = new QString("REQUEST_GROUPS ");
+	// *get_groups += *m_p_username + ":::" + *m_p_password + "\r\n\0";
 
-	/* split along the '\n' character */
-	QString * get_group_response = setup_connection(get_groups);
-	QStringList list = get_group_response->split("\n");
+	// /* split along the '\n' character */
+	// QString * get_group_response = setup_connection(get_groups);
+	// QStringList list = get_group_response->split("\n");
 	
 	/* prepare these values to be colored */
-	uint user_occupied_days = (uint) user_response->split("\n")[0].toInt();	
-	uint group_occupied_days = 0;
-
+	m_p_user_occupied_days->lock();
+	uint user_occupied = (uint) user_occupied_days.split("\n")[0].toInt();
+	m_p_user_occupied_days->unlock();
+	uint group_occupied = 0;
 	/* ask for (every) group in the selected month */
-	for (size_t x = 0; x < list.size(); ++x) {
-		/* send the current group's select query */
-		QString * group_request = new QString("REQUEST_GROUP_MONTH_EVENTS ");
-		(*group_request)+=m_p_username;	(*group_request)+=":::";
-		(*group_request)+=m_p_password;	(*group_request)+=":::";
-		(*group_request)+=ui->lineMonth->displayText();	(*group_request)+=":::";
-		(*group_request)+=ui->lineYear->displayText() + ":::" + list[x] + "\r\n\0";
-		QString * group_response = setup_connection(group_request);
-		group_occupied_days = group_occupied_days | ((uint) group_response->split("\n")[0].toInt());
-		delete group_request, delete group_response;
-	}
+	// for (size_t x = 0; x < list.size(); ++x) {
+	// 	/* send the current group's select query */
+	// 	QString * group_request = new QString("REQUEST_GROUP_MONTH_EVENTS ");
+	// 	(*group_request)+=m_p_username;	(*group_request)+=":::";
+	// 	(*group_request)+=m_p_password;	(*group_request)+=":::";
+	// 	(*group_request)+=ui->lineMonth->displayText();	(*group_request)+=":::";
+	// 	(*group_request)+=ui->lineYear->displayText() + ":::" + list[x] + "\r\n\0";
+	// 	QString * group_response = setup_connection(group_request);
+	// 	group_occupied_days = group_occupied_days | ((uint) group_response->split("\n")[0].toInt());
+	// 	delete group_request, delete group_response;
+	// }
 	
 	
 	/**
 	 * @todo change this to be a set color for each group
 	 */	
-
+	bool ok;
     ushort month = (ui->lineMonth->displayText()).toInt(&ok, 10);
     uint year = (ui->lineYear->displayText()).toInt(&ok,10);
 
@@ -126,20 +136,18 @@ void schedulingGrid::colorCalendar()
                     + Y + std::floor(Y / 4.0) + std::floor(C / 4.0)) % 7;
     register uint daycode = (dc < 0) ? dc + 7 : dc;
     if (daycode == 0) daycode = 7;
-    for (int x = -1; user_occupied_days || group_occupied_days;
-		 user_occupied_days >>= 1, group_occupied_days >>= 1, ++x) {
+    for (int x = -1; user_occupied || group_occupied;
+		 user_occupied >>= 1, group_occupied >>= 1, ++x) {
         /* if the bit is set, fill the cooresponding day */
-        if (user_occupied_days & 1) {
+        if (user_occupied & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                                     ((x + daycode) % 7))->setBackgroundColor(Qt::blue);
             std::cerr<<"blue"<<std::endl;
-        } if (group_occupied_days & 1) {
+        } if (group_occupied & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                                     ((x + daycode) % 7))->setBackgroundColor(Qt::yellow);
         }
     }
-
-	delete user_request, delete user_response;
 }
 
 
