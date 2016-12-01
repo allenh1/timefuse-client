@@ -40,7 +40,7 @@ background-color: rgb(86, 231, 115);</string>
      <x>30</x>
      <y>60</y>
      <width>361</width>
-     <height>172</height>
+     <height>194</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
@@ -129,10 +129,17 @@ font: 12pt &quot;Courier&quot;;</string>
     </item>
     <item row="2" column="1">
      <widget class="QDateEdit" name="dateEdit">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="label_2">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+font: 9pt &quot;Sans Serif&quot;;</string>
+      </property>
       <property name="text">
        <string>GMT:</string>
       </property>
@@ -143,6 +150,9 @@ font: 12pt &quot;Courier&quot;;</string>
       <property name="toolTip">
        <string>Offset from GMT (e.g. Eastern is -5)</string>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
       <property name="minimum">
        <number>-12</number>
       </property>
@@ -150,19 +160,16 @@ font: 12pt &quot;Courier&quot;;</string>
        <number>12</number>
       </property>
       <property name="value">
-		<number>-5</number>
-	  </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <number>-5</number>
       </property>
-      <property name="date">
+      <property name="date" stdset="0">
        <date>
         <year>2016</year>
         <month>11</month>
         <day>11</day>
        </date>
-      </property>	  
-    </widget>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
