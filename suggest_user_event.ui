@@ -94,7 +94,7 @@ font: 12pt &quot;Courier&quot;;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(255, 0, 128);</string>
+background-color: rgb(61, 229, 229);</string>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -111,7 +111,7 @@ background-color: rgb(255, 0, 128);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(227, 201, 69);</string>
+background-color: rgb(255, 128, 0);</string>
    </property>
    <property name="text">
     <string>Select Time</string>
@@ -171,7 +171,7 @@ font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(227, 201, 69);</string>
+background-color: rgb(86, 231, 115);</string>
    </property>
    <property name="text">
     <string>Suggest Times</string>

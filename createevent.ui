@@ -253,6 +253,10 @@ font: 12pt &quot;Courier&quot;;</string>
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt "Courier";
+background-color: rgb(61, 229, 229);</string>
+   </property>
    <property name="text">
     <string>Suggest Time</string>
    </property>
