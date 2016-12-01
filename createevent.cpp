@@ -4,9 +4,7 @@ createevent::createevent(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::createevent)
 {
-	QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
-	this->setPalette(qpalette);
-	QFont font(QString("Courier"), 10.5, QFont::Thin, false);
+	QFont font(QString("Courier"), 12, QFont::Thin, false);
 	this->setFont(font);
 	
     ui->setupUi(this);
@@ -14,10 +12,20 @@ createevent::createevent(QWidget *parent) :
     m_p_username = new QString("");
     m_p_password = new QString("");
 
+	m_p_suggest_event = new suggest_user_event();
+	
 	connect(ui->pushButton, &QPushButton::released,
 			this, &createevent::create_the_event);
 	connect(ui->pushCancel, &QPushButton::released,
 			this, &createevent::cancel_event);
+	connect(ui->suggest_time, &QPushButton::released,
+			this, &createevent::suggest_a_time);
+
+	// return to create event
+	connect(m_p_suggest_event, &suggest_user_event::return_time,
+			this, &createevent::get_time);
+	connect(m_p_suggest_event, &suggest_user_event::return_to_event,
+			this, &createevent::from_suggest_time);
 }
 
 createevent::~createevent()
@@ -25,6 +33,37 @@ createevent::~createevent()
     delete ui;
     delete m_p_username;
     delete m_p_password;
+	delete m_p_suggest_event;
+}
+
+void createevent::suggest_a_time()
+{
+	m_p_suggest_event->m_p_username = m_p_username;
+	m_p_suggest_event->m_p_password = m_p_password;
+	this->hide();
+	m_p_suggest_event->show();
+}
+
+void createevent::get_time(QString suggested)
+{
+	QStringList list = suggested.split(":::");
+	
+	QStringList date = list[0].split("-");
+	QDate day(date[0].toInt(), date[1].toInt(), date[2].toInt());
+	ui->dateEdit->setDate(day);
+
+	QStringList time = list[1].split(":");
+	QTime t(time[0].toInt(), time[1].toInt());
+	ui->begin_time_edit_2->setTime(t);
+	
+	m_p_suggest_event->hide();
+	this->show();	
+}
+
+void createevent::from_suggest_time()
+{
+	m_p_suggest_event->hide();
+	this->show();
 }
 
 void createevent::create_the_event()

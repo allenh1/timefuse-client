@@ -24,7 +24,8 @@ SOURCES += main.cpp \
            suggested_time.cpp \
            group_event_thread.cpp \
            user_event_thread.cpp \
-           friends_thread.cpp
+           friends_thread.cpp \
+           suggest_user_event.cpp
 
 HEADERS += user.hpp \
            create_account_window.hpp \
@@ -45,7 +46,8 @@ HEADERS += user.hpp \
            suggested_time.hpp \
            group_event_thread.hpp \
            user_event_thread.hpp \
-           friends_thread.hpp
+           friends_thread.hpp \
+           suggest_user_event.hpp
 
 FORMS += create_account_window.ui \
          reset_password_window.ui \
@@ -59,4 +61,5 @@ FORMS += create_account_window.ui \
          edit_group.ui \
          friends_list.ui \
          friend_requests.ui \
-         suggested_time.ui
+         suggested_time.ui \
+         suggest_user_event.ui
