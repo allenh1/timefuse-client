@@ -20,9 +20,9 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QLabel" name="title">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>40</y>
-     <width>161</width>
+     <x>150</x>
+     <y>30</y>
+     <width>131</width>
      <height>21</height>
     </rect>
    </property>
@@ -40,10 +40,10 @@ font: 17pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="create_new_group">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>310</y>
-     <width>120</width>
-     <height>21</height>
+     <x>150</x>
+     <y>370</y>
+     <width>131</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -57,10 +57,10 @@ background-color: rgb(227, 201, 69);</string>
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>310</y>
-     <width>101</width>
-     <height>21</height>
+     <x>290</x>
+     <y>370</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -75,9 +75,9 @@ background-color: rgb(255, 0, 128);</string>
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>260</y>
-     <width>101</width>
-     <height>21</height>
+     <y>330</y>
+     <width>131</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -91,10 +91,10 @@ background-color: rgb(61, 229, 229);</string>
   <widget class="QPushButton" name="edit_group">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>310</y>
-     <width>101</width>
-     <height>21</height>
+     <x>30</x>
+     <y>370</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -109,9 +109,9 @@ background-color: rgb(86, 231, 115);</string>
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>260</y>
-     <width>101</width>
-     <height>21</height>
+     <y>330</y>
+     <width>131</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -125,10 +125,10 @@ background-color: rgb(204, 102, 255);</string>
   <widget class="QListWidget" name="list_groups">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>70</y>
-     <width>311</width>
-     <height>171</height>
+     <x>30</x>
+     <y>60</y>
+     <width>371</width>
+     <height>261</height>
     </rect>
    </property>
    <property name="styleSheet">

@@ -20,10 +20,10 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>50</y>
-     <width>311</width>
-     <height>161</height>
+     <x>20</x>
+     <y>20</y>
+     <width>391</width>
+     <height>291</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -68,10 +68,10 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>280</y>
-     <width>311</width>
-     <height>21</height>
+     <x>20</x>
+     <y>380</y>
+     <width>391</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -82,54 +82,47 @@ background-color: rgb(255, 0, 128);</string>
     <string>Cancel</string>
    </property>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>220</y>
-     <width>311</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QLineEdit" name="add_member_input">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="add_member">
-      <property name="styleSheet">
-       <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(61, 229, 229);</string>
-      </property>
-      <property name="text">
-       <string>Add Member</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>210</y>
-     <width>311</width>
-     <height>20</height>
+     <x>20</x>
+     <y>320</y>
+     <width>391</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="add_member_input">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>340</y>
+     <width>261</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_member">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>340</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Courier&quot;;
+background-color: rgb(61, 229, 229);</string>
+   </property>
+   <property name="text">
+    <string>Add Member</string>
    </property>
   </widget>
  </widget>

@@ -15,22 +15,22 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(76, 76, 76);
-font: 12pt &quot;Courier&quot;;</string>
+font: 12pt "Courier";</string>
   </property>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>160</y>
-     <width>231</width>
-     <height>171</height>
+     <x>20</x>
+     <y>60</y>
+     <width>391</width>
+     <height>301</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="2" column="0">
      <widget class="QPushButton" name="manage_groups">
       <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;Courier&quot;;
+       <string notr="true">font: 14pt "Courier";
 background-color: rgb(227, 201, 69);</string>
       </property>
       <property name="text">
@@ -76,10 +76,10 @@ background-color: rgb(255, 0, 128);</string>
   <widget class="QPushButton" name="account_settings">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>130</y>
-     <width>101</width>
-     <height>21</height>
+     <x>220</x>
+     <y>370</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -94,10 +94,10 @@ background-color: rgb(255, 128, 0);</string>
   <widget class="QLabel" name="timefuse">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>60</y>
-     <width>421</width>
-     <height>41</height>
+     <x>130</x>
+     <y>20</y>
+     <width>161</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -114,10 +114,10 @@ font: 24pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="logout_button">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>130</y>
-     <width>101</width>
-     <height>21</height>
+     <x>20</x>
+     <y>370</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">

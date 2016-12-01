@@ -19,10 +19,10 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>60</y>
-     <width>311</width>
-     <height>161</height>
+     <x>20</x>
+     <y>20</y>
+     <width>391</width>
+     <height>311</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -64,56 +64,13 @@ color: rgb(255, 255, 255);</string>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>230</y>
-     <width>311</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QLineEdit" name="add_member_input">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>3</width>
-        <height>10</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QPushButton" name="add_member">
-      <property name="styleSheet">
-       <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(61, 229, 229);</string>
-      </property>
-      <property name="text">
-       <string>Add Member</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QPushButton" name="add_group_button">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>300</y>
+     <x>80</x>
+     <y>380</y>
      <width>131</width>
-     <height>23</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -128,9 +85,9 @@ background-color: rgb(86, 231, 115);</string>
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>300</y>
+     <y>380</y>
      <width>131</width>
-     <height>23</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -139,6 +96,36 @@ background-color: rgb(255, 0, 128);</string>
    </property>
    <property name="text">
     <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_member">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>340</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Courier&quot;;
+background-color: rgb(61, 229, 229);</string>
+   </property>
+   <property name="text">
+    <string>Add Member</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="add_member_input">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>340</y>
+     <width>271</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
  </widget>
