@@ -116,7 +116,7 @@ void create_group_event::add_group_members()
 	} else {
 		response->replace("\r\n","");
 	    QStringList list = response->split('\n');
-		
+		m_p_ui->attendees_list->clear();
 		for(int i=0;i<list.size();i++) {
 			if(i==list.size()-1) continue;
 			m_p_ui->attendees_list->addItem(list.at(i));

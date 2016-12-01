@@ -37,7 +37,7 @@ bool user_event_thread::init()
 
 void user_event_thread::run()
 {
-	for(;;m_p_thread->msleep(3000)) {
+	for(;;m_p_thread->msleep(5000)) {
 		run_method();
 	}
 }
