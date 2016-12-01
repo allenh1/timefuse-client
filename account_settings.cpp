@@ -4,10 +4,10 @@ account_settings::account_settings(QWidget *parent) :
     QWidget(parent),
     m_p_ui(new Ui::account_settings)
 {
-	QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
-	this->setPalette(qpalette);
-	QFont font(QString("Courier"), 10.5, QFont::Thin, false);
-	this->setFont(font);
+    //QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
+    //this->setPalette(qpalette);
+    QFont font(QString("Courier"), 10.5, QFont::Thin, false);
+    this->setFont(font);
 	
     m_p_ui->setupUi(this);
 
