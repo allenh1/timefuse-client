@@ -238,7 +238,10 @@ font: 12pt &quot;Courier&quot;;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
+	font: 12pt &quot;Courier&quot;;</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Negotiable</string>

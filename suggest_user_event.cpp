@@ -61,11 +61,14 @@ void suggest_user_event::suggest_a_time()
 	if(!response->contains("ERROR")) {
 		response->replace("\r\n","");
 	    QStringList list = response->split('\n');
-		
-		for(int i=0;i<list.size();i++) {
+
+		if(list.at(0).size()==0) {
+			QMessageBox::critical(this, tr("Error"),
+								  QString("NO TIMES FOUND!"));
+		} for(int i=0;i<list.size();i++) {
 			if(i==list.size()-1) continue;
 			m_p_ui->time_list->addItem(list.at(i));
-		}
+		} 
 	} else {
 		QMessageBox::critical(this, tr("Error"), *response);
 	} delete response; delete request;
