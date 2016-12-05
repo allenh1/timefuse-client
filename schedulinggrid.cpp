@@ -140,7 +140,6 @@ void schedulingGrid::colorCalendar()
         if (user_occupied & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                    ((x + daycode) % 7))->setBackgroundColor(Qt::blue);
-            std::cerr<<"blue"<<std::endl;
         } if (group_occupied & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                   ((x + daycode) % 7))->setBackgroundColor(Qt::yellow);
@@ -333,7 +332,7 @@ void schedulingGrid::generateWeek()
 
         (*request)+=QString::number(m_year) + "-" + QString::number(m_month) + "-" + day + ":::";
 
-        day = ui->tableCalendar->item(currentRow, endDay)->text();
+        day = QString::number(ui->tableCalendar->item(currentRow, endDay)->text().toInt() + 1);
 
         (*request)+=QString::number(m_year) + "-" + QString::number(m_month) + "-" + day;
 		std::cerr<<"request: "<<request->toStdString()<<std::endl;

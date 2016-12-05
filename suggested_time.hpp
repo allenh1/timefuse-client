@@ -5,7 +5,6 @@
 #include <QStringList>
 #include <iostream>
 #include <QWidget>
-#include <QTest>
 #include "ui_suggested_time.h"
 #include "tcp_connection.hpp"
 
@@ -27,7 +26,8 @@ public:
 	QString * m_p_start_date;
 	QString * m_p_duration;
 	QString * m_p_group_name;
-	
+	QString * m_p_finish_time;
+
 	QString * m_p_selected_time;
 
 	Q_SIGNAL void return_to_group_event();

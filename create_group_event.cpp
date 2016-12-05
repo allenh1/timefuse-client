@@ -73,26 +73,32 @@ void create_group_event::suggest_a_time()
 	(*m_p_suggested_time->m_p_start_date)+=QString::number(year) + "-";
 	(*m_p_suggested_time->m_p_start_date)+=QString::number(month) + "-";
 	(*m_p_suggested_time->m_p_start_date)+=QString::number(day);
-	
+	(*m_p_suggested_time->m_p_finish_time) =
+		m_p_ui->begin_time_edit->time().toString("hh:mm");
     this->hide();
     m_p_suggested_time->show();
+	m_p_suggested_time->fill_fields();
 }
 
 void create_group_event::from_suggested_time()
 {
-	m_p_suggested_time->m_p_username->clear();
-	m_p_suggested_time->m_p_password->clear();
-
 	m_p_suggested_time->m_p_duration->clear();
 	m_p_suggested_time->m_p_start_date->clear();
 	m_p_suggested_time->m_p_group_name->clear();
+	m_p_suggested_time->m_p_finish_time->clear();
 
 	m_p_time_suggested->clear();
 	(*m_p_time_suggested)+=m_p_suggested_time->m_p_selected_time;
 
-	/**
-	 * @TODO parse time suggested string and update to display
-	 */
+	QStringList selected = m_p_time_suggested->split(":::");
+
+	if (selected.size() == 2) {
+		QDate selected_date = QDate::fromString(selected[0], "yyyy-M-d");
+		QTime selected_time = QTime::fromString(selected[1], "hh:mm");
+
+		m_p_ui->dateEdit->setDate(selected_date);
+		m_p_ui->begin_time_edit->setTime(selected_time);
+	}
 	
     m_p_suggested_time->hide();
     this->show();
