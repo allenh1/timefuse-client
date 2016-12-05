@@ -137,10 +137,13 @@ void schedulingGrid::colorCalendar()
     for (int x = -1; user_occupied || group_occupied;
 		 user_occupied >>= 1, group_occupied >>= 1, ++x) {
         /* if the bit is set, fill the cooresponding day */
-        if (user_occupied & 1) {
+        if ((user_occupied & 1) && (group_occupied & 1)) {
+            ui->tableCalendar->item((x + daycode) / 7,
+                   ((x + daycode) % 7))->setBackgroundColor(Qt::green);
+        } else if (user_occupied & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                    ((x + daycode) % 7))->setBackgroundColor(Qt::blue);
-        } if (group_occupied & 1) {
+        } else if (group_occupied & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                   ((x + daycode) % 7))->setBackgroundColor(Qt::yellow);
         }
