@@ -137,11 +137,13 @@ void schedulingGrid::colorCalendar()
     for (int x = -1; user_occupied || group_occupied;
 		 user_occupied >>= 1, group_occupied >>= 1, ++x) {
         /* if the bit is set, fill the cooresponding day */
-        if (user_occupied & 1) {
+        if ((user_occupied & 1) && (group_occupied & 1)) {
+            ui->tableCalendar->item((x + daycode) / 7,
+                   ((x + daycode) % 7))->setBackgroundColor(Qt::green);
+        } else if (user_occupied & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                    ((x + daycode) % 7))->setBackgroundColor(Qt::blue);
-            std::cerr<<"blue"<<std::endl;
-        } if (group_occupied & 1) {
+        } else if (group_occupied & 1) {
             ui->tableCalendar->item((x + daycode) / 7,
                   ((x + daycode) % 7))->setBackgroundColor(Qt::yellow);
         }
@@ -333,7 +335,7 @@ void schedulingGrid::generateWeek()
 
         (*request)+=QString::number(m_year) + "-" + QString::number(m_month) + "-" + day + ":::";
 
-        day = ui->tableCalendar->item(currentRow, endDay)->text();
+        day = QString::number(ui->tableCalendar->item(currentRow, endDay)->text().toInt() + 1);
 
         (*request)+=QString::number(m_year) + "-" + QString::number(m_month) + "-" + day;
 		std::cerr<<"request: "<<request->toStdString()<<std::endl;

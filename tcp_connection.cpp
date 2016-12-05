@@ -8,8 +8,10 @@
  * @param QString content
  * @return QString
  */
+
 QString* setup_connection(QString * content) {
-	QTcpSocket * pSocket = NULL;
+	/* this needs to be in a register... for... reasons */
+	register QTcpSocket * pSocket = NULL;
 	QString* read, tcp_server, port_string;
 	read = new QString();
 
