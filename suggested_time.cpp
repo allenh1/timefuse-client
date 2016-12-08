@@ -28,10 +28,7 @@ suggested_time::suggested_time(QWidget *parent) :
 			this, &suggested_time::on_selected_time);
 }
 
-suggested_time::~suggested_time()
-{
-    delete m_p_ui;
-}
+suggested_time::~suggested_time() { }
 
 void suggested_time::on_selected_time()
 {

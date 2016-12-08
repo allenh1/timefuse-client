@@ -51,17 +51,7 @@ home_screen::home_screen(QWidget *parent) :
 			this, &home_screen::on_logout);
 }
 
-home_screen::~home_screen()
-{
-    delete m_p_ui;
-	delete m_p_username;
-	delete m_p_password;
-	delete m_p_schedule;
-	delete m_p_create_event;
-	delete m_p_account_settings;
-	delete m_p_manage_groups;
-	delete m_p_friends_list;
-}
+home_screen::~home_screen() { }
 
 void home_screen::kick_off_threads() {
 	QDate d = QDate::currentDate();

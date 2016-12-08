@@ -28,13 +28,7 @@ createevent::createevent(QWidget *parent) :
 			this, &createevent::from_suggest_time);
 }
 
-createevent::~createevent()
-{
-    delete ui;
-    delete m_p_username;
-    delete m_p_password;
-	delete m_p_suggest_event;
-}
+createevent::~createevent() { }
 
 void createevent::suggest_a_time()
 {

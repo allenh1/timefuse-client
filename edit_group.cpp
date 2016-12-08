@@ -27,13 +27,7 @@ edit_group::edit_group(QWidget *parent) :
             this, &edit_group::add_a_member);
 }
 
-edit_group::~edit_group()
-{
-    delete ui;
-	delete m_p_username;
-	delete m_p_password;
-	delete m_p_group;
-}
+edit_group::~edit_group() { }
 
 void edit_group::on_back_button()
 {
