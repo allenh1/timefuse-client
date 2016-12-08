@@ -67,7 +67,7 @@ void suggested_time::fill_fields()
 		QStringList list = response->split('\n');
 	 	
 	 	for(int i=0;i<list.size();i++) {
-	 		if(i==list.size()-1) continue;
+	 		if(list.at(i).size()==0) continue;
 	 		m_p_ui->list_times->addItem(list.at(i));
 	 	}
 	} delete response; delete request; 

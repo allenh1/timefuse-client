@@ -124,7 +124,7 @@ void create_group_event::add_group_members()
 	    QStringList list = response->split('\n');
 		m_p_ui->attendees_list->clear();
 		for(int i=0;i<list.size();i++) {
-			if(i==list.size()-1) continue;
+			if(list.at(i).size()==0) continue;
 			m_p_ui->attendees_list->addItem(list.at(i));
 		}
 	} delete request; delete response;

@@ -14,7 +14,7 @@ public:
 	explicit refresh_thread(QObject * _p_parent = NULL);
 	virtual ~refresh_thread();
 
-	virtual bool init() {};
+	virtual bool init() {return false;};
 
 	virtual Q_SLOT void run() {};
 	virtual Q_SLOT void run_once(QString, QString) {};
