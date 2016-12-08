@@ -26,7 +26,8 @@ LoginWindow::LoginWindow(QWidget *parent)
 	m_p_logo_label = new QLabel("");
 	m_p_logo_label->setPixmap(QPixmap::fromImage(*m_p_logo));
 	m_p_logo_label->adjustSize();
-    
+    m_p_logo_label->setAlignment(Qt::AlignCenter);
+	
 	m_p_user_edit = new QLineEdit();
 	m_p_user_edit->setPalette(QPalette(QColor(255, 255, 255, 255),
 									   QColor(255, 255, 255, 255)));
