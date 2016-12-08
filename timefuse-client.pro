@@ -25,7 +25,8 @@ SOURCES += main.cpp \
            group_event_thread.cpp \
            user_event_thread.cpp \
            friends_thread.cpp \
-           suggest_user_event.cpp
+           suggest_user_event.cpp \
+           refresh_thread.cpp
 
 HEADERS += user.hpp \
            create_account_window.hpp \
@@ -47,7 +48,8 @@ HEADERS += user.hpp \
            group_event_thread.hpp \
            user_event_thread.hpp \
            friends_thread.hpp \
-           suggest_user_event.hpp
+           suggest_user_event.hpp \
+           refresh_thread.hpp
 
 FORMS += create_account_window.ui \
          reset_password_window.ui \
