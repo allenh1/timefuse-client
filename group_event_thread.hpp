@@ -5,11 +5,9 @@
 #include <QString>
 #include <QMutex>
 
-#include "tcp_connection.hpp"
+#include "refresh_thread.hpp"
 
-typedef unsigned int uint;
-
-class group_event_thread : public QObject
+class group_event_thread : public refresh_thread
 {
 	Q_OBJECT
 public:

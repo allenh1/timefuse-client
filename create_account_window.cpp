@@ -37,7 +37,19 @@ void create_account_window::create_pressed()
 	QString name = m_p_ui->name_input->text();
 	QString password = encrypt_string(m_p_ui->password_input->text());
 	QString email = m_p_ui->email_input->text();
+	if(!email.contains("@") || !(email.lastIndexOf(".") > email.indexOf("@"))) {
+		QMessageBox::critical(this, tr("Error"),
+							  tr("That's not an email!"));
+		return;
+	}
 	QString phone = m_p_ui->phone_input->text();
+	phone = phone.trimmed();
+	if((phone.size()!=10 && phone.size()!=0) ||
+	   (phone.size()==10 && phone.toLong()==0)) {
+		QMessageBox::critical(this, tr("Error"),
+							  tr("That's not a phone number!"));
+		return;
+	}
 
 	QString * request = new QString("CREATE_ACCOUNT ");
 

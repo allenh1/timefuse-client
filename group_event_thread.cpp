@@ -49,8 +49,9 @@ void group_event_thread::run_once(QString month, QString year) {
 	uint group_occupied_days = 0;
 
 	/* ask for (every) group in the selected month */
-	for (size_t x = 0; x < list.size(); ++x) {
+	for (int x = 0; x < list.size(); ++x) {
 		/* send the current group's select query */
+		if(list.at(x).size()==0) continue;
 		QString * group_request = new QString("REQUEST_GROUP_MONTH_EVENTS ");
 		(*group_request)+=*m_p_username;  (*group_request)+=":::";
 		(*group_request)+=*m_p_password;  (*group_request)+=":::";

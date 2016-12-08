@@ -2,14 +2,11 @@
 #define __USER_EVENT_THREAD_HPP__
 #include <iostream>
 #include <QThread>
-#include <QString>
 #include <QMutex>
 
-#include "tcp_connection.hpp"
+#include "refresh_thread.hpp"
 
-typedef unsigned int uint;
-
-class user_event_thread : public QObject
+class user_event_thread : public refresh_thread
 {
 	Q_OBJECT
 public:
@@ -19,7 +16,7 @@ public:
 	bool init();
 	
 	Q_SLOT void run();
-	Q_SLOT void run_once(QString month, QString year);
+	Q_SLOT void run_once(QString, QString);
 	Q_SLOT void run_method();
 
 	const bool & isRunning() { return m_p_thread->isRunning(); };

@@ -84,7 +84,19 @@ void account_settings::save_changes_pressed()
 	QString new_password = encrypt_string(m_p_ui->new_password_input->text());
 	*m_p_password = new_password;
     QString email = m_p_ui->email_input->text();
+    if(!email.contains("@") || !(email.lastIndexOf(".") > email.indexOf("@"))) {
+		QMessageBox::critical(this, tr("Error"),
+							  tr("That's not an email!"));
+		return;
+	}
     QString phone = m_p_ui->phone_input->text();
+	phone = phone.trimmed();
+    if((phone.size()!=10 && phone.size()!=0) ||
+	   (phone.size()==10 && phone.toLong()==0)) {
+		QMessageBox::critical(this, tr("Error"),
+							  tr("That's not a phone number!"));
+		return;
+	}
 
     QString * request = new QString("UPDATE_ACCOUNT ");
 

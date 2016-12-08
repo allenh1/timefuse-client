@@ -66,7 +66,7 @@ void suggest_user_event::suggest_a_time()
 			QMessageBox::critical(this, tr("Error"),
 								  QString("NO TIMES FOUND!"));
 		} for(int i=0;i<list.size();i++) {
-			if(i==list.size()-1) continue;
+			if(list.at(i).size()==0) continue;
 			m_p_ui->time_list->addItem(list.at(i));
 		} 
 	} else {
