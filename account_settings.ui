@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(76, 76, 76);
-	font: 12pt &quot;Courier&quot;;</string>
+	font: 12pt "Courier";</string>
   </property>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
@@ -145,7 +145,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(86, 231, 115);
-color: rgb(50, 50, 50);</string>
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>Save</string>
@@ -162,7 +162,7 @@ color: rgb(50, 50, 50);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 0, 128);
-color: rgb(50, 50, 50);</string>
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -179,7 +179,7 @@ color: rgb(50, 50, 50);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(61, 229, 229);
-color: rgb(50, 50, 50);
+color: rgb(0, 0, 0);
 </string>
    </property>
    <property name="text">
@@ -197,7 +197,7 @@ color: rgb(50, 50, 50);
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(227, 201, 69);
-color: rgb(50, 50, 50);</string>
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>Present</string>
