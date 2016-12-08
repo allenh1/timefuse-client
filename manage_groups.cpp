@@ -36,14 +36,7 @@ manage_groups::manage_groups(QWidget *parent) :
             this, &manage_groups::hide_edit_group);
 }
 
-manage_groups::~manage_groups()
-{
-    delete m_p_ui;
-	delete m_p_username;
-	delete m_p_password;
-	delete m_p_add_group;
-	delete m_p_edit_group;
-}
+manage_groups::~manage_groups() { }
 
 void manage_groups::on_leave_group()
 {

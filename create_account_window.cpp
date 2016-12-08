@@ -27,10 +27,7 @@ create_account_window::create_account_window(QWidget *parent) :
 			this, &create_account_window::create_pressed);
 }
 
-create_account_window::~create_account_window()
-{
-    delete m_p_ui;
-}
+create_account_window::~create_account_window() { }
 
 void create_account_window::create_pressed()
 {

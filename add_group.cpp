@@ -31,12 +31,7 @@ add_group::add_group(QWidget *parent) :
 			this, &add_group::create_group);
 }
 
-add_group::~add_group()
-{
-    delete ui;
-	delete m_p_username;
-	delete m_p_password;
-}
+add_group::~add_group() { }
 
 void add_group::on_back_button()
 {

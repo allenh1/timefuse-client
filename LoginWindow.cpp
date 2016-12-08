@@ -68,24 +68,7 @@ LoginWindow::LoginWindow(QWidget *parent)
             this, &LoginWindow::hide_home_screen);
 }
 
-LoginWindow::~LoginWindow()
-{
-	delete m_p_create_button;
-	delete m_p_login_button;
-	delete m_p_reset_button;
-	delete m_p_user_label;
-	delete m_p_password_label;
-	delete m_p_user_edit;
-	delete m_p_password_edit;
-	delete m_p_main_layout;
-	delete m_p_button_layout;
-	delete m_p_name_layout;
-	delete m_p_password_layout;
-
-	delete m_p_create_account_window;
-	delete m_p_reset_password_window;
-	delete m_p_home_screen;
-};
+LoginWindow::~LoginWindow() { }
 
 void LoginWindow::handleButton()
 {

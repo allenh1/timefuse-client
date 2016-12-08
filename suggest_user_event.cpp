@@ -23,12 +23,7 @@ suggest_user_event::suggest_user_event(QWidget *parent) :
             this, &suggest_user_event::suggest_a_time);
 }
 
-suggest_user_event::~suggest_user_event()
-{
-    delete m_p_ui;
-	delete m_p_username;
-	delete m_p_password;
-}
+suggest_user_event::~suggest_user_event() { }
 
 void suggest_user_event::on_cancel()
 {

@@ -29,12 +29,7 @@ friends_list::friends_list(QWidget *parent) :
 			this, &friends_list::from_requests);
 }
 
-friends_list::~friends_list()
-{
-    delete m_p_ui;
-	delete m_p_username;
-	delete m_p_password;
-}
+friends_list::~friends_list() { }
 
 void friends_list::on_add_friend()
 {

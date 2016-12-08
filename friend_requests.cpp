@@ -23,12 +23,7 @@ friend_requests::friend_requests(QWidget *parent) :
             this, &friend_requests::on_delete_friend);
 }
 
-friend_requests::~friend_requests()
-{
-    delete m_p_ui;
-	delete m_p_username;
-	delete m_p_password;
-}
+friend_requests::~friend_requests() { }
 
 void friend_requests::on_add_friend()
 {

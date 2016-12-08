@@ -50,16 +50,7 @@ schedulingGrid::schedulingGrid(QWidget *parent) :
 			Qt::DirectConnection);
 }
 
-schedulingGrid::~schedulingGrid()
-{
-    delete ui;
-    delete m_p_username;
-    delete m_p_password;
-	delete m_p_user_occupied_days;
-	delete m_p_group_occupied_days;
-	delete user_occupied_days;
-	delete group_occupied_days;
-}
+schedulingGrid::~schedulingGrid() { }
 
 void schedulingGrid::reset_maps()
 {

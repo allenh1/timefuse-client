@@ -30,10 +30,7 @@ reset_password_window::reset_password_window(QWidget *parent) :
 
 }
 
-reset_password_window::~reset_password_window()
-{
-    delete m_p_ui;
-}
+reset_password_window::~reset_password_window() { }
 
 void reset_password_window::reset_pressed()
 {

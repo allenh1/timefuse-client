@@ -37,12 +37,7 @@ account_settings::account_settings(QWidget *parent) :
 			this, &account_settings::present_pressed);
 }
 
-account_settings::~account_settings()
-{
-    delete m_p_ui;
-	delete m_p_username;
-	delete m_p_password;
-}
+account_settings::~account_settings() { }
 
 void account_settings::leave_of_absence_pressed() {
 	QString * request = new QString("ABSENT ");

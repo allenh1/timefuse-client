@@ -36,12 +36,7 @@ create_group_event::create_group_event(QWidget *parent) :
             this, &create_group_event::from_suggested_time);
 }
 
-create_group_event::~create_group_event()
-{
-    delete m_p_ui;
-	delete m_p_username;
-	delete m_p_password;
-}
+create_group_event::~create_group_event() { }
 
 void create_group_event::on_cancel()
 {
