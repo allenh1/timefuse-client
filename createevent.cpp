@@ -26,6 +26,8 @@ createevent::createevent(QWidget *parent) :
 			this, &createevent::get_time);
 	connect(m_p_suggest_event, &suggest_user_event::return_to_event,
 			this, &createevent::from_suggest_time);
+
+	ui->dateEdit->setDate(QDate::currentDate());
 }
 
 createevent::~createevent() { }
@@ -43,12 +45,11 @@ void createevent::get_time(QString suggested)
 	QStringList list = suggested.split(":::");
 	
 	QStringList date = list[0].split("-");
-	QDate day(date[0].toInt(), date[1].toInt(), date[2].toInt());
-	ui->dateEdit->setDate(day);
+	ui->dateEdit->setDate(QDate(date[0].toInt(), date[1].toInt(),
+								date[2].toInt()));
 
 	QStringList time = list[1].split(":");
-	QTime t(time[0].toInt(), time[1].toInt());
-	ui->begin_time_edit_2->setTime(t);
+	ui->begin_time_edit_2->setTime(QTime(time[0].toInt(), time[1].toInt()));
 	
 	m_p_suggest_event->hide();
 	this->show();	
@@ -92,10 +93,24 @@ void createevent::create_the_event()
     if(response->contains("ERROR")) {
 		QMessageBox::critical(this, tr("Error"), *response);
 	}
-	else Q_EMIT(return_to_schedule());
+	else {
+		ui->title_input_2->setText("");
+		ui->location_input_2->setText("");
+		ui->dateEdit->setDate(QDate::currentDate());
+		ui->begin_time_edit_2->setTime(QTime(0,0));
+		ui->duration_input_2->setText("");
+		
+		Q_EMIT(return_to_schedule());
+	}
 }
 
 void createevent::cancel_event()
 {
+	ui->title_input_2->setText("");
+	ui->location_input_2->setText("");
+	ui->dateEdit->setDate(QDate::currentDate());
+	ui->begin_time_edit_2->setTime(QTime(0,0));
+	ui->duration_input_2->setText("");
+	
     Q_EMIT(return_to_schedule());
 }

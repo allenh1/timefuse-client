@@ -34,6 +34,8 @@ create_group_event::create_group_event(QWidget *parent) :
             this, &create_group_event::suggest_a_time);
     connect(m_p_suggested_time, &suggested_time::return_to_group_event,
             this, &create_group_event::from_suggested_time);
+
+	m_p_ui->dateEdit->setDate(QDate::currentDate());
 }
 
 create_group_event::~create_group_event() { }
@@ -44,12 +46,10 @@ void create_group_event::on_cancel()
 	m_p_ui->title_input->setText("");
 	m_p_ui->location_input->setText("");
 	m_p_ui->duration_input->setText("");
-
-	QTime def(0,0);
-	m_p_ui->begin_time_edit->setTime(def);
-
+	
+	m_p_ui->begin_time_edit->setTime(QTime(0,0));
+	m_p_ui->dateEdit->setDate(QDate::currentDate());
 	m_p_ui->attendees_list->clear();
-
 	Q_EMIT(return_to_home_screen());
 }
 
@@ -160,8 +160,8 @@ void create_group_event::on_create_group_event()
 		m_p_ui->location_input->setText("");
 		m_p_ui->duration_input->setText("");
 
-		QTime def(0,0);
-		m_p_ui->begin_time_edit->setTime(def);
+		m_p_ui->begin_time_edit->setTime(QTime(0,0));
+		m_p_ui->dateEdit->setDate(QDate::currentDate());
 		m_p_ui->attendees_list->clear();
 		Q_EMIT(return_to_home_screen());
 	} delete response; delete request;

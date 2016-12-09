@@ -5,6 +5,7 @@
 #include <iostream>
 #include <QDialog>
 #include <QString>
+#include <QDate>
 
 #include "suggest_user_event.hpp"
 #include "tcp_connection.hpp"
