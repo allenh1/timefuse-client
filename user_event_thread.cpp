@@ -29,6 +29,8 @@ user_event_thread::~user_event_thread()
 
 bool user_event_thread::init()
 {
+	if(m_p_thread != (QThread*)NULL) delete m_p_thread;
+	m_p_thread=new QThread();
 	this->moveToThread(m_p_thread);
 	connect(m_p_thread, &QThread::started, this, &user_event_thread::run);
 	m_p_thread->start();
@@ -37,13 +39,14 @@ bool user_event_thread::init()
 
 void user_event_thread::run()
 {
-	for(;;m_p_thread->msleep(5000)) {
+	for(;m_p_username->size()&&m_p_password->size();m_p_thread->msleep(5000)) {
 		run_method();
 	}
 }
 
 void user_event_thread::run_once(QString month, QString year)
 {
+	if(!m_p_username->size()||!m_p_password->size()) return;
 	QString * user_request = new QString("REQUEST_PERSONAL_MONTH_EVENTS ");
 
 	(*user_request)+=*m_p_username; (*user_request)+=":::";
@@ -66,12 +69,10 @@ void user_event_thread::run_method()
 	int m = m_p_month->toInt();
 	int y = m_p_year->toInt();
 	run_once(QString::number(m), QString::number(y));
-	for(int i=1; i < 12; ++i) {
+	for(int i=1; (i < 12) && (m_p_username->size()&&m_p_password->size()); ++i) {
 		if(i < m) {
 			run_once(QString::number(m-i), QString::number(y));
-		} else if((m-i) == 0) {
-			run_once(QString::number(12), QString::number(y-1));
-		} else if((m-i) < 0){
+		} else if((m-i) <= 0){
 			run_once(QString::number(12+(m-i)), QString::number(y-1));
 		} if((m+i) > 12) {
 			run_once(QString::number((m+i)%12), QString::number(y+1));

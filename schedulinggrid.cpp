@@ -54,13 +54,13 @@ schedulingGrid::~schedulingGrid() { }
 
 void schedulingGrid::reset_maps()
 {
-	if(user_occupied_days->size() > 0) {
+	while(user_occupied_days->size() > 0) {
 		user_occupied_days->erase(user_occupied_days->begin(),
 								  user_occupied_days->end());
-	} if(group_occupied_days->size() > 0) {
+	} while(group_occupied_days->size() > 0) {
 		group_occupied_days->erase(group_occupied_days->begin(),
 								  group_occupied_days->end());
-	}
+	} colorCalendar(); 
 }
 
 void schedulingGrid::fromHome()
@@ -361,14 +361,11 @@ void schedulingGrid::generateWeek()
             std::cerr<<group_request->toStdString()<<std::endl;
 
 			QString * group_response = setup_connection(group_request);
-            if(group_response->contains("ERROR")) {
-                QMessageBox::critical(this, tr("Error"), *group_response);
-            } else {
+            if(!group_response->contains("ERROR")) {
                 *response += list[x] + "\n";
                 *response += *group_response;
             }
         }
-
 
         QStringList weekEvents = response->split("\n",QString::SkipEmptyParts);
 

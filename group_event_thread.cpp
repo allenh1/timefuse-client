@@ -25,6 +25,8 @@ group_event_thread::~group_event_thread() {
 }
 
 bool group_event_thread::init() {
+	if(m_p_thread != (QThread*)NULL)delete m_p_thread;
+	m_p_thread=new QThread();
 	this->moveToThread(m_p_thread);
 	connect(m_p_thread, &QThread::started, this, &group_event_thread::run);
 	m_p_thread->start();
@@ -32,12 +34,13 @@ bool group_event_thread::init() {
 }
 
 void group_event_thread::run() {
-	for(;;m_p_thread->msleep(5000)) {
+	for(;m_p_username->size()&&m_p_password->size();m_p_thread->msleep(5000)) {
 		run_method();
 	}
 }
 
 void group_event_thread::run_once(QString month, QString year) {
+	if(!m_p_username->size()||!m_p_password->size()) return;
 	QString * get_groups = new QString("REQUEST_GROUPS ");
 	*get_groups += *m_p_username + ":::" + *m_p_password + "\r\n\0";
 
@@ -77,7 +80,7 @@ void group_event_thread::run_method()
 	int m = m_p_month->toInt();
 	int y = m_p_year->toInt();
 	run_once(QString::number(m), QString::number(y));
-	for(int i=1; i < 7; ++i) {
+	for(int i=1; (i < 7) && (m_p_username->size()&&m_p_password->size()); ++i) {
 		if(i < m) {
 			run_once(QString::number(m-i), QString::number(y));
 		} else if((m-i) <= 0){
