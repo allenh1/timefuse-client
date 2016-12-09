@@ -34,10 +34,16 @@ reset_password_window::~reset_password_window() { }
 
 void reset_password_window::reset_pressed()
 {
+	QString email = m_p_ui->email_input->text();
+	if(!email.contains("@") || !(email.lastIndexOf(".") > email.indexOf("@"))) {
+		QMessageBox::critical(this, tr("Error"),
+							  tr("That's not an email!"));
+		return;
+	}
     QString * request = new QString("REQUEST_RESET ");
 
     (*request)+=m_p_ui->username_input->text(); (*request)+=":::";
-    (*request)+=m_p_ui->email_input->text(); (*request)+=":::";
+    (*request)+=email; (*request)+=":::";
 	(*request)+=encrypt_string(m_p_ui->new_password_input->text());
 	(*request)+="\r\n\0";
 
