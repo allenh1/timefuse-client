@@ -3,20 +3,38 @@
 LoginWindow::LoginWindow(QWidget *parent)
 	: QWidget(parent)
 {
-    QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
-    this->setPalette(qpalette);
-    QFont font(QString("Courier"), 10.5, QFont::Thin, false);
-    this->setFont(font);
+    this->setPalette(QPalette(QColor(255, 255, 255, 255), QColor(76, 76, 76, 255)));
+    this->setFont(QFont(QString("Courier"), 13, QFont::Thin, false));
 
+	m_p_logo = new QImage(tr("timefuselogosmall.png"));
+	
 	m_p_login_button = new QPushButton(tr("Sign In"));
+	m_p_login_button->setPalette(QPalette(QColor(86, 231, 115, 255),
+										  QColor(86, 231, 115, 255)));
+	
 	m_p_create_button = new QPushButton(tr("Create Account"));
+	m_p_create_button->setPalette(QPalette(QColor(227, 201, 69, 255),
+										  QColor(227, 201, 69, 255)));
+	
 	m_p_reset_button = new QPushButton(tr("Reset Password"));
-    
+	m_p_reset_button->setPalette(QPalette(QColor(255, 0, 128, 255),
+										  QColor(255, 0, 128, 255)));
+	
 	m_p_user_label = new QLabel(tr("Username:"));
     m_p_password_label = new QLabel(tr("Password:"));
-    
+
+	m_p_logo_label = new QLabel("");
+	m_p_logo_label->setPixmap(QPixmap::fromImage(*m_p_logo));
+	m_p_logo_label->adjustSize();
+    m_p_logo_label->setAlignment(Qt::AlignCenter);
+	
 	m_p_user_edit = new QLineEdit();
+	m_p_user_edit->setPalette(QPalette(QColor(255, 255, 255, 255),
+									   QColor(255, 255, 255, 255)));
+	
 	m_p_password_edit = new QLineEdit();
+	m_p_password_edit->setPalette(QPalette(QColor(255, 255, 255, 255),
+									   QColor(255, 255, 255, 255)));
     
 	/* set the password edit to not show text */
 	m_p_password_edit->setEchoMode(QLineEdit::Password);
@@ -28,7 +46,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 	m_p_name_layout = new QHBoxLayout();
 	m_p_password_layout = new QHBoxLayout();
 	m_p_button_layout = new QHBoxLayout();
-    
+	
 	m_p_name_layout->addWidget(m_p_user_label);
 	m_p_name_layout->addWidget(m_p_user_edit);
     
@@ -37,10 +55,13 @@ LoginWindow::LoginWindow(QWidget *parent)
 	m_p_button_layout->addWidget(m_p_create_button);
 	m_p_button_layout->addWidget(m_p_reset_button);
 	m_p_button_layout->addWidget(m_p_login_button);
-    
+
+	m_p_main_layout->addWidget(m_p_logo_label);
 	m_p_main_layout->addLayout(m_p_name_layout);
 	m_p_main_layout->addLayout(m_p_password_layout);
 	m_p_main_layout->addLayout(m_p_button_layout);
+
+	m_p_main_layout->setAlignment(Qt::AlignHCenter);
     
 	setLayout(m_p_main_layout);
 	show();

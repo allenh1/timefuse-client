@@ -14,6 +14,8 @@
 #include <QHBoxLayout>
 #include <iostream>
 #include <QCryptographicHash>
+#include <QImage>
+#include <QPixmap>
 
 #include "create_account_window.hpp"
 #include "reset_password_window.hpp"
@@ -39,15 +41,18 @@ public:
 
 	Q_SLOT void hide_home_screen();
 private:
+	QImage *m_p_logo;
+	
     QPushButton *m_p_create_button; //create account
-    QPushButton *m_p_login_button; //login
+    QPushButton *m_p_login_button;  //login
     QPushButton *m_p_reset_button;
     
     QVBoxLayout * m_p_main_layout;
     QHBoxLayout * m_p_name_layout;
     QHBoxLayout * m_p_password_layout;
     QHBoxLayout * m_p_button_layout;
-    
+
+	QLabel * m_p_logo_label;
     QLabel * m_p_user_label;
     QLabel * m_p_password_label;
     
