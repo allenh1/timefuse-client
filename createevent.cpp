@@ -94,7 +94,7 @@ void createevent::create_the_event()
     QString::number(year) + "-" + QString::number(month) +
     "-" + QString::number(day) + ":::" + QString::number(hour) +
     ":" + QString::number(minute).rightJustified(2, '0') +
-    ":::" + ui->duration_input_2->displayText() + ":::" +
+    ":::" + ui->location_input_2->displayText() + ":::" +
     ui->location_input_2->displayText() + ":::" +
     QString::number(ui->timezoneOffset->value()) +
     ":::" + ui->title_input_2->displayText() +
@@ -111,7 +111,7 @@ void createevent::create_the_event()
     ui->location_input_2->setText("");
     ui->dateEdit->setDate(QDate::currentDate());
     ui->begin_time_edit_2->setTime(QTime(0, 0));
-    ui->duration_input_2->setText("");
+    ui->location_input_2->setText("");
 
     Q_EMIT (return_to_schedule());
   }
@@ -123,7 +123,7 @@ void createevent::cancel_event()
   ui->location_input_2->setText("");
   ui->dateEdit->setDate(QDate::currentDate());
   ui->begin_time_edit_2->setTime(QTime(0, 0));
-  ui->duration_input_2->setText("");
+  ui->location_input_2->setText("");
 
   Q_EMIT (return_to_schedule());
 }
