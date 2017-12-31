@@ -17,6 +17,7 @@
 LoginWindow::LoginWindow(QWidget * parent)
 : QWidget(parent)
 {
+<<<<<<< HEAD
   this->setPalette(QPalette(QColor(255, 255, 255, 255), QColor(76, 76, 76, 255)));
   this->setFont(QFont(QString("Courier"), 13, QFont::Thin, false));
 
