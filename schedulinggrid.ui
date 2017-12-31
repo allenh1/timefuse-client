@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>481</width>
-    <height>369</height>
+    <width>582</width>
+    <height>432</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,41 +22,24 @@
   <widget class="QWidget" name="centralWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>-1</y>
-     <width>481</width>
-     <height>369</height>
+     <x>50</x>
+     <y>10</y>
+     <width>491</width>
+     <height>371</height>
     </rect>
    </property>
-   <widget class="QPushButton" name="pushCreateEvent">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>330</y>
-      <width>361</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(86, 231, 115);</string>
-    </property>
-    <property name="text">
-     <string>Create Event</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="back_button">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>330</y>
+      <x>360</x>
+      <y>340</y>
       <width>91</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(255, 0, 128);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;Courier&quot;;</string>
     </property>
     <property name="text">
      <string>Back</string>
@@ -86,7 +69,7 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
+     <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
@@ -99,7 +82,7 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
+     <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="viewMode">
@@ -115,7 +98,7 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
+     <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
@@ -128,11 +111,11 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
      <property name="mouseTracking">
       <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="selectionRectVisible">
       <bool>true</bool>
@@ -163,7 +146,7 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
+     <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
@@ -176,7 +159,7 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
+     <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
@@ -237,7 +220,7 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
+     <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
@@ -298,7 +281,7 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
+     <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
@@ -311,7 +294,7 @@ background-color: rgb(255, 0, 128);</string>
        <height>250</height>
       </rect>
      </property>
-	 <property name="styleSheet">
+     <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
@@ -341,23 +324,6 @@ background-color: rgb(255, 0, 128);</string>
       <string>&lt;</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="PushSwitchViews">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>461</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(227, 201, 69);</string>
-    </property>
-    <property name="text">
-     <string>Switch Views</string>
-    </property>
    </widget>
    <widget class="QFrame" name="frameMonth">
     <property name="geometry">
@@ -477,26 +443,6 @@ background-color: rgb(227, 201, 69);</string>
       </property>
      </item>
     </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>461</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushRight">
      <property name="geometry">
       <rect>
@@ -530,11 +476,65 @@ font: 12pt &quot;Courier&quot;;</string>
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>20</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 20pt &quot;Times New Roman&quot;;</string>
+    </property>
+    <property name="text">
+     <string>My Schedule</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushCreateEvent">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>340</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;Courier&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Create Event</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PushSwitchViews">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>340</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;Courier&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Switch Views</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>50</x>
      <y>0</y>
      <width>4</width>
      <height>13</height>
@@ -544,7 +544,7 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QStatusBar" name="statusBar">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>50</x>
      <y>0</y>
      <width>3</width>
      <height>23</height>

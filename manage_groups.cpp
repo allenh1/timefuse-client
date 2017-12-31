@@ -14,6 +14,7 @@
 
 #include "manage_groups.hpp"
 
+//Hunter, they have three button: delete / leave / edit; what is the funcion of EDIT?
 manage_groups::manage_groups(QWidget * parent)
 : QWidget(parent),
   m_p_ui(new Ui::manage_groups)

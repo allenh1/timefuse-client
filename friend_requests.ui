@@ -20,18 +20,18 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QLabel" name="title">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>90</x>
      <y>20</y>
-     <width>161</width>
-     <height>31</height>
+     <width>251</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-font: 17pt &quot;Courier&quot;;</string>
+font: 20pt &quot;Times New Roman&quot;;</string>
    </property>
    <property name="text">
-    <string>MY REQUESTS</string>
+    <string>My Friend Requests</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -40,15 +40,17 @@ font: 17pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>360</y>
+     <x>290</x>
+     <y>350</y>
      <width>101</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(227, 201, 69);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;
+</string>
    </property>
    <property name="text">
     <string>Back</string>
@@ -57,15 +59,17 @@ background-color: rgb(227, 201, 69);</string>
   <widget class="QPushButton" name="decline">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>360</y>
+     <x>180</x>
+     <y>350</y>
      <width>101</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(255, 0, 128);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;
+</string>
    </property>
    <property name="text">
     <string>Decline</string>
@@ -74,15 +78,16 @@ background-color: rgb(255, 0, 128);</string>
   <widget class="QPushButton" name="accept">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>360</y>
+     <x>60</x>
+     <y>350</y>
      <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(86, 231, 115);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Accept</string>
@@ -91,10 +96,10 @@ background-color: rgb(86, 231, 115);</string>
   <widget class="QListWidget" name="list_friends">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>50</y>
-     <width>331</width>
-     <height>301</height>
+     <x>80</x>
+     <y>90</y>
+     <width>281</width>
+     <height>241</height>
     </rect>
    </property>
    <property name="styleSheet">

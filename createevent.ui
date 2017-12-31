@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
-    <height>430</height>
+    <width>547</width>
+    <height>504</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,15 +20,17 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>380</y>
-     <width>191</width>
+     <x>100</x>
+     <y>400</y>
+     <width>141</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(86, 231, 115);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;
+</string>
    </property>
    <property name="text">
     <string>Create Event</string>
@@ -37,8 +39,8 @@ background-color: rgb(86, 231, 115);</string>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>80</x>
+     <y>80</y>
      <width>391</width>
      <height>251</height>
     </rect>
@@ -48,7 +50,7 @@ background-color: rgb(86, 231, 115);</string>
      <widget class="QLabel" name="title_2">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
+font: 13pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>Title:</string>
@@ -59,7 +61,7 @@ font: 12pt &quot;Courier&quot;;</string>
      <widget class="QLabel" name="location_2">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
+font: 13pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>Location:</string>
@@ -70,10 +72,10 @@ font: 12pt &quot;Courier&quot;;</string>
      <widget class="QLabel" name="end_time_2">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
+font: 13pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
-       <string>Duration:</string>
+       <string>End Time:</string>
       </property>
      </widget>
     </item>
@@ -81,7 +83,7 @@ font: 12pt &quot;Courier&quot;;</string>
      <widget class="QLabel" name="begin_time_2">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
+font: 13pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>Begin Time:</string>
@@ -92,17 +94,10 @@ font: 12pt &quot;Courier&quot;;</string>
      <widget class="QLabel" name="date_label">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
+font: 13pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>Date:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QLineEdit" name="duration_input_2">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
@@ -138,7 +133,7 @@ font: 12pt &quot;Courier&quot;;</string>
      <widget class="QLabel" name="label_2">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
-font: 12pt "Courier";</string>
+font: 13pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>GMT:</string>
@@ -171,20 +166,29 @@ font: 12pt "Courier";</string>
       </property>
      </widget>
     </item>
+    <item row="4" column="1">
+     <widget class="QTimeEdit" name="begin_time_edit_3">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QPushButton" name="pushCancel">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>380</y>
-     <width>191</width>
+     <x>290</x>
+     <y>400</y>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(255, 0, 128);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;
+</string>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -193,8 +197,8 @@ background-color: rgb(255, 0, 128);</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>300</y>
+     <x>40</x>
+     <y>360</y>
      <width>201</width>
      <height>16</height>
     </rect>
@@ -210,15 +214,15 @@ font: 13pt &quot;Courier&quot;;</string>
   <widget class="QRadioButton" name="radioFixed">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>300</y>
+     <x>200</x>
+     <y>360</y>
      <width>81</width>
      <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Fixed</string>
@@ -230,35 +234,37 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QRadioButton" name="radioNegotiable">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>340</y>
+     <x>270</x>
+     <y>360</y>
      <width>131</width>
      <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-	font: 12pt &quot;Courier&quot;;</string>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Negotiable</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="suggest_time">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>330</y>
-     <width>191</width>
-     <height>31</height>
+     <x>380</x>
+     <y>360</y>
+     <width>111</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt "Courier";
-background-color: rgb(61, 229, 229);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;
+</string>
    </property>
    <property name="text">
     <string>Suggest Time</string>
@@ -267,14 +273,31 @@ background-color: rgb(61, 229, 229);</string>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>280</y>
+     <x>80</x>
+     <y>340</y>
      <width>391</width>
      <height>16</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="title_3">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>20</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+font: 20pt &quot;Times New Roman&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Create Event</string>
    </property>
   </widget>
  </widget>

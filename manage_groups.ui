@@ -20,18 +20,18 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QLabel" name="title">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>130</x>
      <y>30</y>
-     <width>131</width>
-     <height>21</height>
+     <width>171</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-font: 17pt &quot;Courier&quot;;</string>
+font: 20pt &quot;Times New Roman&quot;;</string>
    </property>
    <property name="text">
-    <string>MY GROUPS</string>
+    <string>Edit My Groups</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -40,15 +40,16 @@ font: 17pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="create_new_group">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>70</x>
      <y>370</y>
      <width>131</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(227, 201, 69);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Create Group</string>
@@ -57,15 +58,16 @@ background-color: rgb(227, 201, 69);</string>
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>240</x>
      <y>370</y>
      <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(255, 0, 128);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -74,15 +76,16 @@ background-color: rgb(255, 0, 128);</string>
   <widget class="QPushButton" name="delete_group">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>40</x>
      <y>330</y>
-     <width>131</width>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(61, 229, 229);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Delete</string>
@@ -91,15 +94,16 @@ background-color: rgb(61, 229, 229);</string>
   <widget class="QPushButton" name="edit_group">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>370</y>
+     <x>280</x>
+     <y>330</y>
      <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(86, 231, 115);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Edit</string>
@@ -108,15 +112,16 @@ background-color: rgb(86, 231, 115);</string>
   <widget class="QPushButton" name="leave_group">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>160</x>
      <y>330</y>
-     <width>131</width>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(204, 102, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Leave</string>
@@ -125,10 +130,10 @@ background-color: rgb(204, 102, 255);</string>
   <widget class="QListWidget" name="list_groups">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>60</y>
-     <width>371</width>
-     <height>261</height>
+     <x>50</x>
+     <y>80</y>
+     <width>331</width>
+     <height>231</height>
     </rect>
    </property>
    <property name="styleSheet">

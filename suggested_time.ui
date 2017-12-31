@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
+    <width>440</width>
     <height>430</height>
    </rect>
   </property>
@@ -20,15 +20,15 @@ font: 12pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>350</y>
-     <width>161</width>
+     <x>270</x>
+     <y>360</y>
+     <width>101</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(255, 0, 128);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -37,15 +37,15 @@ background-color: rgb(255, 0, 128);</string>
   <widget class="QPushButton" name="select_time">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>350</y>
-     <width>161</width>
+     <x>70</x>
+     <y>360</y>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 13pt &quot;Courier&quot;;
-background-color: rgb(61, 229, 229);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Select Time</string>
@@ -54,10 +54,10 @@ background-color: rgb(61, 229, 229);</string>
   <widget class="QListWidget" name="list_times">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>70</x>
      <y>70</y>
-     <width>331</width>
-     <height>271</height>
+     <width>301</width>
+     <height>261</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -67,15 +67,15 @@ background-color: rgb(61, 229, 229);</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>150</x>
      <y>30</y>
-     <width>181</width>
+     <width>201</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-font: 15pt &quot;Courier&quot;;</string>
+font: 20pt &quot;Times New Roman&quot;;</string>
    </property>
    <property name="text">
     <string>Suggested Times</string>
