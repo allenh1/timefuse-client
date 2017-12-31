@@ -9,29 +9,31 @@
 #include "ui_friend_requests.h"
 #include "tcp_connection.hpp"
 
-namespace Ui {
+namespace Ui
+{
 class friend_requests;
 }
 
 class friend_requests : public QWidget
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit friend_requests(QWidget * _p_parent = NULL);
-    virtual ~friend_requests();
+  explicit friend_requests(QWidget * _p_parent = NULL);
+  virtual ~friend_requests();
 
-	QString * m_p_username;
-	QString * m_p_password;
+  QString * m_p_username;
+  QString * m_p_password;
 
-	Q_SIGNAL void return_to_friends();
-    void fill_fields();
+  Q_SIGNAL void return_to_friends();
+  void fill_fields();
+
 private:
-    Ui::friend_requests * m_p_ui;
-	
-    Q_SLOT void on_delete_friend();
-    Q_SLOT void on_add_friend();
-    Q_SLOT void on_back_button();
+  Ui::friend_requests * m_p_ui;
+
+  Q_SLOT void on_delete_friend();
+  Q_SLOT void on_add_friend();
+  Q_SLOT void on_back_button();
 };
 
 #endif

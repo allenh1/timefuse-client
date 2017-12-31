@@ -1,83 +1,84 @@
 #include "reset_password_window.hpp"
 //#include "ui_reset_password_window.hpp"
 
-reset_password_window::reset_password_window(QWidget *parent) :
-    QWidget(parent),
-    m_p_ui(new Ui::reset_password_window)
+reset_password_window::reset_password_window(QWidget * parent)
+: QWidget(parent),
+  m_p_ui(new Ui::reset_password_window)
 {
-    QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
-    this->setPalette(qpalette);
-    QFont font(QString("Courier"), 10.5, QFont::Thin, false);
-    this->setFont(font);
+  QPalette qpalette(QColor(102, 219, 255, 255), QColor(204, 243, 255, 255));
+  this->setPalette(qpalette);
+  QFont font(QString("Courier"), 10.5, QFont::Thin, false);
+  this->setFont(font);
 
-    m_p_ui->setupUi(this);
+  m_p_ui->setupUi(this);
 
-	m_p_ui->email_input->setPlaceholderText(tr("email@domain.com"));
-	m_p_ui->username_input->setPlaceholderText(tr("Enter your username"));
-	m_p_ui->new_password_input->setPlaceholderText(tr("Enter new password"));
+  m_p_ui->email_input->setPlaceholderText(tr("email@domain.com"));
+  m_p_ui->username_input->setPlaceholderText(tr("Enter your username"));
+  m_p_ui->new_password_input->setPlaceholderText(tr("Enter new password"));
 
-	/* set the password edit to not show text */
-	m_p_ui->new_password_input->setEchoMode(QLineEdit::Password);
-	m_p_ui->new_password_input->setInputMethodHints(Qt::ImhHiddenText |
-										   Qt::ImhNoPredictiveText |
-										   Qt::ImhNoAutoUppercase);
-    
-    /* connect signals */
-    connect(m_p_ui->cancel_button, &QPushButton::released,
-            this, &reset_password_window::cancel_pressed);
-    connect(m_p_ui->reset_button, &QPushButton::released,
-            this, &reset_password_window::reset_pressed);
+  /* set the password edit to not show text */
+  m_p_ui->new_password_input->setEchoMode(QLineEdit::Password);
+  m_p_ui->new_password_input->setInputMethodHints(Qt::ImhHiddenText |
+    Qt::ImhNoPredictiveText |
+    Qt::ImhNoAutoUppercase);
+
+  /* connect signals */
+  connect(m_p_ui->cancel_button, &QPushButton::released,
+    this, &reset_password_window::cancel_pressed);
+  connect(m_p_ui->reset_button, &QPushButton::released,
+    this, &reset_password_window::reset_pressed);
 
 }
 
-reset_password_window::~reset_password_window() { }
+reset_password_window::~reset_password_window() {}
 
 void reset_password_window::reset_pressed()
 {
-	QString username = m_p_ui->username_input->text();
-	if(!username.size()) {
-		QMessageBox::critical(this, tr("Error"),
-							  tr("No username was entered!"));
-		return;
-	}
-	QString email = m_p_ui->email_input->text();
-	if(!email.contains("@") || !(email.lastIndexOf(".") > email.indexOf("@"))) {
-		QMessageBox::critical(this, tr("Error"),
-							  tr("That's not an email!"));
-		return;
-	}
-	QString password = m_p_ui->new_password_input->text();
-	if(!password.size()) {
-		QMessageBox::critical(this, tr("Error"),
-							  tr("No password was entered!"));
-		return;
-	}
-    QString * request = new QString("REQUEST_RESET ");
+  QString username = m_p_ui->username_input->text();
+  if (!username.size()) {
+    QMessageBox::critical(this, tr("Error"),
+      tr("No username was entered!"));
+    return;
+  }
+  QString email = m_p_ui->email_input->text();
+  if (!email.contains("@") || !(email.lastIndexOf(".") > email.indexOf("@"))) {
+    QMessageBox::critical(this, tr("Error"),
+      tr("That's not an email!"));
+    return;
+  }
+  QString password = m_p_ui->new_password_input->text();
+  if (!password.size()) {
+    QMessageBox::critical(this, tr("Error"),
+      tr("No password was entered!"));
+    return;
+  }
+  QString * request = new QString("REQUEST_RESET ");
 
-    (*request)+=username; (*request)+=":::";
-    (*request)+=email; (*request)+=":::";
-	(*request)+=encrypt_string(password);
-	(*request)+="\r\n\0";
+  (*request) += username; (*request) += ":::";
+  (*request) += email; (*request) += ":::";
+  (*request) += encrypt_string(password);
+  (*request) += "\r\n\0";
 
-    QString * response = setup_connection(request);
+  QString * response = setup_connection(request);
 
-    if(response->contains("ERROR")) {
-		QMessageBox::critical(this, tr("Error"), *response);
-		delete response; delete request;
-		return;
-	} delete response; delete request;
-	
-	m_p_ui->email_input->setText("");
-	m_p_ui->username_input->setText("");
-	m_p_ui->new_password_input->setText("");
-    Q_EMIT(return_to_user_page());
+  if (response->contains("ERROR")) {
+    QMessageBox::critical(this, tr("Error"), *response);
+    delete response; delete request;
+    return;
+  }
+  delete response; delete request;
+
+  m_p_ui->email_input->setText("");
+  m_p_ui->username_input->setText("");
+  m_p_ui->new_password_input->setText("");
+  Q_EMIT (return_to_user_page());
 }
 
 
 void reset_password_window::cancel_pressed()
 {
-	m_p_ui->email_input->setText("");
-	m_p_ui->username_input->setText("");
-	m_p_ui->new_password_input->setText("");
-    Q_EMIT(return_to_user_page());
+  m_p_ui->email_input->setText("");
+  m_p_ui->username_input->setText("");
+  m_p_ui->new_password_input->setText("");
+  Q_EMIT (return_to_user_page());
 }

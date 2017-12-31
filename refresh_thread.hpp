@@ -9,18 +9,19 @@ typedef unsigned int uint;
 
 class refresh_thread : public QObject
 {
-	Q_OBJECT
+  Q_OBJECT
+
 public:
-	explicit refresh_thread(QObject * _p_parent = NULL);
-	virtual ~refresh_thread();
+  explicit refresh_thread(QObject * _p_parent = NULL);
+  virtual ~refresh_thread();
 
-	virtual bool init() {return false;};
+  virtual bool init() {return false;}
 
-	virtual Q_SLOT void run() {};
-	virtual Q_SLOT void run_once(QString, QString) {};
-	virtual Q_SLOT void run_method() {};
+  virtual Q_SLOT void run() {}
+  virtual Q_SLOT void run_once(QString, QString) {}
+  virtual Q_SLOT void run_method() {}
 
-	QString* setup_connection(QString*);
+  QString * setup_connection(QString *);
 };
 
 #endif

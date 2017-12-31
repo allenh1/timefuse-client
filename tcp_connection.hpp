@@ -5,6 +5,5 @@
 #include <QMutex>
 #include <iostream>
 
-QString* setup_connection(QString * content);
+QString * setup_connection(QString * content);
 #endif
-

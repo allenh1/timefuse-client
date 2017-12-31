@@ -11,32 +11,34 @@
 #include "tcp_connection.hpp"
 #include "encrypt_string.hpp"
 
-namespace Ui {
-    class account_settings;
+namespace Ui
+{
+class account_settings;
 }
 
 class account_settings : public QWidget
 {
-	Q_OBJECT
+  Q_OBJECT
+
 public:
-	explicit account_settings (QWidget * _p_parent = NULL);
-	virtual ~account_settings();
+  explicit account_settings(QWidget * _p_parent = NULL);
+  virtual ~account_settings();
 
-	QString * m_p_secret;
-	QString * m_p_username;
-	QString * m_p_password;
+  QString * m_p_secret;
+  QString * m_p_username;
+  QString * m_p_password;
 
-	Q_SIGNAL void return_to_home_screen();
+  Q_SIGNAL void return_to_home_screen();
 
-	void fill_fields();
+  void fill_fields();
 
 private:
-    Ui::account_settings * m_p_ui;
-		
-	Q_SLOT void save_changes_pressed();
-	Q_SLOT void cancel_pressed();
-	Q_SLOT void leave_of_absence_pressed();
-	Q_SLOT void present_pressed();
+  Ui::account_settings * m_p_ui;
+
+  Q_SLOT void save_changes_pressed();
+  Q_SLOT void cancel_pressed();
+  Q_SLOT void leave_of_absence_pressed();
+  Q_SLOT void present_pressed();
 };
 
 #endif

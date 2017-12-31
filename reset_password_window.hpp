@@ -11,26 +11,27 @@
 
 class user;
 
-namespace Ui {
+namespace Ui
+{
 class reset_password_window;
 }
 
 class reset_password_window : public QWidget
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit reset_password_window(QWidget * _p_parent = NULL);
-    virtual ~reset_password_window();
-    
-    
-    Q_SLOT void reset_pressed();
-    Q_SLOT void cancel_pressed();
-    
-    Q_SIGNAL void send_create_account(user * u);
-    Q_SIGNAL void return_to_user_page();
+  explicit reset_password_window(QWidget * _p_parent = NULL);
+  virtual ~reset_password_window();
+
+
+  Q_SLOT void reset_pressed();
+  Q_SLOT void cancel_pressed();
+
+  Q_SIGNAL void send_create_account(user * u);
+  Q_SIGNAL void return_to_user_page();
 
 private:
-    Ui::reset_password_window * m_p_ui;
+  Ui::reset_password_window * m_p_ui;
 };
 #endif // RESET_PASSWORD_WINDOW_H
