@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
-    <height>430</height>
+    <width>383</width>
+    <height>415</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,23 +15,24 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(76, 76, 76);
-font: 12pt "Courier";</string>
+font: 12pt &quot;Courier&quot;;</string>
   </property>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>60</y>
-     <width>391</width>
-     <height>301</height>
+     <x>100</x>
+     <y>80</y>
+     <width>191</width>
+     <height>241</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="2" column="0">
      <widget class="QPushButton" name="manage_groups">
       <property name="styleSheet">
-       <string notr="true">font: 14pt "Courier";
-background-color: rgb(227, 201, 69);</string>
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 14pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>Manage Groups</string>
@@ -41,8 +42,9 @@ background-color: rgb(227, 201, 69);</string>
     <item row="1" column="0">
      <widget class="QPushButton" name="create_event">
       <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;Courier&quot;;
-background-color: rgb(86, 231, 115);</string>
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 14pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>Create Group Event</string>
@@ -52,8 +54,9 @@ background-color: rgb(86, 231, 115);</string>
     <item row="0" column="0">
      <widget class="QPushButton" name="see_schedule">
       <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;Courier&quot;;
-background-color: rgb(61, 229, 229);</string>
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 14pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>See My Schedule</string>
@@ -63,8 +66,9 @@ background-color: rgb(61, 229, 229);</string>
     <item row="3" column="0">
      <widget class="QPushButton" name="friend_list">
       <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;Courier&quot;;
-background-color: rgb(255, 0, 128);</string>
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 14pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>See My Friends</string>
@@ -76,16 +80,16 @@ background-color: rgb(255, 0, 128);</string>
   <widget class="QPushButton" name="account_settings">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>370</y>
-     <width>191</width>
+     <x>70</x>
+     <y>340</y>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-font: 14pt &quot;Courier&quot;;
-background-color: rgb(255, 128, 0);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 14pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -94,8 +98,8 @@ background-color: rgb(255, 128, 0);</string>
   <widget class="QLabel" name="timefuse">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>20</y>
+     <x>110</x>
+     <y>30</y>
      <width>161</width>
      <height>31</height>
     </rect>
@@ -114,15 +118,16 @@ font: 24pt &quot;Courier&quot;;</string>
   <widget class="QPushButton" name="logout_button">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>370</y>
-     <width>191</width>
+     <x>210</x>
+     <y>340</y>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 14pt &quot;Courier&quot;;
-background-color: rgb(204, 102, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+font: 14pt &quot;Courier&quot;;</string>
    </property>
    <property name="text">
     <string>Logout</string>

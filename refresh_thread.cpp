@@ -20,7 +20,7 @@ refresh_thread::~refresh_thread() {}
 QString * refresh_thread::setup_connection(QString * content)
 {
   /* this needs to be in a register... for... reasons */
-  register QTcpSocket * pSocket = NULL;
+  QTcpSocket * pSocket = NULL;
   QString * read, tcp_server, port_string;
   read = new QString();
 

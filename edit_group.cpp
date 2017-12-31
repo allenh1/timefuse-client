@@ -14,6 +14,8 @@
 
 #include "edit_group.hpp"
 
+//Hunter, I add a delete member button
+
 edit_group::edit_group(QWidget * parent)
 : QWidget(parent),
   ui(new Ui::edit_group)

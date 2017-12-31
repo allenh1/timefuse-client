@@ -33,7 +33,7 @@ create_group_event::create_group_event(QWidget * parent)
   m_p_suggested_time = new suggested_time();
 
   m_p_ui->group_to_add->setPlaceholderText(tr("Enter a group name"));
-  m_p_ui->duration_input->setPlaceholderText(tr("in minutes"));
+  m_p_ui->location_input->setPlaceholderText(tr("in minutes"));
   m_p_ui->title_input->setPlaceholderText(tr("Group event name"));
   m_p_ui->location_input->setPlaceholderText(tr("Group event location"));
 
@@ -59,7 +59,7 @@ void create_group_event::on_cancel()
   m_p_ui->group_to_add->setText("");
   m_p_ui->title_input->setText("");
   m_p_ui->location_input->setText("");
-  m_p_ui->duration_input->setText("");
+  m_p_ui->location_input->setText("");
 
   m_p_ui->begin_time_edit->setTime(QTime(0, 0));
   m_p_ui->dateEdit->setDate(QDate::currentDate());
@@ -73,7 +73,7 @@ void create_group_event::suggest_a_time()
   m_p_suggested_time->m_p_password = m_p_password;
 
   (*m_p_suggested_time->m_p_group_name) = m_p_ui->group_to_add->text();
-  (*m_p_suggested_time->m_p_duration) = m_p_ui->duration_input->text();
+  (*m_p_suggested_time->m_p_duration) = m_p_ui->location_input->text();
 
   int year = m_p_ui->dateEdit->date().year();
   int day = m_p_ui->dateEdit->date().day();
@@ -157,7 +157,7 @@ void create_group_event::on_create_group_event()
   (*request) += QString::number(day); (*request) += ":::";
   (*request) += QString::number(hour); (*request) += ':';
   (*request) += QString::number(minute).rightJustified(2, '0'); (*request) += ":::";
-  (*request) += m_p_ui->duration_input->displayText(); (*request) += ":::";
+  (*request) += m_p_ui->location_input->displayText(); (*request) += ":::";
   (*request) += m_p_ui->location_input->displayText(); (*request) += ":::";
   (*request) += "-5"; (*request) += ":::";
   (*request) += m_p_ui->title_input->displayText(); (*request) += "\r\n\0";
@@ -172,7 +172,7 @@ void create_group_event::on_create_group_event()
     m_p_ui->group_to_add->setText("");
     m_p_ui->title_input->setText("");
     m_p_ui->location_input->setText("");
-    m_p_ui->duration_input->setText("");
+    m_p_ui->location_input->setText("");
 
     m_p_ui->begin_time_edit->setTime(QTime(0, 0));
     m_p_ui->dateEdit->setDate(QDate::currentDate());

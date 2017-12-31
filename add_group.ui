@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
-    <height>430</height>
+    <width>471</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>40</x>
+     <y>70</y>
      <width>391</width>
      <height>311</height>
     </rect>
@@ -37,7 +37,7 @@
      <widget class="QLabel" name="label">
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Courier&quot;;</string>
+font: 13pt &quot;Courier&quot;;</string>
       </property>
       <property name="text">
        <string>Group Name:</string>
@@ -62,70 +62,79 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="add_member_input">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="add_member">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;Courier&quot;;
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Add Member</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="add_member_input_2">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="add_group_button">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;Courier&quot;;
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Add Group</string>
+      </property>
+     </widget>
+    </item>
    </layout>
-  </widget>
-  <widget class="QPushButton" name="add_group_button">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>380</y>
-     <width>131</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(86, 231, 115);</string>
-   </property>
-   <property name="text">
-    <string>Add Group</string>
-   </property>
   </widget>
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>380</y>
-     <width>131</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(255, 0, 128);</string>
-   </property>
-   <property name="text">
-    <string>Cancel</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="add_member">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>340</y>
+     <x>330</x>
+     <y>390</y>
      <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Courier&quot;;
-background-color: rgb(61, 229, 229);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;Courier&quot;;
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
-    <string>Add Member</string>
+    <string>Cancel</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="add_member_input">
+  <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>340</y>
-     <width>271</width>
-     <height>31</height>
+     <x>140</x>
+     <y>20</y>
+     <width>281</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+font: 20pt &quot;Times New Roman&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Add Group/Member</string>
    </property>
   </widget>
  </widget>

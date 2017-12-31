@@ -26,7 +26,8 @@ suggest_user_event::suggest_user_event(QWidget * parent)
   m_p_username = new QString("");
   m_p_password = new QString("");
 
-  m_p_ui->duration_input->setPlaceholderText(tr("in minutes"));
+  /* TODO(allenh1): add this functionality back in */
+  // m_p_ui->->setPlaceholderText(tr("in minutes"));
 
   // connect buttons
   connect(m_p_ui->cancel, &QPushButton::released,
@@ -41,7 +42,7 @@ suggest_user_event::~suggest_user_event() {}
 
 void suggest_user_event::on_cancel()
 {
-  m_p_ui->duration_input->setText("");
+  m_p_ui->end_time->setText("");
   m_p_ui->begin_time_edit->setTime(QTime(0, 0));
   m_p_ui->time_list->clear();
 
@@ -63,7 +64,7 @@ void suggest_user_event::suggest_a_time()
   (*request) += QString::number(year) + "-" + QString::number(month) +
     "-" + QString::number(day) + ":::" + QString::number(hour) +
     ":" + QString::number(minute) + ":::";
-  (*request) += m_p_ui->duration_input->text();
+  (*request) += m_p_ui->end_time->text();
   std::cerr << "request: " << request->toStdString() << std::endl;
   QString * response = setup_connection(request);
 
