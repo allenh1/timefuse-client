@@ -43,8 +43,8 @@ LoginWindow::LoginWindow(QWidget * parent)
   m_p_logo_label->setAlignment(Qt::AlignCenter);
 
   m_p_user_edit = new QLineEdit();
-  m_p_user_edit->setPalette(QPalette(QColor(255, 255, 255, 255),
-    QColor(255, 255, 255, 255)));
+  m_p_user_edit->setPalette(
+    QPalette(QColor(255, 255, 255, 255), QColor(255, 255, 255, 255)));
 
   m_p_password_edit = new QLineEdit();
   m_p_password_edit->setPalette(QPalette(QColor(255, 255, 255, 255),
@@ -52,7 +52,8 @@ LoginWindow::LoginWindow(QWidget * parent)
 
   /* set the password edit to not show text */
   m_p_password_edit->setEchoMode(QLineEdit::Password);
-  m_p_password_edit->setInputMethodHints(Qt::ImhHiddenText |
+  m_p_password_edit->setInputMethodHints(
+    Qt::ImhHiddenText |
     Qt::ImhNoPredictiveText |
     Qt::ImhNoAutoUppercase);
 

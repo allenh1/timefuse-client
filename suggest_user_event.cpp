@@ -27,7 +27,7 @@ suggest_user_event::suggest_user_event(QWidget * parent)
   m_p_password = new QString("");
 
   /* TODO(allenh1): add this functionality back in */
-  m_p_ui->->setPlaceholderText(tr("in minutes"));
+  // m_p_ui->->setPlaceholderText(tr("in minutes"));
 
   // connect buttons
   connect(m_p_ui->cancel, &QPushButton::released,
