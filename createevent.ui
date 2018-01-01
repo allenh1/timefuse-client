@@ -288,8 +288,8 @@ font: 13pt &quot;Courier&quot;;
     <rect>
      <x>200</x>
      <y>20</y>
-     <width>181</width>
-     <height>51</height>
+     <width>201</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -300,6 +300,15 @@ font: 20pt &quot;Times New Roman&quot;;</string>
     <string>Create Event</string>
    </property>
   </widget>
+  <zorder>title_3</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>gridLayoutWidget</zorder>
+  <zorder>pushCancel</zorder>
+  <zorder>label</zorder>
+  <zorder>radioFixed</zorder>
+  <zorder>radioNegotiable</zorder>
+  <zorder>suggest_time</zorder>
+  <zorder>line</zorder>
  </widget>
  <resources/>
  <connections/>

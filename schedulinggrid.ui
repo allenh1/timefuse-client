@@ -479,9 +479,9 @@ font: 13pt &quot;Courier&quot;;</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>100</x>
       <y>20</y>
-      <width>241</width>
+      <width>281</width>
       <height>41</height>
      </rect>
     </property>

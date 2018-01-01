@@ -115,8 +115,8 @@ font: 13pt &quot;Courier&quot;;</string>
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>21</y>
-     <width>191</width>
+     <y>20</y>
+     <width>221</width>
      <height>61</height>
     </rect>
    </property>
